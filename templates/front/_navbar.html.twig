@@ -1,0 +1,32 @@
+<nav class="navbar bg-primary navbar-expand-md">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbar">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">ACCUEIL
+					<span class="sr-only">(current)</span>
+				</a>
+			</li>
+			{% for product_type in product_types %}
+				<li class="nav-item">
+					<a href="" class="nav-link">
+						{{ product_type.label|upper }}
+					</a>
+				</li>
+			{% endfor %}
+			<li class="nav-item">
+				<a href="" class="nav-link">CONTACT</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a href="" class="nav-link">Compte client <i class="far fa-user"></i></a>
+			</li>
+			<li class="nav-item">
+				<a href="" class="nav-link">Panier <i class="fas fa-shopping-cart"></i></a>
+			</li>
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,35 @@
+{% extends 'front/base_front.html.twig' %}
+
+{% block title %}Accueil - Oriflam Medias
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<img src="" alt="logo">
+			</div>
+		</div>
+		<div class="row justify-content-between">
+			{% for product_type in product_types %}
+				<div class="col-3">
+					<div class="product-container">
+						<a href="">
+							<img src="" alt="">
+							<div class="product-container-label">
+								<p>{{ product_type.label }}</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <a href="" class="btn btn-primary w-100 rounded-0">
+                    DEMANDE PARTICULIÈRE
+                </a>
+            </div>
+        </div>
+	</div>
+{% endblock %}
