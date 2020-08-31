@@ -1,0 +1,9 @@
+@mixin initiate-font($name, $filename, $extension, $weight, $style)
+{
+    @font-face {
+        font-family: $name;
+        src: url('/assets/fonts/#{$filename}.#{$extension}') format($extension);
+        font-weight: $weight;
+        font-style: $style;
+    }
+}

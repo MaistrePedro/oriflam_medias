@@ -4,32 +4,61 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container home">
 		<div class="row justify-content-center">
 			<div class="col-8">
-				<img src="" alt="logo">
+				<img src="" alt="logo" class="home-logo">
+				<h2 class="home-subtitle">Vos supports de communication de qualité</h2>
 			</div>
 		</div>
 		<div class="row justify-content-between">
-			{% for product_type in product_types %}
-				<div class="col-3">
-					<div class="product-container">
-						<a href="">
-							<img src="" alt="">
-							<div class="product-container-label">
-								<p>{{ product_type.label }}</p>
-							</div>
-						</a>
-					</div>
+			<div class="col-3 home-thumbnail">
+				<div class="product-container">
+					<a href="">
+						<img src="{{ asset('build/calendrier_vignette.jpg') }}" alt="" class="img-fluid">
+						<div class="product-container-label">
+							<p class="home-thumbnail-text">CALENDRIERS</p>
+						</div>
+					</a>
 				</div>
-			{% endfor %}
+			</div>
+			<div class="col-3 home-thumbnail">
+				<div class="product-container">
+					<a href="">
+						<img src="{{ asset('build/agendas_vignettes.jpg') }}" alt="" class="img-fluid">
+						<div class="product-container-label">
+							<p class="home-thumbnail-text">AGENDAS & NOTEBOOKS</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-3 home-thumbnail">
+				<div class="product-container">
+					<a href="">
+						<img src="{{ asset('build/com_vignette.jpg') }}" alt="" class="img-fluid">
+						<div class="product-container-label">
+							<p class="home-thumbnail-text">COMMUNICATION</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-3 home-thumbnail">
+				<div class="product-container">
+					<a href="">
+						<img src="{{ asset('build/contact_vignette.jpg') }}" alt="" class="img-fluid">
+						<div class="product-container-label">
+							<p class="home-thumbnail-text">CONTACT</p>
+						</div>
+					</a>
+				</div>
+			</div>
 		</div>
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <a href="" class="btn btn-primary w-100 rounded-0">
-                    DEMANDE PARTICULIÈRE
-                </a>
-            </div>
-        </div>
+		<div class="row justify-content-center">
+			<div class="col-6">
+				<a href="" class="btn btn-primary w-100 rounded-0">
+					DEMANDE PARTICULIÈRE
+				</a>
+			</div>
+		</div>
 	</div>
 {% endblock %}

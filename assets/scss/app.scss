@@ -1,6 +1,17 @@
 @import 'vars';
+@import 'mixins';
 @import '~bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import "~@fortawesome/fontawesome-free/scss/solid";
+
+@include initiate-font('Gnyrwn', 'gnyrwn971', 'ttf', 'normal', 'normal');
+@include initiate-font('Din', 'DINLight', 'ttf', 'light', 'normal');
+@include initiate-font('Din', 'DINMedium', 'ttf', 'medium', 'normal');
+@include initiate-font('Din', 'DINOffc-Bold', 'ttf', 'bold', 'normal');
+@include initiate-font('Euro monospace', 'Euro-monospace', 'otf', 'normal', 'normal');
+@include initiate-font('MinionPro', 'MinionPro-Bold', 'otf', 'bold', 'normal');
+@include initiate-font('MinionPro', 'MinionPro-Regular', 'otf', 'normal', 'normal');
+
 @import 'navbar';
+@import 'home';
