@@ -3,13 +3,27 @@
         left: 0;
         right: 3rem;
     }
+    &-title {
+        @include font($gunny, 3rem);
+    }
     &-logo {
         max-height: 2rem;
+    }
+    &-text{
+        @include font($minion-regular, 1rem);
     }
     &-bottom {
         padding-top: 3rem;
         &-text {
             color: $primary;
+        }
+    }
+    input, textarea {
+            border-radius: 0;
+            border: none;
+            background-color: #ffffff;
+        @include placeholder {
+            @include font($minion-regular, 1rem)
         }
     }
 }
