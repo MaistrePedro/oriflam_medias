@@ -1,0 +1,15 @@
+.contact {
+    &-top {
+        left: 0;
+        right: 3rem;
+    }
+    &-logo {
+        max-height: 2rem;
+    }
+    &-bottom {
+        padding-top: 3rem;
+        &-text {
+            color: $primary;
+        }
+    }
+}

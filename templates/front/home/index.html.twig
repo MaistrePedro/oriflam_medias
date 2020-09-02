@@ -4,14 +4,18 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container home">
+	<div class="container-fluid home">
 		<div class="row justify-content-center">
-			<div class="col-8">
-				<img src="" alt="logo" class="home-logo">
+			<div class="col-6">
+				<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="home-logo img-fluid my-3">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-8 text-center my-3">
 				<h2 class="home-subtitle">Vos supports de communication de qualité</h2>
 			</div>
 		</div>
-		<div class="row justify-content-between">
+		<div class="row justify-content-between mb-5">
 			<div class="col-3 home-thumbnail">
 				<div class="product-container">
 					<a href="">
@@ -44,10 +48,10 @@
 			</div>
 			<div class="col-3 home-thumbnail">
 				<div class="product-container">
-					<a href="">
+					<a href="{{ path('contact') }}">
 						<img src="{{ asset('build/contact_vignette.jpg') }}" alt="" class="img-fluid">
 						<div class="product-container-label">
-							<p class="home-thumbnail-text">CONTACT</p>
+							<p class="home-thumbnail-text text-white">CONTACT</p>
 						</div>
 					</a>
 				</div>
@@ -55,7 +59,7 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-6">
-				<a href="" class="btn btn-primary w-100 rounded-0">
+				<a href="{{ path('contact') }}" class="btn btn-primary w-100 rounded-0">
 					DEMANDE PARTICULIÈRE
 				</a>
 			</div>

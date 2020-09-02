@@ -14,7 +14,7 @@ class PageController extends AbstractController
     public function index(string $short, PageRepository $pageRepository)
     {
         $page = $pageRepository->findOneBy(['short' => $short]);
-        return $this->render('front/page/index.html.twig', [
+        return $this->render('front/page/'.$short.'.html.twig', [
             'page' => $page
         ]);
     }

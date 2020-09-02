@@ -5,13 +5,108 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
-@include initiate-font('Gnyrwn', 'gnyrwn971', 'ttf', 'normal', 'normal');
-@include initiate-font('Din', 'DINLight', 'ttf', 'light', 'normal');
-@include initiate-font('Din', 'DINMedium', 'ttf', 'medium', 'normal');
-@include initiate-font('Din', 'DINOffc-Bold', 'ttf', 'bold', 'normal');
-@include initiate-font('Euro monospace', 'Euro-monospace', 'otf', 'normal', 'normal');
-@include initiate-font('MinionPro', 'MinionPro-Bold', 'otf', 'bold', 'normal');
-@include initiate-font('MinionPro', 'MinionPro-Regular', 'otf', 'normal', 'normal');
+@font-face {
+  font-family: 'Gunny Rewritten';
+  src: url('../fonts/GunnyRewritten.eot');
+  src: url('../fonts/GunnyRewritten.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/GunnyRewritten.woff2') format('woff2'),
+      url('../fonts/GunnyRewritten.woff') format('woff'),
+      url('../fonts/GunnyRewritten.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'D-DIN';
+  src: url('../fonts/D-DIN.eot');
+  src: url('../fonts/D-DIN.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/D-DIN.woff2') format('woff2'),
+      url('../fonts/D-DIN.woff') format('woff'),
+      url('../fonts/D-DIN.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'D-DIN Condensed';
+  src: url('../fonts/D-DINCondensed.eot');
+  src: url('../fonts/D-DINCondensed.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/D-DINCondensed.woff2') format('woff2'),
+      url('../fonts/D-DINCondensed.woff') format('woff'),
+      url('../fonts/D-DINCondensed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'D-DIN';
+  src: url('../fonts/D-DIN-Bold.eot');
+  src: url('../fonts/D-DIN-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/D-DIN-Bold.woff2') format('woff2'),
+      url('../fonts/D-DIN-Bold.woff') format('woff'),
+      url('../fonts/D-DIN-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Euro Mono';
+  src: url('../fonts/EuroMono-Regular.eot');
+  src: url('../fonts/EuroMono-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/EuroMono-Regular.woff2') format('woff2'),
+      url('../fonts/EuroMono-Regular.woff') format('woff'),
+      url('../fonts/EuroMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Minion Pro';
+  src: url('../fonts/MinionPro-Regular.eot');
+  src: url('../fonts/MinionPro-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/MinionPro-Regular.woff2') format('woff2'),
+      url('../fonts/MinionPro-Regular.woff') format('woff'),
+      url('../fonts/MinionPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Minion Pro';
+  src: url('../fonts/MinionPro-Bold.eot');
+  src: url('../fonts/MinionPro-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/MinionPro-Bold.woff2') format('woff2'),
+      url('../fonts/MinionPro-Bold.woff') format('woff'),
+      url('../fonts/MinionPro-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
 @import 'navbar';
 @import 'home';
+@import 'contact';
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 7rem;
+  overflow-x: hidden;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  p {
+    color: $background;
+  }
+}

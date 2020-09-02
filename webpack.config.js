@@ -34,6 +34,23 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
+    .addLoader(
+        {
+            test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+            use: 'file-loader',
+        },
+        {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            use: [
+                'file-loader?name=images/[name].[ext]',
+                'image-webpack-loader?bypassOnDebug'
+            ]
+        }
+    )
+    // .configureFilenames({
+    //     fonts: 'fonts/[name].[ext]'
+    // })
+
     /*
      * FEATURE CONFIG
      *

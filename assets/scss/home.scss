@@ -1,0 +1,26 @@
+.home {
+  max-width: 80rem;
+  &-subtitle {
+    @include font($gnyrwn, 3rem)
+  }
+  &-thumbnail {
+    position: relative;
+    text-align: center;
+    transition: all 0.2s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &-text {
+      @include font($din-bold, 1rem);
+      position: absolute;
+      bottom: .7rem;
+      left: 0;
+      right: 0;
+      display: block;
+      margin-bottom: 0;
+    }
+  }
+  .btn {
+    @include font($din-bold, 1rem, #ffffff);
+  }
+}

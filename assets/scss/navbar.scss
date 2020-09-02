@@ -1,5 +1,42 @@
 .navbar {
-	.nav-link {
-		color: #ffffff;
-	}
+  .mr-auto {
+    .nav-link {
+      @include font($din-bold, 1.2rem, #ffffff);
+    }
+  }
+  .ml-auto {
+    .nav-item {
+      position: relative;
+      text-align: center;
+      padding-right: 3.5rem;
+      .nav-link {
+        @include font($din-medium, 1rem, #ffffff);
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        right: 7%;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: rgba($color: #ffffff, $alpha: 0.5);
+      }
+    }
+  }
+
+  .far.fa-user,
+  .fas.fa-shopping-cart {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translate(50%, -50%);
+    font-size: 2rem;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+  }
 }
