@@ -22,6 +22,7 @@
             border-radius: 0;
             border: none;
             background-color: #ffffff;
+            margin-bottom: .5rem;
         @include placeholder {
             @include font($minion-regular, 1rem)
         }

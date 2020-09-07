@@ -1,0 +1,130 @@
+{% extends 'front/base_front.html.twig' %}
+
+{% block title %}Calendriers | Oriflam Medias
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid calendar">
+		<div class="row calendar-top position-absolute justify-content-end">
+			<div class="col-2">
+				<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="img-fluid">
+			</div>
+		</div>
+		<div class="row calendar-title justify-content-start">
+			<div class="col-1 offset-1">
+				<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="img-fluid mb-2">
+			</div>
+			<div class="col-8">
+				<h1 class="calendar-title-text">Des calendriers professionnels à votre image</h1>
+			</div>
+		</div>
+		<div class="row calendar-middletop">
+			<div class="col-6">
+				<p>
+					À la fois pratique, élégant et utile c’est le plus connu des calendriers publicitaires. 
+					À accrocher au mur ou à poser sur un bureau, un calendrier bancaire trouvera forcement 
+					une place de choix. Ce support de communication est un incontournable pour vous aider 
+					à organiser vos réunions et vos rendez-vous du quotidien.
+					<br>
+					<br>
+					Une zone de « repiquage » est réservée à la mise en page de votre logo et de vos coordonnées.
+				</p>
+				<div class="row">
+					<div class="col-6">
+						<img src="{{ asset('build/CAL_1.jpg') }}" alt="Calendriers professionnels" class="img-fluid">
+					</div>
+					<div class="col-6">
+						<img src="{{ asset('build/cal_2.jpg') }}" alt="Calendriers professionnels" class="img-fluid">
+					</div>
+				</div>
+			</div>
+			{% if others is not null %}
+				<div class="col-6">
+					<ul class="list-group">
+						{% for other in others %}
+							<li class="list-group-item">
+								<div class="row">
+									<div class="col-6">
+										<p class="word-wrap">
+											{{ other.name }}
+										</p>
+										<button class="btn btn-primary rounded-0">
+											<i class="fas fa-cart-plus"></i>
+										</button>
+									</div>
+									{% if other.options is not null %}
+										{% set options = other.options %}
+										<div class="col-6">
+											<select name="options-{{ other.id }}" class="form-control">
+												{% for option in options %}
+													<option value="{{ option.id }}">{{ option.label }}
+														{{ option.price }}</option>
+												{% endfor %}
+											</select>
+										</div>
+									{% endif %}
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+		<div class="row calendar-middlebottom">
+			<div class="col-6 calendar-middlebottom-left">
+				<p class="calendar-middlebottom-left-text">
+					Calendrier  dans le thème de  votre entreprise :
+					<br>
+					dans le thème de  votre entreprise :
+					<br>
+					Métiers de bouches, cavistes, fleuristes, décorateur ...
+					<br>
+					<br>
+					Une zone de « repiquage » est réservée à la mise en page de votre logo et de vos coordonnées.
+				</p>
+				<div class="row">
+					<div class="col-6 m-0">
+						<img src="{{ asset('build/CAL_3.jpg') }}" alt="" class="img-fluid">
+					</div>
+					<div class="col-6 m-0">
+						<img src="{{ asset('build/Cal_4.jpg') }}" alt="" class="img-fluid">
+					</div>
+				</div>
+			</div>
+			<div class="col-6 calendar-middlebottom-right">
+
+				{% if customs is not null %}
+					<div class="col-6">
+						<ul class="list-group">
+							{% for custom in customs %}
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-6">
+											<p class="word-wrap">
+												{{ custom.name }}
+											</p>
+											<button class="btn btn-primary rounded-0">
+												<i class="fas fa-cart-plus"></i>
+											</button>
+										</div>
+										{% if custom.options is not null %}
+											{% set options = custom.options %}
+											<div class="col-6">
+												<select name="options-{{ custom.id }}" class="form-control">
+													{% for option in options %}
+														<option value="{{ option.id }}">{{ option.label }}
+															{{ option.price }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										{% endif %}
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -35,6 +35,16 @@ class Product
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="product", orphanRemoval=true)
+     */
+    private $options;
+
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +82,37 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Options[]
+     */
+    public function getOptions(): Collection
+    {
+        return $this->options;
+    }
+
+    public function addOption(Options $option): self
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+            $option->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOption(Options $option): self
+    {
+        if ($this->options->contains($option)) {
+            $this->options->removeElement($option);
+            // set the owning side to null (unless already changed)
+            if ($option->getProduct() === $this) {
+                $option->setProduct(null);
+            }
+        }
 
         return $this;
     }

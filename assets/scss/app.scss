@@ -92,12 +92,18 @@
 @import 'navbar';
 @import 'home';
 @import 'contact';
+@import 'calendars';
+@import 'books';
+@import 'agendas';
+@import 'booklets';
+@import 'flyers';
 
 body {
   min-height: 100vh;
   position: relative;
   padding-bottom: 7rem;
   overflow-x: hidden;
+  background-color: $background;
 }
 
 footer {
@@ -109,4 +115,16 @@ footer {
   p {
     color: $background;
   }
+}
+
+h1 {
+  @include font($gunny, 3rem, #000000);
+}
+
+p {
+  @include font($din-light, 1rem);
+}
+
+.container-fluid {
+  width: 92.5%;
 }

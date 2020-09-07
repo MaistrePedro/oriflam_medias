@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    const CALENDARS = 'calendars';
+    const AGENDAS = 'agendas';
+    const BOOKS = 'books';
+    const BOOKLET = 'booklet';
+    const FLYER = 'flyer';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -25,7 +31,7 @@ class Category
     private $label;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
 

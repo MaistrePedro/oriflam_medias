@@ -1,7 +1,11 @@
 .navbar {
+  padding-left: 10rem;
   .mr-auto {
-    .nav-link {
-      @include font($din-bold, 1.2rem, #ffffff);
+    .nav-item {
+      margin-right: 2rem;
+      .nav-link {
+        @include font($din-bold, 1.2rem, #ffffff);
+      }
     }
   }
   .ml-auto {
@@ -13,7 +17,7 @@
         @include font($din-medium, 1rem, #ffffff);
       }
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         right: 7%;
         top: 50%;
@@ -38,5 +42,18 @@
   .nav-item {
     display: flex;
     align-items: center;
+  }
+
+  .dropdown-menu {
+    background-color: $primary;
+    border: none;
+    border-radius: 0;
+    .dropdown-item {
+      @include font($din-medium, 1rem, #ffffff);
+      transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+      &:hover {
+        background-color: darken($primary, 25%);
+      }
+    }
   }
 }

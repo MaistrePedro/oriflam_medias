@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary navbar-expand-md position-sticky">
+<nav class="navbar bg-primary navbar-expand-md">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -9,22 +9,28 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="" class="nav-link">
+				<a href="{{ path('calendars') }}" class="nav-link">
 					CALENDRIERS
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="" class="nav-link">
+				<a href="{{ path('agendas') }}" class="nav-link">
 					AGENDAS
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="" class="nav-link">
+			<li class="nav-item position-relative">
+				<a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					COMMUNICATION
 				</a>
+				<div class="dropdown-menu" aria-labelledBy="navbarDropdown">
+					<a href="" class="dropdown-item">NOS SOLUTIONS</a>
+					<a href="{{ path('booklets') }}" class="dropdown-item">BROCHURES</a>
+					<a href="{{ path('flyers') }}" class="dropdown-item">FLYERS</a>
+				</div>
 			</li>
 			<li class="nav-item">
-				<a href="" class="nav-link">
+				<a href="{{ path('books') }}" class="nav-link">
 					BEAUX LIVRES
 				</a>
 			</li>

@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const MR = 'M.';
+    const MRS = 'Mme.';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
