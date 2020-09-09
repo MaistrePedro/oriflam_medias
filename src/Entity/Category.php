@@ -14,6 +14,7 @@ class Category
 {
     const CALENDARS = 'calendars';
     const AGENDAS = 'agendas';
+    const NOTEBOOKS = 'notebooks';
     const BOOKS = 'books';
     const BOOKLET = 'booklet';
     const FLYER = 'flyer';
@@ -26,7 +27,7 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=255)
      */
     private $label;
 

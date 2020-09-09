@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,23 +34,81 @@ class UserType extends AbstractType
                 ],
                 'mapped' => false
             ])
-            ->add('civility', TextType::class, [
+            ->add('civility', ChoiceType::class, [
                 'label_attr' => [
                     'class' => 'd-none'
                 ],
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'mt-2 form-check d-inline-block',
                 ],
+                'choices' => [
+                    'Madame' => User::MRS,
+                    'Monsieur' => User::MR
+                ],
+                'choice_attr' => function() {
+                    return ['class' => 'mr-1'];
+                },
                 'expanded' => true,
                 'multiple' => false
             ])
-            ->add('firstname')
-            ->add('lastname')
-            ->add('birthDate')
-            ->add('mobileNumber')
-            ->add('newsletter')
-            ->add('cgu')
-            ->add('lastAcceptedCgu')
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom*',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('lastname', TextType::class, [
+                'label' => 'Nom*',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('birthDate', DateType::class, [
+                'label' => 'Date de naissance*',
+                'attr' => [
+                    'class' => '',
+                ],
+                'widget' => 'choice'
+            ])
+            ->add('mobileNumber', TextType::class, [
+                'label' => 'Numéro de mobile*',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('newsletter', ChoiceType::class, [
+                'label_attr' => [
+                    'class' => 'd-none'
+                ],
+                'attr' => [
+                    'class' => 'form-check',
+                ],
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false
+                ],
+                'choice_attr' => function() {
+                    return ['class' => 'mr-1'];
+                },
+                'expanded' => true,
+                'multiple' => false
+            ])
+            ->add('cgu', ChoiceType::class, [
+                'label_attr' => [
+                    'class' => 'd-none'
+                ],
+                'attr' => [
+                    'class' => 'form-check',
+                ],
+                'choices' => [
+                    'J\'ai lu et j\'accepte les Conditions Générales de Vente' => true
+                ],
+                'choice_attr' => function() {
+                    return ['class' => 'mr-1'];
+                },
+                'expanded' => true,
+                'multiple' => true
+            ])
         ;
     }
 

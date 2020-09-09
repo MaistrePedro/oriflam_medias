@@ -8,6 +8,9 @@
       border-right: $primary 1px solid;
       &-top {
         @include font($din-medium, 1rem);
+        .front {
+          max-height:280px;
+        }
       }
     }
   }

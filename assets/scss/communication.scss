@@ -1,0 +1,14 @@
+.communication {
+  &-top {
+    left: 0;
+    right: 0;
+  }
+  &-middle {
+    padding-top: 5rem;
+    &-row {
+      &-title {
+        @include font($din-medium, 1rem, $primary);
+      }
+    }
+  }
+}

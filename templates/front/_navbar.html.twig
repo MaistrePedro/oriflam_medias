@@ -3,6 +3,14 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbar">
+		<p class="address-block text-center">
+			Service client <br>
+			<span class="phone">
+				02 38 23 77 62
+			</span><br>
+			45160 Olivet <br>
+			<small>du lundi au vendredi de 9h à 18h</small>
+		</p>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
 				<a class="nav-link" href="{{ path('home') }}">ACCUEIL
@@ -24,7 +32,7 @@
 					COMMUNICATION
 				</a>
 				<div class="dropdown-menu" aria-labelledBy="navbarDropdown">
-					<a href="" class="dropdown-item">NOS SOLUTIONS</a>
+					<a href="{{ path('communication') }}" class="dropdown-item">NOS SOLUTIONS</a>
 					<a href="{{ path('booklets') }}" class="dropdown-item">BROCHURES</a>
 					<a href="{{ path('flyers') }}" class="dropdown-item">FLYERS</a>
 				</div>
@@ -40,7 +48,7 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item ">
-				<a href="" class="nav-link">Compte
+				<a href="{{ path('user') }}" class="nav-link">Compte
 					<br>
 					client
 					<i class="far fa-user"></i>

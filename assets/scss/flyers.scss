@@ -1,14 +1,14 @@
 .flyers {
-    &-top {
-      left: 0;
-      right: 0;
-    }
-    &-middle {
-      &-left {
-        border-right: $primary 1px solid;
-        &-top {
-          @include font($din-medium, 1rem);
-        }
+  &-top {
+    left: 0;
+    right: 0;
+  }
+  &-middle {
+    &-left {
+      border-right: $primary 1px solid;
+      &-top {
+        @include font($din-medium, 1rem);
       }
     }
   }
+}

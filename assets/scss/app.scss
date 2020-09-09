@@ -97,6 +97,8 @@
 @import 'agendas';
 @import 'booklets';
 @import 'flyers';
+@import 'signup';
+@import 'communication';
 
 body {
   min-height: 100vh;
@@ -122,9 +124,25 @@ h1 {
 }
 
 p {
-  @include font($din-light, 1rem);
+  @include font($din-medium, 1rem);
 }
 
 .container-fluid {
   width: 92.5%;
+}
+
+.list-group {
+  .list-group-item {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+select { 
+  option {
+    span {
+      right: 0;
+      transform: translateX(100%);
+    }
+  }
 }

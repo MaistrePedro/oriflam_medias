@@ -19,12 +19,19 @@
 		<div class="row booklets-middle">
 			<div class="col-6 booklets-middle-left">
 				<div class="row booklets-middle-left-top">
-					<div class="col-2">
-						<img src="{{ asset('build/logo_oriflam.png') }}" alt="" class="img-fluid">
+					<div class="col-5 offset-1">
+						<img src="{{ asset('build/Livret_CHAON-2017.jpg') }}" alt="" class="img-fluid front">
 					</div>
-					<div class="col-8 offset-2">
-						<img src="{{ asset('build/brochure-a4-jpg.png') }}" alt="" class="img-fluid">
-						<img src="{{ asset('build/brochure-105x210-avec-couverture-350_4.png') }}" alt="" class="img-fluid">
+					<div class="col-5">
+						<img src="{{ asset('build/Livret_CHAON_test_interieur.png') }}" alt="" class="img-fluid">
+					</div>
+				</div>
+				<div class="row booklets-middle-left-top">
+					<div class="col-5 offset-1">
+						<img src="{{ asset('build/Programme_CHAON_2019.png') }}" alt="" class="img-fluid front">
+					</div>
+					<div class="col-5">
+						<img src="{{ asset('build/Programme_ok-4.png') }}" alt="" class="img-fluid">
 					</div>
 				</div>
 			</div>
@@ -36,29 +43,29 @@
 								Brochures
 							</p>
 							<ul class="list-group">
-							{% for booklet in booklets %}
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-6">
-											<p>{{ booklet.name }}</p>
-											<button class="btn btn-primary rounded-0">
-												<i class="fas fa-cart-plus"></i>
-											</button>
-										</div>
-										{% if booklet.options is not null %}
-											{% set options = booklet.options %}
+								{% for booklet in booklets %}
+									<li class="list-group-item">
+										<div class="row">
 											<div class="col-6">
-												<select name="options-{{ booklet.id }}" class="form-control">
-													{% for option in options %}
-														<option value="{{ option.id }}">{{ option.label }}
-															{{ option.price }}</option>
-													{% endfor %}
-												</select>
+												<p>{{ booklet.name }}</p>
+												<button class="btn btn-primary rounded-0">
+													<i class="fas fa-cart-plus"></i>
+												</button>
 											</div>
-										{% endif %}
-									</div>
-								</li>
-							{% endfor %}
+											{% if booklet.options is not null %}
+												{% set options = booklet.options %}
+												<div class="col-6">
+													<select name="options-{{ booklet.id }}" class="form-control">
+														{% for option in options %}
+															<option value="{{ option.id }}">{{ option.label }}
+																{{ option.price }}</option>
+														{% endfor %}
+													</select>
+												</div>
+											{% endif %}
+										</div>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 					{% endif %}

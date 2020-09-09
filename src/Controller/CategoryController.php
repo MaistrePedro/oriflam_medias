@@ -44,12 +44,15 @@ class CategoryController extends AbstractController
      */
     public function agendas(CategoryRepository $categoryRepository, ProductRepository $productRepository)
     {
-        $category = $categoryRepository->findOneBy(['slug' => Category::AGENDAS]);
+        $agendasCat = $categoryRepository->findOneBy(['slug' => Category::AGENDAS]);
+        $notebooksCat = $categoryRepository->findOneBy(['slug' => Category::NOTEBOOKS]);
         $agendas = [];
         $notebooks = [];
-        if ($category) {
-            $agendas = $productRepository->findLike('personnalisable', $category);
-            $notebooks = $productRepository->findOthers('personnalisable', $category);
+        if ($agendasCat) {
+            $agendas = $productRepository->findBy(['category' => $agendasCat]);
+        }
+        if ($notebooksCat) {
+            $notebooks = $productRepository->findBy(['category' => $notebooksCat]);
         }
         return $this->render('front/category/agendas.html.twig', [
             'agendas' => $agendas,
@@ -85,5 +88,13 @@ class CategoryController extends AbstractController
         return $this->render('front/category/flyers.html.twig', [
             'flyers' => $flyers,
         ]);
+    }
+
+    /**
+     * @Route("/communication", name="communication")
+     */
+    public function communication()
+    {
+        return $this->render('front/category/communication.html.twig');
     }
 }
