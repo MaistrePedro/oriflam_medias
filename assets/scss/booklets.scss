@@ -13,5 +13,13 @@
         }
       }
     }
+    &-right {
+      p {
+        @include font($minion-regular, 1rem); 
+        &.booklets-middle-right-booklets-title {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }

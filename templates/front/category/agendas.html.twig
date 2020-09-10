@@ -46,10 +46,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row agendas-middle-right">
-				<div class="col-8">
+			<div class="col-6 agendas-middle-right">
+				<div class="row">
 					{% if agendas is not empty %}
-						<div class="agendas-middle-right-agendas">
+						<div class="col-8 agendas-middle-right-agendas pt-5">
 							<p class="agendas-middle-right-agendas-title">
 								Agenda
 							</p>
@@ -72,7 +72,7 @@
 						</div>
 					{% endif %}
 					{% if notebooks is not empty %}
-						<div class="agendas-middle-right-notebooks">
+						<div class="col-8 agendas-middle-right-notebooks mt-5">
 							<p class="agendas-middle-right-notebooks-title">
 								Notebook
 							</p>
@@ -81,7 +81,7 @@
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-6">
-											<p>{{ agenda.name }}</p>
+											<p>{{ notebook.name }}</p>
 										</div>
 										<div class="col-2">
 											<button class="btn btn-primary rounded-0">

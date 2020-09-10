@@ -138,11 +138,14 @@ p {
   }
 }
 
-select { 
-  option {
-    span {
-      right: 0;
-      transform: translateX(100%);
-    }
+footer {
+  p, a {
+    @include font($din-medium, 1rem)
+  }
+  p {
+    color: #ffffff;
+  }
+  a {
+    color: $primary;
   }
 }

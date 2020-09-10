@@ -42,7 +42,7 @@ class AgendaFixtures extends Fixture
         $product = new Product;
         $product
             ->setName('Format A5 (210 X 148 mm)')
-            ->setCategory($agendas)
+            ->setCategory($notebook)
         ;
         $manager->persist($product);
 

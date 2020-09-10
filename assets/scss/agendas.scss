@@ -13,5 +13,14 @@
         }
       }
     }
+    &-right {
+      p {
+        @include font($minion-regular, 1rem);
+        &.agendas-middle-right-agendas-title, 
+        &.agendas-middle-right-notebooks-title {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }

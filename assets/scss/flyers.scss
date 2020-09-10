@@ -10,5 +10,13 @@
         @include font($din-medium, 1rem);
       }
     }
+    &-right {
+      p {
+        @include font($minion-regular, 1rem); 
+        &.flyers-middle-right-flyers-title {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }

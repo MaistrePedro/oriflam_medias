@@ -22,7 +22,7 @@
 				<div class="row books-middle-left-top">
 					<div class="col-6 offset-3">
 						Couverture cartonnées, papier intérieur de qualité
-												jusqu’à 60 pages de photos, 2 formats au choix
+																		jusqu’à 60 pages de photos, 2 formats au choix
 					</div>
 				</div>
 				<div class="row justify-content-start">
@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-6">
 						<img src="{{ asset('build/livre_cerf.png') }}" alt="" class="img-fluid">
-					</diCarnetsàcouverturerigidepersonnalisésA5Possibilitédepersonnalisationaveclelogodevotreentreprisev>
+					</div>
 				</div>
 				<div class="row books-middle-left-middle">
 					<div class="col-6">
@@ -68,15 +68,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6 books-middle-right">
+			<div class="col-6 books-middle-right d-flex align-items-center">
 				<ul class="list-group">
 					{% for product in products %}
-						<li class="list-group-item">
+						<li class="list-group-item mb-5">
 							<div class="row">
-								<div class="col-6">
+								<div class="col-4">
 									<p class="word-wrap">
 										{{ product.name }}
 									</p>
+								</div>
+								<div class="col-2">
 									<button class="btn btn-primary rounded-0">
 										<i class="fas fa-cart-plus"></i>
 									</button>
@@ -86,8 +88,8 @@
 									<div class="col-6">
 										<select name="options-{{ product.id }}" class="form-control">
 											{% for option in options %}
-												<option value="{{ option.id }}">{{ option.label }}
-													{{ option.price }}</option>
+												<option value="{{ option.id }}">{{ option.label }} - 
+													{{ option.price }} € HT</option>
 											{% endfor %}
 										</select>
 									</div>

@@ -35,10 +35,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row booklets-middle-right">
-				<div class="col-8">
+			<div class="col-6 booklets-middle-right">
+				<div class="row">
 					{% if booklets is not empty %}
-						<div class="booklets-middle-right-booklets">
+						<div class="col-10 booklets-middle-right-booklets mt-5">
 							<p class="booklets-middle-right-booklets-title">
 								Brochures
 							</p>
@@ -46,8 +46,10 @@
 								{% for booklet in booklets %}
 									<li class="list-group-item">
 										<div class="row">
-											<div class="col-6">
+											<div class="col-4">
 												<p>{{ booklet.name }}</p>
+											</div>
+											<div class="col-2">
 												<button class="btn btn-primary rounded-0">
 													<i class="fas fa-cart-plus"></i>
 												</button>
@@ -57,8 +59,8 @@
 												<div class="col-6">
 													<select name="options-{{ booklet.id }}" class="form-control">
 														{% for option in options %}
-															<option value="{{ option.id }}">{{ option.label }}
-																{{ option.price }}</option>
+															<option value="{{ option.id }}">{{ option.label }} - 
+																{{ option.price }} € HT</option>
 														{% endfor %}
 													</select>
 												</div>

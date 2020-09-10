@@ -10,5 +10,10 @@
         @include font($din-medium, 1rem);
       }
     }
+    &-right {
+      p {
+        @include font($minion-regular, 1rem);
+      }
+    }
   }
 }
