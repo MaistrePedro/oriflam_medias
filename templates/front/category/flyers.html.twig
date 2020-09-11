@@ -31,34 +31,39 @@
 			<div class="col-6 flyers-middle-right">
 				<div class="row">
 					{% if flyers is not empty %}
-						<div class="col-8 flyers-middle-right-flyers">
+						<div class="col-11 flyers-middle-right-flyers">
 							<p class="flyers-middle-right-flyers-title">
 								Flyers
 							</p>
 							<ul class="list-group">
 								{% for flyer in flyers %}
 									<li class="list-group-item">
-										<div class="row">
-											<div class="col-4">
-												<p>{{ flyer.name }}</p>
-											</div>
-											<div class="col-2">
-												<button class="btn btn-primary rounded-0">
-													<i class="fas fa-cart-plus"></i>
-												</button>
-											</div>
-											{% if flyer.options is not null %}
-												{% set options = flyer.options %}
-												<div class="col-6">
-													<select name="options-{{ flyer.id }}" class="form-control">
-														{% for option in options %}
-															<option value="{{ option.id }}">{{ option.label }} - 
-																{{ option.price }} € HT</option>
-														{% endfor %}
-													</select>
+										<form action="" class="add-to-cart">
+											<div class="row">
+												<div class="col-4 order-1">
+													<p>{{ flyer.name }}</p>
 												</div>
-											{% endif %}
-										</div>
+												{% if flyer.options is not null %}
+													{% set options = flyer.options %}
+													<div class="col-6 order-3">
+														<select name="options-{{ flyer.id }}" class="form-control">
+															{% for option in options %}
+																<option value="{{ option.id }}">{{ option.label }}
+																	-
+																	{{ option.price }}
+																	€ HT</option>
+															{% endfor %}
+														</select>
+													</div>
+												{% endif %}
+												<div class="col-2 order-2">
+												<input type="hidden" value="{{ flyer.id }}">
+													<button type="submit" class="btn btn-primary rounded-0">
+														<i class="fas fa-cart-plus"></i>
+													</button>
+												</div>
+											</div>
+										</form>
 									</li>
 								{% endfor %}
 							</ul>

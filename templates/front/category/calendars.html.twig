@@ -19,8 +19,8 @@
 			<div class="col-6">
 				<p>
 					À la fois pratique, élégant et utile c’est le plus connu des calendriers publicitaires. À accrocher au mur ou à poser sur un
-															bureau, un calendrier bancaire trouvera forcement une place de choix. Ce support de communication est un incontournable
-															pour vous aider à organiser vos réunions et vos rendez-vous du quotidien
+																									bureau, un calendrier bancaire trouvera forcement une place de choix. Ce support de communication est un incontournable
+																									pour vous aider à organiser vos réunions et vos rendez-vous du quotidien
 					<br>
 					<br>
 					<span class="font-weight-bold">
@@ -40,29 +40,36 @@
 					<ul class="list-group pt-5">
 						{% for other in others %}
 							<li class="list-group-item">
-								<div class="row">
-									<div class="col-4">
-										<p class="word-wrap">
-											{{ other.name }}
-										</p>
-									</div>
-									<div class="col-2">
-										<button class="btn btn-primary rounded-0">
-											<i class="fas fa-cart-plus"></i>
-										</button>
-									</div>
-									{% if other.options is not null %}
-										{% set options = other.options %}
-										<div class="col-6">
-											<select name="options-{{ other.id }}" class="form-control">
-												{% for option in options %}
-													<option class="position-relative" value="{{ option.id }}">{{ option.label }}
-														<span> - {{ option.price }} € HT</span></option>
-												{% endfor %}
-											</select>
+								<form action="" class="add-to-cart">
+									<div class="row">
+										<div class="col-4 order-1">
+											<p class="word-wrap">
+												{{ other.name }}
+											</p>
 										</div>
-									{% endif %}
-								</div>
+										{% if other.options is not null %}
+											{% set options = other.options %}
+											<div class="col-6 order-3">
+												<select name="options-{{ other.id }}" class="form-control">
+													{% for option in options %}
+														<option class="position-relative" value="{{ option.id }}">{{ option.label }}
+															<span>
+																-
+																{{ option.price }}
+																€ HT</span>
+														</option>
+													{% endfor %}
+												</select>
+											</div>
+										{% endif %}
+										<div class="col-2 order-2">
+											<input type="hidden" value="{{ other.id }}">
+											<button class="btn btn-primary rounded-0">
+												<i class="fas fa-cart-plus"></i>
+											</button>
+										</div>
+									</div>
+								</form>
 							</li>
 						{% endfor %}
 					</ul>
@@ -94,29 +101,32 @@
 					<ul class="list-group pt-5">
 						{% for custom in customs %}
 							<li class="list-group-item">
-								<div class="row">
-									<div class="col-4">
-										<p class="word-wrap">
-											{{ custom.name }}
-										</p>
-									</div>
-									<div class="col-2">
-										<button class="btn btn-primary rounded-0">
-											<i class="fas fa-cart-plus"></i>
-										</button>
-									</div>
-									{% if custom.options is not null %}
-										{% set options = custom.options %}
-										<div class="col-6">
-											<select name="options-{{ custom.id }}" class="form-control">
-												{% for option in options %}
-													<option value="{{ option.id }}">{{ option.label }}
-														{{ option.price }}</option>
-												{% endfor %}
-											</select>
+								<form action="" class="add-to-cart">
+									<div class="row">
+										<div class="col-4 order-1">
+											<p class="word-wrap">
+												{{ custom.name }}
+											</p>
 										</div>
-									{% endif %}
-								</div>
+										{% if custom.options is not null %}
+											{% set options = custom.options %}
+											<div class="col-6 order-3">
+												<select name="options-{{ custom.id }}" class="form-control">
+													{% for option in options %}
+														<option value="{{ option.id }}">{{ option.label }}
+															{{ option.price }}</option>
+													{% endfor %}
+												</select>
+											</div>
+										{% endif %}
+										<div class="col-2 order-2">
+											<input type="hidden" value="{{ custom.id }}">
+											<button type="submit" class="btn btn-primary rounded-0">
+												<i class="fas fa-cart-plus"></i>
+											</button>
+										</div>
+									</div>
+								</form>
 							</li>
 						{% endfor %}
 					</ul>

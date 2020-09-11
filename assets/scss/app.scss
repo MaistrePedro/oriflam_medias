@@ -149,3 +149,13 @@ footer {
     color: $primary;
   }
 }
+
+.form-status {
+  @include font($minion-bold, 1rem);
+  &--success {
+    color: green;
+  }
+  &--fail {
+    color: red;
+  }
+}

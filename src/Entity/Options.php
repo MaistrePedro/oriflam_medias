@@ -36,7 +36,7 @@ class Options
     private $price;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Order::class, mappedBy="products")
+     * @ORM\ManyToMany(targetEntity=Order::class, mappedBy="options")
      */
     private $orders;
 

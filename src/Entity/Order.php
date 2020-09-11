@@ -29,7 +29,7 @@ class Order
     /**
      * @ORM\ManyToMany(targetEntity=Options::class, inversedBy="orders")
      */
-    private $products;
+    private $options;
 
     /**
      * @ORM\Column(type="boolean")
@@ -37,7 +37,7 @@ class Order
     private $validated;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $paymentMode;
 
@@ -56,9 +56,15 @@ class Order
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="orders")
+     */
+    private $products;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->options = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,24 +87,24 @@ class Order
     /**
      * @return Collection|Options[]
      */
-    public function getProducts(): Collection
+    public function getOptions(): Collection
     {
-        return $this->products;
+        return $this->options;
     }
 
-    public function addProduct(Options $product): self
+    public function addOption(Options $option): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
         }
 
         return $this;
     }
 
-    public function removeProduct(Options $product): self
+    public function removeOption(Options $option): self
     {
-        if ($this->products->contains($product)) {
-            $this->products->removeElement($product);
+        if ($this->options->contains($option)) {
+            $this->options->removeElement($option);
         }
 
         return $this;
@@ -160,6 +166,32 @@ class Order
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+        }
 
         return $this;
     }

@@ -35,9 +35,20 @@ class Product
      */
     private $options;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Order::class, mappedBy="products")
+     */
+    private $orders;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $cost;
+
     public function __construct()
     {
         $this->options = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,6 +107,46 @@ class Product
                 $option->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            $order->removeProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function getCost(): ?float
+    {
+        return $this->cost;
+    }
+
+    public function setCost(?float $cost): self
+    {
+        $this->cost = $cost;
 
         return $this;
     }

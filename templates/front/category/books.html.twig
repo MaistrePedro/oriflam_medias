@@ -22,7 +22,7 @@
 				<div class="row books-middle-left-top">
 					<div class="col-6 offset-3">
 						Couverture cartonnées, papier intérieur de qualité
-																		jusqu’à 60 pages de photos, 2 formats au choix
+																								jusqu’à 60 pages de photos, 2 formats au choix
 					</div>
 				</div>
 				<div class="row justify-content-start">
@@ -72,29 +72,34 @@
 				<ul class="list-group">
 					{% for product in products %}
 						<li class="list-group-item mb-5">
-							<div class="row">
-								<div class="col-4">
-									<p class="word-wrap">
-										{{ product.name }}
-									</p>
-								</div>
-								<div class="col-2">
-									<button class="btn btn-primary rounded-0">
-										<i class="fas fa-cart-plus"></i>
-									</button>
-								</div>
-								{% if product.options is not null %}
-									{% set options = product.options %}
-									<div class="col-6">
-										<select name="options-{{ product.id }}" class="form-control">
-											{% for option in options %}
-												<option value="{{ option.id }}">{{ option.label }} - 
-													{{ option.price }} € HT</option>
-											{% endfor %}
-										</select>
+							<form action="" class="add-to-cart">
+								<div class="row">
+									<div class="col-4 order-1">
+										<p class="word-wrap">
+											{{ product.name }}
+										</p>
 									</div>
-								{% endif %}
-							</div>
+									{% if product.options is not null %}
+										{% set options = product.options %}
+										<div class="col-6 order-3">
+											<select name="options-{{ product.id }}" class="form-control">
+												{% for option in options %}
+													<option value="{{ option.id }}">{{ option.label }}
+														-
+														{{ option.price }}
+														€ HT</option>
+												{% endfor %}
+											</select>
+										</div>
+									{% endif %}
+									<div class="col-2 order-2">
+									<input type="hidden" value="{{ product.id }}">
+										<button type="submit" class="btn btn-primary rounded-0">
+											<i class="fas fa-cart-plus"></i>
+										</button>
+									</div>
+								</div>
+							</form>
 						</li>
 					{% endfor %}
 				</ul>
