@@ -29,7 +29,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 20')
+            ->setLabel('20 exemplaires')
             ->setPrice(227)
         ;
         $manager->persist($option);
@@ -37,7 +37,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(317)
         ;
         $manager->persist($option);
@@ -45,7 +45,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(373)
         ;
         $manager->persist($option);
@@ -53,7 +53,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(590)
         ;
         $manager->persist($option);
@@ -61,7 +61,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(990)
         ;
         $manager->persist($option);
@@ -69,15 +69,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 1000')
-            ->setPrice(1585)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1428)
         ;
         $manager->persist($option);
@@ -85,7 +77,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(2452)
         ;
         $manager->persist($option);
@@ -100,7 +92,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(441)
         ;
         $manager->persist($option);
@@ -108,7 +100,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(523)
         ;
         $manager->persist($option);
@@ -116,7 +108,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(849)
         ;
         $manager->persist($option);
@@ -124,7 +116,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(1000)
         ;
         $manager->persist($option);
@@ -132,7 +124,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1428)
         ;
         $manager->persist($option);
@@ -140,7 +132,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(2452)
         ;
         $manager->persist($option);
@@ -155,7 +147,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(360)
         ;
         $manager->persist($option);
@@ -163,7 +155,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(402)
         ;
         $manager->persist($option);
@@ -171,7 +163,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(664)
         ;
         $manager->persist($option);
@@ -179,7 +171,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(905)
         ;
         $manager->persist($option);
@@ -187,7 +179,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1218)
         ;
         $manager->persist($option);
@@ -195,7 +187,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(1920)
         ;
         $manager->persist($option);
@@ -210,7 +202,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 20')
+            ->setLabel('20 exemplaires')
             ->setPrice(227)
         ;
         $manager->persist($option);
@@ -218,7 +210,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(317)
         ;
         $manager->persist($option);
@@ -226,7 +218,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(373)
         ;
         $manager->persist($option);
@@ -234,7 +226,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(590)
         ;
         $manager->persist($option);
@@ -242,7 +234,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(990)
         ;
         $manager->persist($option);
@@ -250,7 +242,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Sous Main A2 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1585)
         ;
         $manager->persist($option);
@@ -258,7 +250,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1428)
         ;
         $manager->persist($option);
@@ -266,7 +258,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(2452)
         ;
         $manager->persist($option);
@@ -281,7 +273,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(441)
         ;
         $manager->persist($option);
@@ -289,7 +281,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(523)
         ;
         $manager->persist($option);
@@ -297,7 +289,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(849)
         ;
         $manager->persist($option);
@@ -305,7 +297,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(1000)
         ;
         $manager->persist($option);
@@ -313,7 +305,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1428)
         ;
         $manager->persist($option);
@@ -321,7 +313,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A3 - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(2452)
         ;
         $manager->persist($option);
@@ -336,7 +328,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(360)
         ;
         $manager->persist($option);
@@ -344,7 +336,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(402)
         ;
         $manager->persist($option);
@@ -352,7 +344,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(664)
         ;
         $manager->persist($option);
@@ -360,7 +352,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(905)
         ;
         $manager->persist($option);
@@ -368,7 +360,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(1218)
         ;
         $manager->persist($option);
@@ -376,7 +368,7 @@ class CalendarFixtures extends Fixture
         $option = new Options;
         $option
             ->setProduct($product)
-            ->setLabel('Calendrier de banque A4 - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(1920)
         ;
         $manager->persist($option);

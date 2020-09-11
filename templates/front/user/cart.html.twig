@@ -1,15 +1,71 @@
 {% extends "front/base_front.html.twig" %}
 
 {% block title %}
-    Panier | Oriflam Medias
+	Panier | Oriflam Medias
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid cart">
-		<div class="row signup-top position-absolute justify-content-end">
+	<div class="container-fluid cart">
+		<div class="row cart-top position-absolute justify-content-end">
 			<div class="col-2">
 				<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="img-fluid">
 			</div>
 		</div>
-    </div>
+		<div class="cart-middle row">
+			<div class="col-7 offset-1">
+			<h1 class="cart-middle-title">Panier</h1>
+			{% if cart is not null %}
+				<ul class="list-group">
+					{% for product in cart.products %}
+						<li class="list-group-item">
+							<div class="row cart-product">
+								<div class="col-5 cart-product-name">
+									<p>{{ product.name }}</p>
+								</div>
+								<div class="col-2 offset-5">
+									{{ product.cost }} € HT
+								</div>
+								<div class="col-12">
+									<a href="" class="btn btn-primary rounded-0"><i class="fas fa-trash-alt"></i> Retirer du panier</a>
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+					{% for option in cart.options %}
+						<li class="list-group-item">
+							<div class="row cart-product">
+								<div class="col-5 cart-product-name">
+									<p>{{ option.product.name }}</p>
+								</div>
+								<div class="col-5">
+									<p>{{ option.label }}</p>
+								</div>
+								<div class="col-2">
+									{{ option.price }} € HT
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+					<li class="list-group-item">
+						<div class="row justify-content-end">
+							<div class="col-4 text-end">
+								<p>TOTAL : {{ order.cost }} € HT</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			{% else %}
+				<div class="col-7 offset-1">
+					<p>
+						{% if app.user is null %}
+							Vous devez être connecté pour accéder à votre panier.
+						{% else %}
+							Vous n'avez pas de produits dans votre panier.
+						{% endif %}
+					</p>
+				</div>
+			{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -28,7 +28,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(95)
             ->setProduct($product)
         ;
@@ -36,7 +36,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(110.5)
             ->setProduct($product)
         ;
@@ -44,7 +44,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 200')
+            ->setLabel('200 exemplaires')
             ->setPrice(143)
             ->setProduct($product)
         ;
@@ -52,7 +52,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 300')
+            ->setLabel('300 exemplaires')
             ->setPrice(173)
             ->setProduct($product)
         ;
@@ -60,7 +60,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 400')
+            ->setLabel('400 exemplaires')
             ->setPrice(197)
             ->setProduct($product)
         ;
@@ -68,7 +68,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(332)
             ->setProduct($product)
         ;
@@ -76,7 +76,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(375)
             ->setProduct($product)
         ;
@@ -84,7 +84,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure A5 12 pages - 2000')
+            ->setLabel('2000 exemplaires')
             ->setPrice(460)
             ->setProduct($product)
         ;
@@ -99,7 +99,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 50')
+            ->setLabel('50 exemplaires')
             ->setPrice(204)
             ->setProduct($product)
         ;
@@ -107,7 +107,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(276)
             ->setProduct($product)
         ;
@@ -115,7 +115,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 200')
+            ->setLabel('200 exemplaires')
             ->setPrice(423)
             ->setProduct($product)
         ;
@@ -123,7 +123,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 300')
+            ->setLabel('300 exemplaires')
             ->setPrice(540)
             ->setProduct($product)
         ;
@@ -131,7 +131,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 400')
+            ->setLabel('400 exemplaires')
             ->setPrice(613)
             ->setProduct($product)
         ;
@@ -139,7 +139,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(760)
             ->setProduct($product)
         ;
@@ -147,7 +147,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(986)
             ->setProduct($product)
         ;
@@ -155,7 +155,7 @@ class BookletFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Brochure B6 24 pages - 2000')
+            ->setLabel('2000 exemplaires')
             ->setPrice(1340)
             ->setProduct($product)
         ;

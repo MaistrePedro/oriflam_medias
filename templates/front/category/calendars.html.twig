@@ -42,29 +42,31 @@
 							<li class="list-group-item">
 								<form action="" class="add-to-cart">
 									<div class="row">
-										<div class="col-4 order-1">
-											<p class="word-wrap">
+										<div class="col-4 d-flex align-items-center">
+											<p class="word-wrap m-0">
 												{{ other.name }}
 											</p>
 										</div>
 										{% if other.options is not null %}
 											{% set options = other.options %}
-											<div class="col-6 order-3">
-												<select name="options-{{ other.id }}" class="form-control">
+											<div class="col-4 d-flex align-items-center">
+												<select name="options-{{ other.id }}" class="form-control options-select">
 													{% for option in options %}
-														<option class="position-relative" value="{{ option.id }}">{{ option.label }}
-															<span>
-																-
-																{{ option.price }}
-																€ HT</span>
+														<option 
+															data-price="{{ option.price }}"
+															value="{{ option.id }}">
+															{{ option.label }}
 														</option>
 													{% endfor %}
 												</select>
 											</div>
 										{% endif %}
-										<div class="col-2 order-2">
+										<div class="col-2 d-flex align-items-center">
+											<p class="price d-inline-block m-0"></p>
+										</div>
+										<div class="col-2 d-flex align-items-center">
 											<input type="hidden" value="{{ other.id }}">
-											<button class="btn btn-primary rounded-0">
+											<button class="btn btn-primary rounded-0 ">
 												<i class="fas fa-cart-plus"></i>
 											</button>
 										</div>
@@ -103,23 +105,25 @@
 							<li class="list-group-item">
 								<form action="" class="add-to-cart">
 									<div class="row">
-										<div class="col-4 order-1">
-											<p class="word-wrap">
+										<div class="col-4 d-flex align-items-center">
+											<p class="word-wrap m-0">
 												{{ custom.name }}
 											</p>
 										</div>
 										{% if custom.options is not null %}
 											{% set options = custom.options %}
-											<div class="col-6 order-3">
-												<select name="options-{{ custom.id }}" class="form-control">
+											<div class="col-4 d-flex align-items-center">
+												<select name="options-{{ custom.id }}" class="form-control options-select">
 													{% for option in options %}
-														<option value="{{ option.id }}">{{ option.label }}
-															{{ option.price }}</option>
+														<option data-price="{{ option.price }}" value="{{ option.id }}">{{ option.label }}</option>
 													{% endfor %}
 												</select>
 											</div>
 										{% endif %}
-										<div class="col-2 order-2">
+										<div class="col-2 d-flex align-items-center">
+											<p class="price d-inline-block m-0"></p>
+										</div>
+										<div class="col-2 d-flex align-items-center">
 											<input type="hidden" value="{{ custom.id }}">
 											<button type="submit" class="btn btn-primary rounded-0">
 												<i class="fas fa-cart-plus"></i>

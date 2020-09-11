@@ -48,17 +48,45 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item ">
-				<a href="{{ path('user') }}" class="nav-link">Compte
+			{% if app.user %}
+				<a href="{{ path('user') }}" class="nav-link stretched-link">Compte
 					<br>
 					client
 					<i class="far fa-user"></i>
 				</a>
+			{% else %}
+				<a type="button" class="nav-link stretched-link" data-toggle="modal" data-target="#userModal">
+					Compte client
+					<i class="far fa-user"></i>
+				</a>
+			{% endif %}
 			</li>
 			<li class="nav-item">
-				<a href="" class="nav-link">Panier
+				<a href="{{ path('cart') }}" class="nav-link stretched-link">Panier
 					<i class="fas fa-shopping-cart"></i>
 				</a>
 			</li>
 		</ul>
+	</div>
+	<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="userModalLabel" class="modal-title">
+						Connexion
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body user-modal">
+					<div class="container-fluid">
+						<div class="col-12 user-modal-middle">
+							{{ render(controller('App\\Controller\\SecurityController::login')) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </nav>

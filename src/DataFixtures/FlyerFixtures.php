@@ -28,7 +28,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A6 100g recto - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(18)
             ->setProduct($product)
         ;
@@ -36,7 +36,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A6 100g recto - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(20)
             ->setProduct($product)
         ;
@@ -44,7 +44,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A6 100g recto - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(23)
             ->setProduct($product)
         ;
@@ -52,7 +52,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A6 100g recto - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(27)
             ->setProduct($product)
         ;
@@ -60,7 +60,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A6 100g recto - 2500')
+            ->setLabel('2500 exemplaires')
             ->setPrice(32)
             ->setProduct($product)
         ;
@@ -68,7 +68,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A6 100g recto - 10 000')
+            ->setLabel('10 exemplaires 000')
             ->setPrice(67)
             ->setProduct($product)
         ;
@@ -83,7 +83,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(23)
             ->setProduct($product)
         ;
@@ -91,7 +91,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(26)
             ->setProduct($product)
         ;
@@ -99,7 +99,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(28)
             ->setProduct($product)
         ;
@@ -107,7 +107,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(33)
             ->setProduct($product)
         ;
@@ -115,7 +115,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 2 500')
+            ->setLabel('2 500 exemplaires')
             ->setPrice(42)
             ->setProduct($product)
         ;
@@ -123,7 +123,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 5 000')
+            ->setLabel('5 000 exemplaires')
             ->setPrice(60)
             ->setProduct($product)
         ;
@@ -131,7 +131,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A5 135 g recto - 10 000')
+            ->setLabel('10 000 exemplaires')
             ->setPrice(120)
             ->setProduct($product)
         ;
@@ -146,7 +146,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 100')
+            ->setLabel('100 exemplaires')
             ->setPrice(36)
             ->setProduct($product)
         ;
@@ -154,7 +154,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 250')
+            ->setLabel('250 exemplaires')
             ->setPrice(47)
             ->setProduct($product)
         ;
@@ -162,7 +162,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 500')
+            ->setLabel('500 exemplaires')
             ->setPrice(52)
             ->setProduct($product)
         ;
@@ -170,7 +170,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 1000')
+            ->setLabel('1000 exemplaires')
             ->setPrice(64)
             ->setProduct($product)
         ;
@@ -178,7 +178,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 2 500')
+            ->setLabel('2 500 exemplaires')
             ->setPrice(86)
             ->setProduct($product)
         ;
@@ -186,7 +186,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 5 000')
+            ->setLabel('5 000 exemplaires')
             ->setPrice(157)
             ->setProduct($product)
         ;
@@ -194,7 +194,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('Flyer A4 135 g recto - 10 000')
+            ->setLabel('10 000 exemplaires')
             ->setPrice(288)
             ->setProduct($product)
         ;

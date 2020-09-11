@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/signup", name="signup")
      */
     public function index()
     {
@@ -132,5 +132,15 @@ class UserController extends AbstractController
             }
         }
         return new Response($result);
+    }
+
+    public function removeFromCart(
+        Request $request,
+        ProductRepository $productRepository,
+        OptionsRepository $optionsRepository,
+        OrderRepository $orderRepository
+    )
+    {
+        
     }
 }

@@ -38,7 +38,7 @@
 			<div class="col-6 booklets-middle-right">
 				<div class="row">
 					{% if booklets is not empty %}
-						<div class="col-10 booklets-middle-right-booklets mt-5">
+						<div class="col-12 booklets-middle-right-booklets mt-5">
 							<p class="booklets-middle-right-booklets-title">
 								Brochures
 							</p>
@@ -47,24 +47,27 @@
 									<li class="list-group-item">
 										<form action="" class="add-to-cart">
 											<div class="row">
-												<div class="col-4 order-1">
-													<p>{{ booklet.name }}</p>
+												<div class="col-4 d-flex align-items-center">
+													<p class="m-0">{{ booklet.name }}</p>
 												</div>
 												{% if booklet.options is not null %}
 													{% set options = booklet.options %}
-													<div class="col-6 order-3">
-														<select name="options-{{ booklet.id }}" class="option form-control">
+													<div class="col-4 d-flex align-items-center">
+														<select name="options-{{ booklet.id }}" class="options-select form-control">
 															{% for option in options %}
-																<option value="{{ option.id }}">{{ option.label }}
-																	-
-																	{{ option.price }}
-																	€ HT
+																<option 
+																data-price="{{ option.price }}" 
+																value="{{ option.id }}">
+																{{ option.label }}
 																</option>
 															{% endfor %}
 														</select>
 													</div>
 												{% endif %}
-												<div class="col-2 order-2">
+												<div class="col-2 d-flex align-items-center">
+													<p class="price d-inline-block m-0"></p>
+												</div>
+												<div class="col-2 d-flex align-items-center">
 													<input type="hidden" value="{{ booklet.id }}">
 													<button type="submit" class="btn btn-primary rounded-0">
 														<i class="fas fa-cart-plus"></i>

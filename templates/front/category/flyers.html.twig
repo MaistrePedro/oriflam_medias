@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="row flyers-middle">
-			<div class="col-6 flyers-middle-left">
+			<div class="col-6 flyers-middle-left py-5">
 				<div class="row flyers-middle-left-top">
 					<div class="col-5 offset-1">
 						<img src="{{ asset('build/Flyer_lexus_casquette.png') }}" alt="" class="img-fluid mb-2">
@@ -28,7 +28,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6 flyers-middle-right">
+			<div class="col-6 flyers-middle-right py-5">
 				<div class="row">
 					{% if flyers is not empty %}
 						<div class="col-11 flyers-middle-right-flyers">
@@ -40,23 +40,27 @@
 									<li class="list-group-item">
 										<form action="" class="add-to-cart">
 											<div class="row">
-												<div class="col-4 order-1">
-													<p>{{ flyer.name }}</p>
+												<div class="col-4 d-flex align-items-center">
+													<p class="m-0">{{ flyer.name }}</p>
 												</div>
 												{% if flyer.options is not null %}
 													{% set options = flyer.options %}
-													<div class="col-6 order-3">
-														<select name="options-{{ flyer.id }}" class="form-control">
+													<div class="col-4 d-flex align-items-center">
+														<select name="options-{{ flyer.id }}" class="form-control options-select">
 															{% for option in options %}
-																<option value="{{ option.id }}">{{ option.label }}
-																	-
-																	{{ option.price }}
-																	€ HT</option>
+																<option
+																data-price="{{ option.price }}" 
+																value="{{ option.id }}">
+																{{ option.label }}
+																</option>
 															{% endfor %}
 														</select>
 													</div>
 												{% endif %}
-												<div class="col-2 order-2">
+												<div class="col-2 d-flex align-items-center">
+													<p class="price d-inline-block m-0"></p>
+												</div>
+												<div class="col-2 d-flex align-items-center">
 												<input type="hidden" value="{{ flyer.id }}">
 													<button type="submit" class="btn btn-primary rounded-0">
 														<i class="fas fa-cart-plus"></i>

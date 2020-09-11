@@ -3,6 +3,7 @@
   .mr-auto {
     .nav-item {
       margin-right: 2rem;
+      text-align: center;
       .nav-link {
         @include font($din-bold, 1.2rem, #ffffff);
       }
@@ -33,10 +34,10 @@
   .far.fa-user,
   .fas.fa-shopping-cart {
     position: absolute;
-    right: 2rem;
+    right: 2.2rem;
     top: 50%;
     transform: translate(50%, -50%);
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .nav-item {
