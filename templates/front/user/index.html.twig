@@ -10,38 +10,38 @@
 				<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="img-fluid">
 			</div>
 		</div>
-        <div class="row signup-middle mt-5">
-            <div class="col-6 offset-2">
-            <h1>Créer mon compte</h1>
-                {{ form_start(form) }}
-                    {{ form_row(form.email) }}
-                    {{ form_row(form.password) }}
-                    {{ form_row(form.confirmPassword) }}
-                    {{ form_row(form.civility) }}
-                    {{ form_row(form.firstname) }}
-                    {{ form_row(form.lastname) }}
-                    {{ form_row(form.birthDate) }}
-                    {{ form_row(form.mobileNumber) }}
-                    <small>Ce numéro servira pour vous contacter en cas de problème sur votre commande</small>
-                    <p>
-                        <span class="font-weight-bold">
-                            Recevez notre lettre :
-                        </span><br>
-                        Notre newsletter pour être au courant de tout, avant tout le monde
-                    </p>
-                    {{ form_row(form.newsletter) }}
-                    {{ form_row(form.cgu) }}
-                    <button class="btn btn-primary">
-                        INSCRIPTION
-                    </button>
-                {{ form_end(form) }}
-                <small>
-                    * Champs obligatoires
-                </small>
-            </div>
-        </div>
-        <div class="row signup-bottom">
-
-        </div>
+		<div class="row signup-middle mt-5">
+			<div class="col-6 offset-2">
+				<h1>Créer mon compte</h1>
+				{{ form_start(form) }}
+				{{ form_row(form.email) }}
+				<div class="password-form">
+					{{ form_row(form.password) }}
+					{{ form_row(form.confirmPassword) }}
+				</div>
+				{{ form_row(form.civility) }}
+				{{ form_row(form.firstname) }}
+				{{ form_row(form.lastname) }}
+				{{ form_row(form.birthDate) }}
+				{{ form_row(form.mobileNumber) }}
+				<small>Ce numéro servira pour vous contacter en cas de problème sur votre commande</small>
+				<p>
+					<span class="font-weight-bold">
+						Recevez notre lettre :
+					</span><br>
+					Notre newsletter pour être au courant de tout, avant tout le monde
+				</p>
+				{{ form_row(form.newsletter) }}
+				{{ form_row(form.cgu) }}
+				<button class="btn btn-primary signup-submit">
+					INSCRIPTION
+				</button>
+				{{ form_end(form) }}
+				<small>
+					* Champs obligatoires
+				</small>
+			</div>
+		</div>
+		<div class="row signup-bottom"></div>
 	</div>
 {% endblock %}

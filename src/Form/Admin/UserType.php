@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,13 +15,21 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', TextType::class, [
-                'label' => 'E-mail*',
+                'label' => 'E-mail',
                 'attr' => [
                     'class' => 'form-control',
                 ]
             ])
+            ->add('roles', ChoiceType::class, [
+                'label' => 'Rôles',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'expanded' => false,
+                'multiple' => false
+            ])
             ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe*',
+                'label' => 'E-mail',
                 'attr' => [
                     'class' => 'form-control',
                 ]
@@ -93,22 +99,6 @@ class UserType extends AbstractType
                 },
                 'expanded' => true,
                 'multiple' => false
-            ])
-            ->add('cgu', ChoiceType::class, [
-                'label_attr' => [
-                    'class' => 'd-none'
-                ],
-                'attr' => [
-                    'class' => 'form-check',
-                ],
-                'choices' => [
-                    'J\'ai lu et j\'accepte les Conditions Générales de Vente' => true
-                ],
-                'choice_attr' => function() {
-                    return ['class' => 'mr-1'];
-                },
-                'expanded' => true,
-                'multiple' => true
             ])
         ;
     }

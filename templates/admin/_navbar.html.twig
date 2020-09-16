@@ -1,0 +1,39 @@
+<nav class="navbar bg-primary navbar-expand-md">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbar">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ path('home') }}">ACCUEIL
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{ path('order_index') }}" class="nav-link">
+					COMMANDES
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{ path('page_index') }}" class="nav-link">
+					PAGES
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{ path('category_index') }}" class="nav-link">
+					CATÉGORIES
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{ path('user_index') }}" class="nav-link">UTILISATEURS</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a href="{{ path('app_logout') }}" class="nav-link stretched-link">
+					Déconnexion
+                    <i class="fas fa-sign-out-alt"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

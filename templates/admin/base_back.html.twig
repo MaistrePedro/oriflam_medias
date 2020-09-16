@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block navbar %}
+	{% include "admin/_navbar.html.twig" %}
+{% endblock %}
+
+{% block messages %}
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ label }}" role="alert">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block footer %}
+	{% include "front/_footer.html.twig" %}
+	<input type="hidden" id="base-url" value="{{ app.request.schemeAndHttpHost }}">
+{% endblock %}

@@ -3,7 +3,22 @@
     left: 0;
     right: 0;
   }
-  label, select {
+  label, select, input, p {
     margin-right: 2rem;
+    @include font($minion-regular, 1rem)
+  }
+  small {
+    @include font($minion-regular, .8rem);
+  }
+  .password-status {
+    @include font($minion-regular, 1rem);
+    &.password {
+      &--success {
+        color: darkgreen;
+      }
+      &--error {
+        color: darkred;
+      }
+    }
   }
 }
