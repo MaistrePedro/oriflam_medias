@@ -4,18 +4,30 @@ namespace App\Controller\Front;
 
 use App\Entity\Order;
 use App\Entity\User;
+use App\Entity\Product;
+use App\Entity\Category;
+use App\Entity\Options;
 use App\Repository\OrderRepository;
 use App\Form\UserType;
 use App\Repository\OptionsRepository;
 use App\Repository\ProductRepository;
+use App\Service\RandomStringGenerator;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class UserController extends AbstractController
 {
+    const REFUSED = 'REFUSED';
+    const ABANDONED = 'ABANDONED';
+    const AUTHORISED = 'AUTHORISED';
+
     /**
      * @Route("/signup", name="signup")
      */
@@ -44,13 +56,55 @@ class UserController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(OrderRepository $orderRepository)
+    public function cart(Request $request, OrderRepository $orderRepository)
     {
         $user = $this->getUser();
         $cart = $orderRepository->findOneBy(['user' => $user, 'validated' => false]);
+        $signature = '';
+        $params = [];
+
+        if ($cart) {
+            $actionMode = 'INTERACTIVE';
+            $amount = $cart->getCost();
+            $ctxMode = '';
+            $currency = 978;
+            $pageAction = 'PAYMENT';
+            $paymentConfig = 'SINGLE';
+            $returnMode = 'POST';
+            $siteId = $_ENV['SHOP_ID'];
+            $date = date('YmdHis');
+            $transId = $cart->getTransactionId();
+            $urlReturn = $request->getSchemeAndHttpHost().$this->generateUrl('return');
+            $version = 'V2';
+            if ($_ENV['APP_ENV'] === 'prod') {
+                $ctxMode = 'PRODUCTION';
+            } else {
+                $ctxMode = 'TEST';
+            }
+
+            $params = [
+                'vads_action_mode' => $actionMode,
+                'vads_amount' => $amount * 100,
+                'vads_ctx_mode' => $ctxMode,
+                'vads_currency' => $currency,
+                'vads_page_action' => $pageAction,
+                'vads_payment_config' => $paymentConfig,
+                'vads_return_mode' => $returnMode,
+                'vads_site_id' => $siteId,
+                'vads_trans_date' => $date,
+                'vads_trans_id' => $transId,
+                'vads_url_return' => $urlReturn,
+                'vads_version' => $version
+            ];
+
+            $signature = $this->getSignature($params);
+        }
+
         return $this->render('front/user/cart.html.twig', [
             'user' => $user,
-            'cart' => $cart
+            'cart' => $cart,
+            'signature' => $signature,
+            'params' => $params
         ]);
     }
 
@@ -69,25 +123,51 @@ class UserController extends AbstractController
         $productId = $datas->product;
         $optionId = $datas->option;
         $user = $this->getUser();
+        $encoder = new JsonEncoder();
+        $defaultContext = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
+                if ($object instanceof Category) {
+                    return $object->getLabel();
+                } elseif ($object instanceof Product) {
+                    return $object->getName();
+                } elseif ($object instanceof Options) {
+                    return $object->getLabel();
+                }
+            }
+        ];
+        $normalizer = new ObjectNormalizer(null, null, null, null, null, null, $defaultContext);
+        $serializer = new Serializer([$normalizer], [$encoder]);
+
         if (!$user) {
-            $result = $serializer->serialize([
+            $result = [
                 'success' => false,
                 'info' => 'Vous devez être connecté pour ajouter un produit au panier'
-            ], 'json');
-            return new Response($result);
+            ];
+            return new Response($serializer->serialize($result, 'json'));
         }
-        $order = null;
         $order = $orderRepository->findOneBy(['user' => $user, 'validated' => false]);
-        // \dd(!$order); 
         $result = '';
-        if (!$order) {
+        if ($order === null) {
+            $generator = new RandomStringGenerator();
+            $asserter = false;
+            $token = '';
+            while ($asserter === false) {
+                $token = $generator->generate(6);
+                $orders = $orderRepository->findBy(['transactionId' => $token]);
+                if (empty($orders)) {
+                    $asserter = true;
+                }
+            }
             $order = new Order;
             $order
                 ->setUser($user)
                 ->setValidated(false)
                 ->setCost(0)
+                ->setTransactionId($token)
                 ->setCreatedAt(new DateTime('now'))
                 ->setUpdatedAt(new DateTime('now'));
+            $em->persist($order);
+            $em->flush();
         }
         if ($productId) {
             $product = $productRepository->findOneBy(['id' => $productId]);
@@ -96,18 +176,16 @@ class UserController extends AbstractController
                 $cost = $order->getCost() + $product->getCost();
                 $order->setCost($cost);
                 $order->setUpdatedAt(new DateTime('now'));
-                $em->persist($order);
                 $em->flush();
-                $result = $serializer->serialize([
+                $result = [
                     'success' => true,
                     'info' => 'Produit ajouté au panier',
-                ], 'json');
-            }
-            else {
-                $result = $serializer->serialize([
+                ];
+            } else {
+                $result = [
                     'success' => false,
                     'info' => 'Le produit est introuvable'
-                ], 'json');
+                ];
             }
         }
         if ($optionId) {
@@ -117,30 +195,93 @@ class UserController extends AbstractController
                 $cost = $order->getCost() + $option->getPrice();
                 $order->setCost($cost);
                 $order->setUpdatedAt(new DateTime('now'));
-                $em->persist($order);
                 $em->flush();
-                $result = $serializer->serialize([
+                $result = [
                     'success' => true,
                     'info' => 'Produit ajouté au panier',
-                ], 'json');
-            }
-            else {
-                $result = $serializer->serialize([
+                    'option' => $option
+                ];
+            } else {
+                $result = [
                     'success' => false,
                     'info' => 'Le produit est introuvable'
-                ], 'json');
+                ];
             }
         }
-        return new Response($result);
+        return new Response($serializer->serialize($result, 'json'));
     }
 
-    public function removeFromCart(
-        Request $request,
-        ProductRepository $productRepository,
-        OptionsRepository $optionsRepository,
-        OrderRepository $orderRepository
-    )
+    /**
+     * @Route("/cart/delete/{id}", name="cart_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, OrderRepository $orderRepository, Product $product = null, Options $option = null): Response
     {
+        $user = $this->getUser();
+        $cart = $orderRepository->findOneBy(['user' => $user, 'validated' => false]);
+        $entityManager = $this->getDoctrine()->getManager();
+        if ($product) {
+            if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+                $cart->removeProduct($product);
+            }
+        } else if ($option) {
+            if ($this->isCsrfTokenValid('delete' . $option->getId(), $request->request->get('_token'))) {
+                $cart->removeOption($option);
+            }
+        }
+        $cartOptions = $cart->getOptions();
+        $cartProducts = $cart->getProducts();
+        if ($cartOptions->isEmpty() && $cartProducts->isEmpty()) {
+            $entityManager->remove($cart);
+        }
+        $entityManager->flush();
+
+        return $this->redirectToRoute('cart');
+    }
+
+    public function getSignature(array $params)
+    {
+        $signature = '';
+        foreach ($params as $param) {
+            $signature .= $param . '+';
+        }
+        $signature .= $_ENV['PAYMENT_KEY'];
+        return \base64_encode(\hash_hmac('sha256', $signature, $_ENV['PAYMENT_KEY'], true));
+    }
+
+    /**
+     * @Route("/profile", name="profile")
+     */
+    public function orderHistory(OrderRepository $orderRepository)
+    {
+        if ($this->getUser()) {
+            $orders = $orderRepository->findBy(['user' => $this->getUser(), 'validated' => false]);
+            return $this->render('front/user/history.html.twig', [
+                'orders' => $orders
+            ]);
+        }
+        else {
+            return $this->redirectToRoute('home');
+        }
+    }
+
+    /**
+     * @Route("/return", name="return")
+     */
+    public function returnAfterPayment(Request $request, OrderRepository $orderRepository)
+    {
+        $status = $request->request->get('vads_trans_status');
+        $transactionId = $request->request->get('vads_trans_id');
+        $paymentMode = $request->request->get('vads_card_brand');
         
+        if ($status === self::AUTHORISED) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $order = $orderRepository->findOneBy(['transactionId' => $transactionId]);
+            $order
+            ->setValidated(true)
+            ->setPaymentMode($paymentMode)
+            ->setUpdatedAt(new DateTime('now'));
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('home');
     }
 }

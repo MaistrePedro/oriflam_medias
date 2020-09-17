@@ -70,6 +70,9 @@ class CreateUrgentUserCommand extends Command
                     } elseif ($preProcessRoles === User::ROLE_ADMIN) {
                         $roles = [User::ROLE_ADMIN, User::ROLE_USER];
                     }
+                    else {
+                        $roles = [User::ROLE_USER];
+                    }
                     $processComplete = true;
                     $output->writeln('<info>Eh bien écoute, c\'était une discussion sympa, mais je crois qu\'il est temps pour moi d\'aller me faire un café, j\'enregistre tout ça et j\'y vais. A plus !');
                 }

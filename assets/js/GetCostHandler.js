@@ -1,4 +1,4 @@
-const main = () => {
+const getCostHandler = () => {
   const setPrice = (form, price) => {
     const priceElement = form.querySelector('.price');
     priceElement.innerHTML = `${price} € HT`;
@@ -18,4 +18,4 @@ const main = () => {
   optionsSelectForms.forEach((select) => select.addEventListener('change', getPrice))
 };
 
-document.addEventListener('DOMContentLoaded', main)
+document.addEventListener('DOMContentLoaded', getCostHandler)

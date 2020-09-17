@@ -1,11 +1,9 @@
-const main = () => {
-  const passwordPart = document.querySelector('.password-form');
-  const passwordInput = document.querySelector('#user_password');
-  const passwordConfirmInput = document.querySelector('#user_confirmPassword');
-  const submitButton = document.querySelector('.signup-submit')
-
+const confirmPassword = () => {
   const showConfirm = (status) => {
+    const passwordPart = document.querySelector('.password-form');
+    const submitButton = document.querySelector('.signup-submit')
     const statusSpan = document.querySelector('.password-status');
+    
     if (statusSpan) {
       statusSpan.innerText = '';
       if (status === 'success') {
@@ -37,6 +35,9 @@ const main = () => {
   }
 
   const checkPasswords = () => {
+    const passwordInput = document.querySelector('#user_password');
+    const passwordConfirmInput = document.querySelector('#user_confirmPassword');
+
     const password = passwordInput.value;
     const passwordConfirm = passwordConfirmInput.value;
     if (password == passwordConfirm) {
@@ -53,4 +54,4 @@ const main = () => {
   passwordConfirmInput.addEventListener('change', checkPasswords);
 }
 
-document.addEventListener('DOMContentLoaded', main);
+document.addEventListener('DOMContentLoaded', confirmPassword);

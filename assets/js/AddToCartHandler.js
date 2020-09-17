@@ -6,10 +6,10 @@ const baseUrlElement = document.getElementById('base-url');
 if (baseUrlElement) baseUrl = baseUrlElement.value;
 
 const main = () => {
-  const showStatus = (form, { info, success }) => {
+  const showStatus = (form, data) => {
     const statusElement = document.createElement('span');
-    statusElement.innerText = info;
-    statusElement.classList.add('form-status', `form-status--${success ? 'success' : 'fail'}`);
+    statusElement.innerText = data.info;
+    statusElement.classList.add('form-status', `form-status--${data.success ? 'success' : 'fail'}`);
   
     form.append(statusElement);
   };
@@ -24,7 +24,7 @@ const main = () => {
     };
     const { currentTarget } = e;
   
-    const optionElement = currentTarget.querySelector('.option');
+    const optionElement = currentTarget.querySelector('.options-select');
     const productIdElement = currentTarget.querySelector('.product-id');
 
     if (optionElement !== null && optionElement !== undefined) option = optionElement.value;
@@ -35,14 +35,11 @@ const main = () => {
       product,
     })
       .then((response) => {
-        console.log(response.data);
         if (response.hasOwnProperty('data')) {
           data = response.data;
         }
       })
       .catch((error) => {
-        console.log(`${baseUrl}`);
-        console.error(error);
         if (error.hasOwnProperty('response') && error.response !== undefined && error.response.hasOwnProperty('data')) {
           data.info = error.response.data.info;
         }

@@ -61,6 +61,11 @@ class Order
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="string", length=6)
+     */
+    private $transactionId;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -192,6 +197,18 @@ class Order
         if ($this->products->contains($product)) {
             $this->products->removeElement($product);
         }
+
+        return $this;
+    }
+
+    public function getTransactionId(): ?string
+    {
+        return $this->transactionId;
+    }
+
+    public function setTransactionId(string $transactionId): self
+    {
+        $this->transactionId = $transactionId;
 
         return $this;
     }
