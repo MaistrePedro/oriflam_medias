@@ -4,11 +4,13 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbar">
 		<p class="address-block text-center">
-			Service client <br>
+			Service client
+			<br>
 			<span class="phone">
 				02 38 23 77 62
 			</span><br>
-			45160 Olivet <br>
+			45160 Olivet
+			<br>
 			<small>du lundi au vendredi de 9h à 18h</small>
 		</p>
 		<ul class="navbar-nav mr-auto">
@@ -27,11 +29,10 @@
 				</a>
 			</li>
 			<li class="nav-item position-relative">
-				<a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					COMMUNICATION
 				</a>
-				<div class="dropdown-menu" aria-labelledBy="navbarDropdown">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a href="{{ path('communication') }}" class="dropdown-item">NOS SOLUTIONS</a>
 					<a href="{{ path('booklets') }}" class="dropdown-item">BROCHURES</a>
 					<a href="{{ path('flyers') }}" class="dropdown-item">FLYERS</a>
@@ -48,26 +49,28 @@
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item ">
-			{% if app.user %}
-				<a href="{{ path('home') }}" class="nav-link stretched-link">Compte
-					<br>
-					client
-					<i class="far fa-user"></i>
-				</a>
-			{% else %}
-				<a href="{{ path('app_login') }}" class="nav-link stretched-link">
-					Compte client
-					<i class="far fa-user"></i>
-				</a>
-			{% endif %}
+				{% if app.user %}
+					<a href="{{ path('profile') }}" class="nav-link stretched-link">
+						Compte<br>
+						client
+						<i class="far fa-user"></i>
+					</a>
+				{% else %}
+					<a href="{{ path('app_login') }}" class="nav-link stretched-link">
+						Compte client
+						<i class="far fa-user"></i>
+					</a>
+				{% endif %}
 			</li>
 			<li class="nav-item">
-			{% if is_granted('ROLE_ADMIN') %}
-				{% set route = 'order_index' %}
-			{% else %}
-				{% set route = 'cart' %}
-			{% endif %}
-				<a href="{{ path(route) }}" class="nav-link stretched-link">{% if is_granted('ROLE_ADMIN') %}Administration{% else %}Panier{% endif %}
+				{% if is_granted('ROLE_ADMIN') %}
+					{% set route = 'order_index' %}
+				{% else %}
+					{% set route = 'cart' %}
+				{% endif %}
+				<a href="{{ path(route) }}" class="nav-link stretched-link">
+					{% if is_granted('ROLE_ADMIN') %}Administration{% else %}Panier
+					{% endif %}
 					<i class="fas {% if is_granted('ROLE_ADMIN') %}fa-tools{% else %}fa-shopping-cart{% endif %}"></i>
 				</a>
 			</li>

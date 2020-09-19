@@ -1,0 +1,26 @@
+.history {
+  &-profile {
+    border-right: $primary solid 2px;
+    &-links {
+      &-item {
+        padding: .5rem;
+        transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        &:hover {
+          background-color: #ffffff;
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  &-order {
+    &-list {
+      &-item {
+        padding: .5rem;
+        background-color: #ffffff;
+        border-bottom: solid $primary 2px;
+      }
+    }
+  }
+}

@@ -9,13 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     /**
-     * @Route("/page/{short}", name="page")
+     * @Route("/cgv", name="cgv")
      */
-    public function index(string $short, PageRepository $pageRepository)
+    public function cgv()
     {
-        $page = $pageRepository->findOneBy(['short' => $short]);
-        return $this->render('front/page/'.$short.'.html.twig', [
-            'page' => $page
-        ]);
+        return $this->render('front/page/cgv.html.twig');
+    }
+
+    /**
+     * @Route("/legals", name="legals")
+     */
+    public function legals()
+    {
+        return $this->render('front/page/legals.html.twig');
     }
 }

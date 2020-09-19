@@ -74,7 +74,7 @@ class UserController extends AbstractController
             $siteId = $_ENV['SHOP_ID'];
             $date = date('YmdHis');
             $transId = $cart->getTransactionId();
-            $urlReturn = $request->getSchemeAndHttpHost().$this->generateUrl('return');
+            $urlReturn = $request->getSchemeAndHttpHost() . $this->generateUrl('return');
             $version = 'V2';
             if ($_ENV['APP_ENV'] === 'prod') {
                 $ctxMode = 'PRODUCTION';
@@ -251,15 +251,67 @@ class UserController extends AbstractController
     /**
      * @Route("/profile", name="profile")
      */
+    public function showProfile()
+    {
+        $user = $this->getUser();
+        if ($user) {
+            return $this->render('front/user/profile.html.twig');
+        } else {
+            $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
+            $this->redirectToRoute('home');
+        }
+    }
+
+    /**
+     * @Route("/profile/history", name="history")
+     */
     public function orderHistory(OrderRepository $orderRepository)
     {
         if ($this->getUser()) {
-            $orders = $orderRepository->findBy(['user' => $this->getUser(), 'validated' => false]);
+            $orders = $orderRepository->findBy(['user' => $this->getUser(), 'validated' => true]);
             return $this->render('front/user/history.html.twig', [
                 'orders' => $orders
             ]);
+        } else {
+            $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
+            return $this->redirectToRoute('home');
         }
-        else {
+    }
+
+    /**
+     * @Route("/profile/history/{transactionId}")
+     */
+    public function showOrder(string $transactionId, OrderRepository $orderRepository)
+    {
+        $order = $orderRepository->findOneBy(['transactionId' => $transactionId]);
+        $user = $this->getUser();
+        if ($user) {
+            if ($order) {
+                if ($order->getUser() === $user) {
+                } else {
+                    $this->addFlash('error', 'Cette commande ne correspond pas à votre compte client');
+                    return $this->redirectToRoute('history');
+                }
+            } else {
+                $this->addFlash('error', 'Commande introuvable.');
+                return $this->redirectToRoute('history');
+            }
+        } else {
+            $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
+            return $this->redirectToRoute('home');
+        }
+    }
+
+    /**
+     * @Route("/profile/edit", name="edit_profile")
+     */
+    public function editProfile()
+    {
+        $user = $this->getUser();
+        if ($user) {
+            return $this->render('front/user/edit.html.twig');
+        } else {
+            $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
             return $this->redirectToRoute('home');
         }
     }
@@ -272,14 +324,14 @@ class UserController extends AbstractController
         $status = $request->request->get('vads_trans_status');
         $transactionId = $request->request->get('vads_trans_id');
         $paymentMode = $request->request->get('vads_card_brand');
-        
+
         if ($status === self::AUTHORISED) {
             $entityManager = $this->getDoctrine()->getManager();
             $order = $orderRepository->findOneBy(['transactionId' => $transactionId]);
             $order
-            ->setValidated(true)
-            ->setPaymentMode($paymentMode)
-            ->setUpdatedAt(new DateTime('now'));
+                ->setValidated(true)
+                ->setPaymentMode($paymentMode)
+                ->setUpdatedAt(new DateTime('now'));
             $entityManager->flush();
         }
         return $this->redirectToRoute('home');

@@ -1,7 +1,41 @@
 {% extends "front/base_front.html.twig" %}
 
+{% block title %}
+	Historique de commandes | Oriflam Médias
+{% endblock %}
+
 {% block body %}
-    <div class="container-fluid history">
-        .row.
-    </div>
+	<div class="container-fluid history">
+		<div class="row pt-5 mt-5">
+			<div class="col-3 offest-2 mt-5 pt-5 history-profile">
+				<ul class="history-profile-links list-unstyled">
+					<li class="history-profile-links-item">
+						<a href="">Modifier les informations</a>
+					</li>
+					<li class="history-profile-links-item">
+						<a href="{{ path('history') }}" class="active">Historique de commandes</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-7 history-order">
+				<h1>Historique de commande</h1>
+				<ul class="list-group history-order-list">
+					{% for order in orders %}
+						<li class="list-group-item history-order-list-item">
+							<div class="row">
+								<div class="col-8 d-flex align-items-center">
+									<p class="history-order-list-item-number">
+										Commande n°{{ order.transactionId }}
+									</p>
+								</div>
+                                <div class="col-4 d-flex align-items-center">
+                                    <a href="">Voir le contenu de la commande</a>
+                                </div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
 {% endblock %}
