@@ -1,0 +1,24 @@
+{% extends "front/base_front.html.twig" %}
+
+{% block body %}
+	<div class="container-fluid {{ page }}">
+		<div class="row">
+			<div class="col-3 offest-2 mt-5 py-5 profile-links">
+				<ul class="list-unstyled">
+					<li class="profile-links-item position-relative">
+						<a href="{{ path('profile') }}" class="stretched-link">Compte client</a>
+					</li>
+					<li class="profile-links-item position-relative">
+						<a href="{{ path('edit_profile') }}" class="stretched-link">Modifier les informations</a>
+					</li>
+					<li class="profile-links-item position-relative">
+						<a href="{{ path('history') }}" class="stretched-link">Historique de commandes</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-7 {{ page }}-page">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

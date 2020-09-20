@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class EditUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,19 +21,6 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ]
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe*',
-                'attr' => [
-                    'class' => 'form-control',
-                ]
-            ])
-            ->add('confirmPassword', PasswordType::class, [
-                'label' => 'Confirmation du mot de passe*',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'mapped' => false
             ])
             ->add('civility', ChoiceType::class, [
                 'label_attr' => [
@@ -92,22 +79,6 @@ class UserType extends AbstractType
                     return ['class' => 'mr-1'];
                 },
                 'expanded' => true,
-                'multiple' => false
-            ])
-            ->add('cgu', ChoiceType::class, [
-                'label_attr' => [
-                    'class' => 'd-none'
-                ],
-                'attr' => [
-                    'class' => 'form-check',
-                ],
-                'choices' => [
-                    'J\'ai lu et j\'accepte les Conditions Générales de Vente' => true
-                ],
-                'choice_attr' => function() {
-                    return ['class' => 'mr-1'];
-                },
-                'expanded' => false,
                 'multiple' => false
             ])
         ;

@@ -8,7 +8,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\Options;
 use App\Repository\OrderRepository;
-use App\Form\UserType;
+use App\Form\EditUserType;
 use App\Repository\OptionsRepository;
 use App\Repository\ProductRepository;
 use App\Service\RandomStringGenerator;
@@ -255,7 +255,9 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         if ($user) {
-            return $this->render('front/user/profile.html.twig');
+            return $this->render('front/user/profile.html.twig', [
+                'page' => 'profile'
+            ]);
         } else {
             $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
             $this->redirectToRoute('home');
@@ -268,9 +270,10 @@ class UserController extends AbstractController
     public function orderHistory(OrderRepository $orderRepository)
     {
         if ($this->getUser()) {
-            $orders = $orderRepository->findBy(['user' => $this->getUser(), 'validated' => true]);
+            $orders = $orderRepository->findBy(['user' => $this->getUser(), 'validated' => true], ['updatedAt' => 'DESC']);
             return $this->render('front/user/history.html.twig', [
-                'orders' => $orders
+                'orders' => $orders,
+                'page' => 'history'
             ]);
         } else {
             $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
@@ -279,7 +282,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/history/{transactionId}")
+     * @Route("/profile/history/{transactionId}", name="show_order")
      */
     public function showOrder(string $transactionId, OrderRepository $orderRepository)
     {
@@ -288,6 +291,10 @@ class UserController extends AbstractController
         if ($user) {
             if ($order) {
                 if ($order->getUser() === $user) {
+                    return $this->render('front/user/show.html.twig', [
+                        'order' => $order,
+                        'page' => 'show-order'
+                    ]);
                 } else {
                     $this->addFlash('error', 'Cette commande ne correspond pas à votre compte client');
                     return $this->redirectToRoute('history');
@@ -305,11 +312,22 @@ class UserController extends AbstractController
     /**
      * @Route("/profile/edit", name="edit_profile")
      */
-    public function editProfile()
+    public function editProfile(Request $request)
     {
         $user = $this->getUser();
         if ($user) {
-            return $this->render('front/user/edit.html.twig');
+            $form = $this->createForm(EditUserType::class, $user);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('profile');
+            }
+            return $this->render('front/user/edit.html.twig', [
+                'form' => $form->createView(), 
+                'page' => 'signup'
+            ]);
         } else {
             $this->addFlash('error', 'Vous devez être connecté pour effectuer cette action');
             return $this->redirectToRoute('home');

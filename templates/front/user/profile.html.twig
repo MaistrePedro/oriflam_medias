@@ -1,21 +1,18 @@
-{% extends "front/base_front.html.twig" %}
+{% extends "front/user/base_profile.html.twig" %}
 
-{% block body %}
-    <div class="container-fluid profile">
-        <div class="row">
-            <div class="col-3 offest-2">
-                <ul class="profile-links">
-                    <li class="profile-links-item">
-                        <a href="">Modifier les informations</a>
-                    </li>
-                    <li class="profile-links-item">
-                        <a href="{{ path('history') }}">Historique de commandes</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-7">
-                .
-            </div>
-        </div>
-    </div>
+{% block title %}
+	Compte client | Oriflam Médias
+{% endblock %}
+
+{% set user = app.user %}
+{% block content %}
+    <h1>
+        Compte client
+    </h1>
+    <p class="user-name">
+        {{ user.lastname }} {{ user.firstname }}
+    </p>
+    <p class="user-phone">
+        {{ user.mobileNumber }}
+    </p>
 {% endblock %}

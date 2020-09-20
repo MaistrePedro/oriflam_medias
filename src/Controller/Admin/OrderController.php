@@ -22,7 +22,7 @@ class OrderController extends AbstractController
     public function index(OrderRepository $orderRepository): Response
     {
         return $this->render('admin/order/index.html.twig', [
-            'orders' => $orderRepository->findBy(['validated' => true]),
+            'orders' => $orderRepository->findBy(['validated' => true], ['updatedAt' => 'DESC']),
         ]);
     }
 }
