@@ -32,7 +32,10 @@
 					Notre newsletter pour être au courant de tout, avant tout le monde
 				</p>
 				{{ form_row(form.newsletter) }}
-				{{ form_row(form.cgu) }}
+				<div class="d-flex align-items-center mb-3">
+				{{ form_widget(form.cgu) }}
+					{{ form_label(form.cgu) }}
+				</div>
 				<button class="btn btn-primary signup-submit">
 					INSCRIPTION
 				</button>
