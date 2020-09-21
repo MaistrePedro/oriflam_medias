@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Entity\Options;
 use App\Repository\OrderRepository;
 use App\Form\EditUserType;
+use App\Form\UserType;
 use App\Repository\OptionsRepository;
 use App\Repository\ProductRepository;
 use App\Service\RandomStringGenerator;
