@@ -102,13 +102,14 @@ class UserType extends AbstractType
                     'class' => 'form-check',
                 ],
                 'choices' => [
-                    'J\'ai lu et j\'accepte les Conditions Générales de Vente' => true
+                    'J\'ai lu et j\'accepte les Conditions Générales de Vente' => true,
+                    '' => \false
                 ],
                 'choice_attr' => function() {
                     return ['class' => 'mr-1'];
                 },
-                'expanded' => false,
-                'multiple' => false
+                'expanded' => true,
+                'multiple' => true
             ])
         ;
     }
