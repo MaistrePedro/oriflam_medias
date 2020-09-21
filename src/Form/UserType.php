@@ -72,7 +72,8 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => '',
                 ],
-                'widget' => 'choice'
+                'widget' => 'choice',
+                'years' => range(date('Y') - 100, date('Y'))
             ])
             ->add('mobileNumber', TextType::class, [
                 'label' => 'Numéro de mobile*',
