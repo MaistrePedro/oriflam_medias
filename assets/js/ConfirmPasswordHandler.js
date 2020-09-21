@@ -1,4 +1,6 @@
 const confirmPassword = () => {
+  const passwordInput = document.querySelector('#user_password');
+  const passwordConfirmInput = document.querySelector('#user_confirmPassword');
   const showConfirm = (status) => {
     const passwordPart = document.querySelector('.password-form');
     const submitButton = document.querySelector('.signup-submit')
@@ -33,10 +35,8 @@ const confirmPassword = () => {
       passwordPart.append(statusElement);
     }
   }
-
+  
   const checkPasswords = () => {
-    const passwordInput = document.querySelector('#user_password');
-    const passwordConfirmInput = document.querySelector('#user_confirmPassword');
 
     const password = passwordInput.value;
     const passwordConfirm = passwordConfirmInput.value;
