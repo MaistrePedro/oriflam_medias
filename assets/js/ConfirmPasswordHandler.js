@@ -1,6 +1,6 @@
 const confirmPassword = () => {
-  const passwordInput = document.querySelector('#user_password');
-  const passwordConfirmInput = document.querySelector('#user_confirmPassword');
+  const passwordInput = document.querySelector('#registration_form_password');
+  const passwordConfirmInput = document.querySelector('#registration_form_confirmPassword');
   const showConfirm = (status) => {
     const passwordPart = document.querySelector('.password-form');
     const submitButton = document.querySelector('.signup-submit')

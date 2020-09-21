@@ -30,31 +30,6 @@ class UserController extends AbstractController
     const AUTHORISED = 'AUTHORISED';
 
     /**
-     * @Route("/signup", name="signup")
-     */
-    public function index()
-    {
-        $user = new User;
-        $form = $this->createForm(UserType::class, $user);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user->setLastAcceptedCgu(new DateTime('now'))
-                ->setUpdatedAt(new DateTime('now'))
-                ->setCreatedAt(new DateTime('now'))
-                ->setRoles([User::ROLE_USER]);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Message enregistré');
-            return $this->redirectToRoute('contact');
-        }
-
-        return $this->render('front/user/index.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/cart", name="cart")
      */
     public function cart(Request $request, OrderRepository $orderRepository)
