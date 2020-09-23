@@ -51,8 +51,12 @@
 			<li class="nav-item ">
 				{% if app.user %}
 					<a href="{{ path('profile') }}" class="nav-link stretched-link">
+					{% if app.user.firstname %}
 						{{ app.user.firstname }}<br>
 						{{ app.user.lastname }}
+					{% else %}
+						{{ app.user.company }}
+					{% endif %}
 						<i class="far fa-user"></i>
 					</a>
 				{% else %}
