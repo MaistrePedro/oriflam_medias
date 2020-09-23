@@ -22,6 +22,9 @@ class User implements UserInterface
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
 
+    const INDIVIDUAL = 'INDIVIDUAL';
+    const PROFESSIONAL = 'PROFESSIONAL';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -51,17 +54,17 @@ class User implements UserInterface
     private $civility;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $birthDate;
 
@@ -99,6 +102,61 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
      */
     private $orders;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $postalCode;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $optAddress;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $optPostal;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $optCity;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activityArea;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $siren;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $company;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contact;
 
     public function __construct()
     {
@@ -330,6 +388,138 @@ class User implements UserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getOptAddress(): ?string
+    {
+        return $this->optAddress;
+    }
+
+    public function setOptAddress(?string $optAddress): self
+    {
+        $this->optAddress = $optAddress;
+
+        return $this;
+    }
+
+    public function getOptPostal(): ?string
+    {
+        return $this->optPostal;
+    }
+
+    public function setOptPostal(?string $optPostal): self
+    {
+        $this->optPostal = $optPostal;
+
+        return $this;
+    }
+
+    public function getOptCity(): ?string
+    {
+        return $this->optCity;
+    }
+
+    public function setOptCity(?string $optCity): self
+    {
+        $this->optCity = $optCity;
+
+        return $this;
+    }
+
+    public function getActivityArea(): ?string
+    {
+        return $this->activityArea;
+    }
+
+    public function setActivityArea(?string $activityArea): self
+    {
+        $this->activityArea = $activityArea;
+
+        return $this;
+    }
+
+    public function getSiren(): ?string
+    {
+        return $this->siren;
+    }
+
+    public function setSiren(?string $siren): self
+    {
+        $this->siren = $siren;
+
+        return $this;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?string $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }

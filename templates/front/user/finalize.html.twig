@@ -1,0 +1,27 @@
+{% extends "front/base_front.html.twig" %}
+
+{% block title %}
+	Finaliser la commande | Oriflam Médias
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid finalize">
+		<div class="row">
+			<div class="col-7 offset-2">
+				<h1>Finaliser la commande</h1>
+				{{ form_start(form) }}
+				<div class="custom-file">
+					{{ form_widget(form.image) }}
+					{{ form_label(form.image) }}
+				</div>
+				<small>
+					Formats autorisés : jpeg, png
+					<br>
+					Taille maximale : 2Mo
+				</small><br>
+				<button class="btn btn-primary rounded-0" type="submit">Envoyer</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

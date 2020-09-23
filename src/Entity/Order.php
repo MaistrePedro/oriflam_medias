@@ -66,6 +66,11 @@ class Order
      */
     private $transactionId;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $imageFilename;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -209,6 +214,18 @@ class Order
     public function setTransactionId(string $transactionId): self
     {
         $this->transactionId = $transactionId;
+
+        return $this;
+    }
+
+    public function getImageFilename(): ?string
+    {
+        return $this->imageFilename;
+    }
+
+    public function setImageFilename($imageFilename): self
+    {
+        $this->imageFilename = $imageFilename;
 
         return $this;
     }

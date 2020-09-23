@@ -1,4 +1,7 @@
 .signup {
+  h2 {
+    @include font($minion-regular, 1.5rem);
+  }
   &-top {
     left: 0;
     right: 0;

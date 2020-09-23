@@ -51,13 +51,13 @@
 			<li class="nav-item ">
 				{% if app.user %}
 					<a href="{{ path('profile') }}" class="nav-link stretched-link">
-						Compte<br>
-						client
+						{{ app.user.firstname }}<br>
+						{{ app.user.lastname }}
 						<i class="far fa-user"></i>
 					</a>
 				{% else %}
 					<a href="{{ path('app_login') }}" class="nav-link stretched-link">
-						Compte client
+						Compte <br>client
 						<i class="far fa-user"></i>
 					</a>
 				{% endif %}

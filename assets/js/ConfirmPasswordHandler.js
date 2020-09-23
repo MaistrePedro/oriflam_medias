@@ -5,7 +5,7 @@ const confirmPassword = () => {
     const passwordPart = document.querySelector('.password-form');
     const submitButton = document.querySelector('.signup-submit')
     const statusSpan = document.querySelector('.password-status');
-    
+
     if (statusSpan) {
       statusSpan.innerText = '';
       if (status === 'success') {
@@ -18,7 +18,12 @@ const confirmPassword = () => {
         statusSpan.classList.add('password--error');
         statusSpan.classList.remove('password--success');
         submitButton.disabled = true;
-        statusSpan.innerText = `Les deux mots de passe doivent être les mêmes.`;
+        if (status === 'error') {
+          statusSpan.innerText = `Les deux mots de passe doivent être les mêmes.`;
+        }
+        else {
+          statusSpan.innerText = `Les mots de passe sont trop courts.`;
+        }
       }
     }
     else {
@@ -35,16 +40,21 @@ const confirmPassword = () => {
       passwordPart.append(statusElement);
     }
   }
-  
+
   const checkPasswords = () => {
 
     const password = passwordInput.value;
     const passwordConfirm = passwordConfirmInput.value;
-    if (password == passwordConfirm) {
-      showConfirm('success');
+    if (password.length >= 3 && passwordConfirm.length >= 3) {
+      if (password == passwordConfirm) {
+        showConfirm('success');
+      }
+      else {
+        showConfirm('error')
+      }
     }
     else {
-      showConfirm('error')
+      showConfirm('short')
     }
   };
 

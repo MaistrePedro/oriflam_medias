@@ -12,7 +12,16 @@
     <p class="user-name">
         {{ user.lastname }} {{ user.firstname }}
     </p>
+    <h2>Numéro de téléphone</h2>
     <p class="user-phone">
         {{ user.mobileNumber }}
     </p>
+    <h2>Adresse</h2>
+    <p class="address">
+        {{ user.address }} <br>
+        {{ user.postalCode }} {{ user.city }}
+    </p>
+    {% if user.optAddress is not null %}
+        
+    {% endif %}
 {% endblock %}

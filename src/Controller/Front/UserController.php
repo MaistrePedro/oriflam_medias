@@ -9,12 +9,15 @@ use App\Entity\Category;
 use App\Entity\Options;
 use App\Repository\OrderRepository;
 use App\Form\EditUserType;
+use App\Form\FinalizeOrderType;
 use App\Form\UserType;
 use App\Repository\OptionsRepository;
 use App\Repository\ProductRepository;
 use App\Service\RandomStringGenerator;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +25,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserController extends AbstractController
 {
@@ -301,7 +305,7 @@ class UserController extends AbstractController
                 return $this->redirectToRoute('profile');
             }
             return $this->render('front/user/edit.html.twig', [
-                'form' => $form->createView(), 
+                'form' => $form->createView(),
                 'page' => 'signup'
             ]);
         } else {
@@ -328,6 +332,42 @@ class UserController extends AbstractController
                 ->setUpdatedAt(new DateTime('now'));
             $entityManager->flush();
         }
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('finalize_order', [
+            'transactionId' => $transactionId
+        ]);
+    }
+
+    /**
+     * @Route("/finalize-order/{transactionId}", name="finalize_order")
+     */
+    public function finalizeOrder(string $transactionId, Request $request, OrderRepository $orderRepository, SluggerInterface $slugger)
+    {
+        $order = $orderRepository->findOneBy(['transactionId' => $transactionId]);
+        $form = $this->createForm(FinalizeOrderType::class, $order);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $time = time();
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . $time . '.' . $imageFile->guessExtension();
+
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+                $order->setImageFilename($newFilename);
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+            }
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('front/user/finalize.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

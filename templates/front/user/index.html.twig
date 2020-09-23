@@ -14,15 +14,43 @@
 			<div class="col-6 offset-2">
 				<h1>Créer mon compte</h1>
 				{{ form_start(form) }}
+				<div class="types-radios">
+					{{ form_row(form.type) }}
+				</div>
 				{{ form_row(form.email) }}
 				<div class="password-form">
 					{{ form_row(form.password) }}
 					{{ form_row(form.confirmPassword) }}
 				</div>
 				{{ form_row(form.civility) }}
-				{{ form_row(form.firstname) }}
-				{{ form_row(form.lastname) }}
-				{{ form_row(form.birthDate) }}
+				<div class="individual">
+					{{ form_row(form.firstname) }}
+					{{ form_row(form.lastname) }}
+					{{ form_row(form.birthDate) }}
+				</div>
+				<div class="professional d-none">
+					{{ form_row(form.activityArea) }}
+					{{ form_row(form.siren) }}
+					{{ form_row(form.company) }}
+					{{ form_row(form.contact) }}
+				</div>
+			</div>
+		</div>
+		<div class="row align-items-end">
+			<div class="col-6 offset-2">
+				{{ form_row(form.address) }}
+				{{ form_row(form.postalCode) }}
+				{{ form_row(form.city) }}
+			</div>
+			<div class="col-4">
+			<h2>Si adresse de livraison différente</h2>
+				{{ form_row(form.optAddress) }}
+				{{ form_row(form.optPostal) }}
+				{{ form_row(form.optCity) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6 offset-2">
 				{{ form_row(form.mobileNumber) }}
 				<small>Ce numéro servira pour vous contacter en cas de problème sur votre commande</small>
 				<p>
@@ -33,7 +61,7 @@
 				</p>
 				{{ form_row(form.newsletter) }}
 				<div class="d-flex align-items-center mb-3">
-				{{ form_widget(form.cgu) }}
+					{{ form_widget(form.cgu) }}
 					{{ form_label(form.cgu) }}
 				</div>
 				<button class="btn btn-primary signup-submit">

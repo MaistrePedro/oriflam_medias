@@ -20,6 +20,20 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('type', ChoiceType::class, [
+                'label_attr' => [
+                    'class' => 'd-none'
+                ],
+                'attr' => [
+                    'class' => 'form-check',
+                ],
+                'choices' => [
+                    'Particulier' => User::INDIVIDUAL,
+                    'Professionnel' => User::PROFESSIONAL
+                ],
+                'expanded' => true,
+                'multiple' => false
+            ])
             ->add('email', TextType::class, [
                 'label' => 'E-mail*',
                 'attr' => [
@@ -46,7 +60,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Merci d\'entrer un mot de passe',
                     ]),
                 ],
                 'label' => 'Mot de passe*',
@@ -54,7 +68,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-            
+
             ->add('confirmPassword', PasswordType::class, [
                 'label' => 'Confirmation du mot de passe*',
                 'attr' => [
@@ -73,7 +87,7 @@ class RegistrationFormType extends AbstractType
                     'Madame' => User::MRS,
                     'Monsieur' => User::MR
                 ],
-                'choice_attr' => function() {
+                'choice_attr' => function () {
                     return ['class' => 'mr-1'];
                 },
                 'expanded' => true,
@@ -98,7 +112,74 @@ class RegistrationFormType extends AbstractType
                 ],
                 'widget' => 'choice',
                 'years' => range(date('Y') - 100, date('Y'))
-                ])
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Adresse*',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('postalCode', TextType::class, [
+                'label' => 'Code Postal*',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville*',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('activityArea', TextType::class, [
+                'label' => 'Secteur d\'activité*',
+                'attr' => [
+                    'class' => 'form-control ',
+                ],
+                'required' => false
+            ])
+            ->add('siren', TextType::class, [
+                'label' => 'N° de Siren*',
+                'attr' => [
+                    'class' => 'form-control ',
+                ],
+                'required' => false
+            ])
+            ->add('company', TextType::class, [
+                'label' => 'Nom de société*',
+                'attr' => [
+                    'class' => 'form-control ',
+                ],
+                'required' => false
+            ])
+            ->add('contact', TextType::class, [
+                'label' => 'Nom du contact*',
+                'attr' => [
+                    'class' => 'form-control ',
+                ],
+                'required' => false
+            ])
+            ->add('optAddress', TextType::class, [
+                'label' => 'Adresse*',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'required' => false,
+            ])
+            ->add('optPostal', TextType::class, [
+                'label' => 'Code Postal*',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'required' => false,
+            ])
+            ->add('optCity', TextType::class, [
+                'label' => 'Ville*',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'required' => false,
+            ])
             ->add('mobileNumber', TextType::class, [
                 'label' => 'Numéro de mobile*',
                 'attr' => [
@@ -116,13 +197,12 @@ class RegistrationFormType extends AbstractType
                     'Oui' => true,
                     'Non' => false
                 ],
-                'choice_attr' => function() {
+                'choice_attr' => function () {
                     return ['class' => 'mr-1'];
                 },
                 'expanded' => true,
                 'multiple' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

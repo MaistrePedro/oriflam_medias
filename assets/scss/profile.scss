@@ -12,6 +12,9 @@
       }
     }
   }
+  h2 {
+    @include font($minion-regular, 1.5rem);
+  }
 }
 .history {
   &-order {

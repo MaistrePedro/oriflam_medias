@@ -1,42 +1,51 @@
 {% extends "front/user/base_profile.html.twig" %}
 
 {% block title %}
-    Commande {{ order.transactionId }} | Oriflam Médias
+	Commande
+	{{ order.transactionId }}
+	| Oriflam Médias
 {% endblock %}
 
 {% block content %}
-    <h1>Commande {{ order.transactionId }}</h1>
-    <p>Payée avec : {{ order.paymentMode }}</p>
-    <p>Coût total : {{ order.cost }}€</p>
-    <ul class="list-group">
-						{% for product in order.products %}
-							<li class="list-group-item">
-								<div class="row order-product">
-									<div class="col-5 order-product-name">
-										<p>{{ product.name }}</p>
-									</div>
-									<div class="col-2 offset-5">
-										{{ product.cost }}
-										€ HT
-									</div>
-								</div>
-							</li>
-						{% endfor %}
-						{% for option in order.options %}
-							<li class="list-group-item">
-								<div class="row order-product">
-									<div class="col-5 order-product-name">
-										<p>{{ option.product.name }}</p>
-									</div>
-									<div class="col-5">
-										<p>{{ option.label }}</p>
-									</div>
-									<div class="col-2">
-										{{ option.price }}
-										€ HT
-									</div>
-								</div>
-							</li>
-						{% endfor %}
-					</ul>
+	<h1>Commande
+		{{ order.transactionId }}</h1>
+	<p>Payée avec :
+		{{ order.paymentMode }}</p>
+	<p>Coût total :
+		{{ order.cost }}€</p>
+	<ul class="list-group">
+		{% for product in order.products %}
+			<li class="list-group-item">
+				<div class="row order-product">
+					<div class="col-5 order-product-name">
+						<p>{{ product.name }}</p>
+					</div>
+					<div class="col-2 offset-5">
+						{{ product.cost }}
+						€ HT
+					</div>
+				</div>
+			</li>
+		{% endfor %}
+		{% for option in order.options %}
+			<li class="list-group-item">
+				<div class="row order-product">
+					<div class="col-5 order-product-name">
+						<p>{{ option.product.name }}</p>
+					</div>
+					<div class="col-5">
+						<p>{{ option.label }}</p>
+					</div>
+					<div class="col-2">
+						{{ option.price }}
+						€ HT
+					</div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+	{% if order.imageFilename %}
+		<h2>Logo à ajouter</h2>
+		<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="">
+	{% endif %}
 {% endblock %}
