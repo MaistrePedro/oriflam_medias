@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Options
 {
+    const FORMAT1 = 'FORMAT1';
+    const FORMAT2 = 'FORMAT2';
+    const FORMAT3 = 'FORMAT3';
+    const FORMAT4 = 'FORMAT4';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -31,7 +36,7 @@ class Options
     private $label;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $price;
 
@@ -39,6 +44,11 @@ class Options
      * @ORM\ManyToMany(targetEntity=Order::class, mappedBy="options")
      */
     private $orders;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $format;
 
     public function __construct()
     {
@@ -110,6 +120,18 @@ class Options
             $this->orders->removeElement($order);
             $order->removeProduct($this);
         }
+
+        return $this;
+    }
+
+    public function getFormat(): ?string
+    {
+        return $this->format;
+    }
+
+    public function setFormat(?string $format): self
+    {
+        $this->format = $format;
 
         return $this;
     }

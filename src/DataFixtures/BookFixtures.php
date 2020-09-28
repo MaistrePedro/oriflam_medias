@@ -211,4 +211,9 @@ class BookFixtures extends Fixture
 
         $manager->flush();
     }
+
+    public function getGroups()
+    {
+        return ['products1'];
+    }
 }

@@ -159,3 +159,18 @@ footer {
     color: red;
   }
 }
+
+.contactus {
+  &-text {
+    @include font($din-bold, 1.5rem);
+  }
+  &-ways {
+    @include font($din-bold, 1.5rem);
+    &-phone {
+      @include font($din-bold, 2rem, $primary);
+    }
+  }
+  &-delivery {
+    @include font($din-light, 2rem)
+  }
+}

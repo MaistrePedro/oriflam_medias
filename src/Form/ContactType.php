@@ -41,6 +41,15 @@ class ContactType extends AbstractType
                     'placeholder' => 'Société'
                 ]
             ])
+            ->add('email', TextType::class, [
+                'label_attr' => [
+                    'class' => 'd-none'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Email'
+                ]
+            ])
             ->add('address', TextType::class, [
                 'label_attr' => [
                     'class' => 'd-none'
