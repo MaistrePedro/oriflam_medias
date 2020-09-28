@@ -45,6 +45,16 @@ class Product
      */
     private $cost;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $features = [];
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->options = new ArrayCollection();
@@ -147,6 +157,30 @@ class Product
     public function setCost(?float $cost): self
     {
         $this->cost = $cost;
+
+        return $this;
+    }
+
+    public function getFeatures(): ?array
+    {
+        return $this->features;
+    }
+
+    public function setFeatures(array $features): self
+    {
+        $this->features = $features;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

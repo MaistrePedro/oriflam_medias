@@ -201,10 +201,14 @@ class UserController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         if ($product) {
             if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+                $totalCost = $cart->getCost() - $product->getCost();
+                $cart->setCost($totalCost);
                 $cart->removeProduct($product);
             }
         } else if ($option) {
             if ($this->isCsrfTokenValid('delete' . $option->getId(), $request->request->get('_token'))) {
+                $totalCost = $cart->getCost() - $option->getPrice();
+                $cart->setCost($totalCost);
                 $cart->removeOption($option);
             }
         }

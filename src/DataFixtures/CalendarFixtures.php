@@ -12,367 +12,282 @@ class CalendarFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $category = new Category;
-        $category
-            ->setLabel('Calendriers')
-            ->setSlug(Category::CALENDARS)
-        ;
-        $manager->persist($category);
+        $datas = [
+            [
+                'label'    => 'Calendriers',
+                'slug'     => Category::CALENDARS,
+                'products' => [
+                    'name'        => 'A2 (42 x 59,4 cm)',
+                    'description' => 'Calendriers annuels 42 x 59,4 cm',
+                    'features'    => [
+                        'Support'                => '300 g/m² carton offset',
+                        'Orientation'            => 'Hauteur (Portrait/vertical)',
+                        'Nombre de pages (face)' => '1 page (recto)',
+                        'Colorimétrie'           => 'CMJN 4/0 (quadri 1 face)',
+                        'Propriété papier'       => '- Couché brillant',
+                        'Finition'               => 'Absence de finition'
+                    ],
+                    'options' => [
+                        'label' => '150 exemplaires',
+                        'price' => 730
+                    ],
+                    [
+                        'label' => '250 exemplaires',
+                        'price' => 900
+                    ],
+                    [
+                        'label' => '500 exemplaires',
+                        'price' => 1100
+                    ],
+                    [
+                        'label' => '750 exemplaires',
+                        'price' => 1200
+                    ],
+                    [
+                        'label' => '1000 exemplaires',
+                        'price' => 1500
+                    ],
+                    [
+                        'label' => '1500 exemplaires',
+                        'price' => 1800
+                    ],
+                    [
+                        'label' => '2000 exemplaires',
+                        'price' => 2100
+                    ],
+                ],
+                [
+                    'name'    => 'A2 (42 x 59,4 cm) personnalisable',
+                    'description' => 'Calendriers annuels personnalisables 42 x 59,4 cm',
+                    'features'    => [
+                        'Support'                => '300 g/m² carton offset',
+                        'Orientation'            => 'Hauteur (Portrait/vertical)',
+                        'Nombre de pages (face)' => '1 page (recto)',
+                        'Colorimétrie'           => 'CMJN 4/0 (quadri 1 face)',
+                        'Propriété papier'       => '- Couché brillant',
+                        'Finition'               => 'Absence de finition'
+                    ],
+                    'options' => [
+                        'label' => '150 exemplaires',
+                        'price' => 730
+                    ],
+                    [
+                        'label' => '250 exemplaires',
+                        'price' => 900
+                    ],
+                    [
+                        'label' => '500 exemplaires',
+                        'price' => 1100
+                    ],
+                    [
+                        'label' => '750 exemplaires',
+                        'price' => 1200
+                    ],
+                    [
+                        'label' => '1000 exemplaires',
+                        'price' => 1500
+                    ],
+                    [
+                        'label' => '1500 exemplaires',
+                        'price' => 1800
+                    ],
+                    [
+                        'label' => '2000 exemplaires',
+                        'price' => 2100
+                    ],
+                ],
+                [
+                    'name'    => 'A3 (29,7 x 42 cm)',
+                    'features' => [
+                        'Support' => '300 g/m² Carton Chromo',
+                        'Nombre de page (face)' => '1 page (recto)',
+                        'Colorimétrie' => 'CMJN 4/0 (quadri 1 face)',
+                        'Orientation' => 'Hauteur (Portrait/vertical)',
+                        'Propriété papier' => '- Couché brillant',
+                        'Finition' => 'Absence de finition'
+                    ],
+                    'options' => [
+                        'label' => '150 exemplaires',
+                        'price' => 370,
+                    ],
+                    [
+                        'label' => '300 exemplaires',
+                        'price' => 592,
+                    ],
+                    [
+                        'label' => '500 exemplaires',
+                        'price' => 770,
+                    ],
+                    [
+                        'label' => '750 exemplaires',
+                        'price' => 1140,
+                    ],
+                    [
+                        'label' => '1000 exemplaires',
+                        'price' => 1510,
+                    ],
+                    [
+                        'label' => '1500 exemplaires',
+                        'price' => 1880,
+                    ],
+                    [
+                        'label' => '2000 exemplaires',
+                        'price' => 2250,
+                    ],
+                ],
 
-        $product = new Product;
-        $product
-            ->setName('Grand format cartonné (55 X 43 cm)')
-            ->setCategory($category)
-        ;
-        $manager->persist($product);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('20 exemplaires')
-            ->setPrice(227)
-        ;
-        $manager->persist($option);
-        
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('50 exemplaires')
-            ->setPrice(317)
-        ;
-        $manager->persist($option);
-        
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('100 exemplaires')
-            ->setPrice(373)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('250 exemplaires')
-            ->setPrice(590)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('500 exemplaires')
-            ->setPrice(990)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1428)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('2500 exemplaires')
-            ->setPrice(2452)
-        ;
-        $manager->persist($option);
-
-        $product = new Product;
-        $product
-            ->setName('Format intermédiaire (29,7 X 42 cm) A3')
-            ->setCategory($category)
-        ;
-        $manager->persist($product);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('50 exemplaires')
-            ->setPrice(441)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('100 exemplaires')
-            ->setPrice(523)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('250 exemplaires')
-            ->setPrice(849)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('500 exemplaires')
-            ->setPrice(1000)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1428)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('2500 exemplaires')
-            ->setPrice(2452)
-        ;
-        $manager->persist($option);
-
-        $product = new Product;
-        $product
-            ->setName('Petit format (29,7 X 21 cm) A4')
-            ->setCategory($category)
-        ;
-        $manager->persist($product);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('50 exemplaires')
-            ->setPrice(360)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('100 exemplaires')
-            ->setPrice(402)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('250 exemplaires')
-            ->setPrice(664)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('500 exemplaires')
-            ->setPrice(905)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1218)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('2500 exemplaires')
-            ->setPrice(1920)
-        ;
-        $manager->persist($option);
-
-        $product = new Product;
-        $product
-            ->setName('Grand format cartonné à thème personnalisable (55 X 43 cm)')
-            ->setCategory($category)
-        ;
-        $manager->persist($product);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('20 exemplaires')
-            ->setPrice(227)
-        ;
-        $manager->persist($option);
-        
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('50 exemplaires')
-            ->setPrice(317)
-        ;
-        $manager->persist($option);
-        
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('100 exemplaires')
-            ->setPrice(373)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('250 exemplaires')
-            ->setPrice(590)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('500 exemplaires')
-            ->setPrice(990)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1585)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1428)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('2500 exemplaires')
-            ->setPrice(2452)
-        ;
-        $manager->persist($option);
-
-        $product = new Product;
-        $product
-            ->setName('Format intermédiaire (29,7 X 42 cm) A3 à thème personnalisable')
-            ->setCategory($category)
-        ;
-        $manager->persist($product);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('50 exemplaires')
-            ->setPrice(441)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('100 exemplaires')
-            ->setPrice(523)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('250 exemplaires')
-            ->setPrice(849)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('500 exemplaires')
-            ->setPrice(1000)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1428)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('2500 exemplaires')
-            ->setPrice(2452)
-        ;
-        $manager->persist($option);
-
-        $product = new Product;
-        $product
-            ->setName('Petit format (29,7 X 21 cm) A4 à thème personnalisable')
-            ->setCategory($category)
-        ;
-        $manager->persist($product);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('50 exemplaires')
-            ->setPrice(360)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('100 exemplaires')
-            ->setPrice(402)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('250 exemplaires')
-            ->setPrice(664)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('500 exemplaires')
-            ->setPrice(905)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('1000 exemplaires')
-            ->setPrice(1218)
-        ;
-        $manager->persist($option);
-
-        $option = new Options;
-        $option
-            ->setProduct($product)
-            ->setLabel('2500 exemplaires')
-            ->setPrice(1920)
-        ;
-        $manager->persist($option);
-        
+                [
+                    'name'    => 'A3 (29,7 x 42 cm) personnalisable',
+                    'features' => [
+                        'Support' => '300 g/m² Carton Chromo',
+                        'Nombre de page (face)' => '1 page (recto)',
+                        'Colorimétrie' => 'CMJN 4/0 (quadri 1 face)',
+                        'Orientation' => 'Hauteur (Portrait/vertical)',
+                        'Propriété papier' => '- Couché brillant',
+                        'Finition' => 'Absence de finition'
+                    ],
+                    'options' => [
+                        'label' => '150 exemplaires',
+                        'price' => 370,
+                    ],
+                    [
+                        'label' => '300 exemplaires',
+                        'price' => 592,
+                    ],
+                    [
+                        'label' => '500 exemplaires',
+                        'price' => 770,
+                    ],
+                    [
+                        'label' => '750 exemplaires',
+                        'price' => 1140,
+                    ],
+                    [
+                        'label' => '1000 exemplaires',
+                        'price' => 1510,
+                    ],
+                    [
+                        'label' => '1500 exemplaires',
+                        'price' => 1880,
+                    ],
+                    [
+                        'label' => '2000 exemplaires',
+                        'price' => 2250,
+                    ],
+                ],
+                [
+                    'name'    => 'A4 (29,7 x 21 cm)',
+                    'features' => [
+                        'Support' => '450 g/m² Carton Chromo',
+                        'Nombre de page (face)' => '1 ou 2 pages',
+                        'Orientation' => 'Hauteur (Portrait/vertical)',
+                        'Colorimétrie' => 'CMJN 4/0 (quadri 2 face)',
+                    ],
+                    'options' => [
+                        'label' => '100 exemplaires',
+                        'price' => 380,
+                    ],
+                    [
+                        'label' => '250 exemplaires',
+                        'price' => 684,
+                    ],
+                    [
+                        'label' => '500 exemplaires',
+                        'price' => 1090,
+                    ],
+                    [
+                        'label' => '750 exemplaires',
+                        'price' => 1400,
+                    ],
+                    [
+                        'label' => '1000 exemplaires',
+                        'price' => 1680,
+                    ],
+                    [
+                        'label' => '1500 exemplaires',
+                        'price' => 2144,
+                    ],
+                    [
+                        'label' => '2000 exemplaires',
+                        'price' => 2400,
+                    ],
+                    [
+                        'label' => '3000 exemplaires',
+                        'price' => 2700
+                    ]
+                ],
+                [
+                    'name'    => 'A4 (29,7 x 21 cm)',
+                    'features' => [
+                        'Support' => '450 g/m² Carton Chromo',
+                        'Nombre de page (face)' => '1 ou 2 pages',
+                        'Orientation' => 'Hauteur (Portrait/vertical)',
+                        'Colorimétrie' => 'CMJN 4/0 (quadri 2 face)',
+                    ],
+                    'options' => [
+                        'label' => '100 exemplaires',
+                        'price' => 380,
+                    ],
+                    [
+                        'label' => '250 exemplaires',
+                        'price' => 684,
+                    ],
+                    [
+                        'label' => '500 exemplaires',
+                        'price' => 1090,
+                    ],
+                    [
+                        'label' => '750 exemplaires',
+                        'price' => 1400,
+                    ],
+                    [
+                        'label' => '1000 exemplaires',
+                        'price' => 1680,
+                    ],
+                    [
+                        'label' => '1500 exemplaires',
+                        'price' => 2144,
+                    ],
+                    [
+                        'label' => '2000 exemplaires',
+                        'price' => 2400,
+                    ],
+                    [
+                        'label' => '3000 exemplaires',
+                        'price' => 2700
+                    ]
+                ]
+            ]
+        ];
+        foreach ($datas as $cat) {
+            $category = new Category;
+            $category->setLabel($cat['label']);
+            $category->setSlug($cat['slug']);
+            $manager->persist($category);
+            foreach ($cat['products'] as $prod) {
+                $product = new Product;
+                /** @var array $features */
+                $features = $prod['features'];
+                $product
+                    ->setName($prod['name'])
+                    ->setCategory($category)
+                    ->setFeatures($features);
+                if ($prod['description']) {
+                    $product->setDescription($prod['description']);
+                }
+                $manager->persist($product);
+                /** @var array $options */
+                $options = $prod['options'];
+                foreach ($options as $opt) {
+                    $option = new Options;
+                    $option
+                        ->setLabel($opt['label'])
+                        ->setPrice($opt['price'])
+                        ->setProduct($product);
+                    $manager->persist($option);
+                }
+            }
+        }
         $manager->flush();
     }
 }
