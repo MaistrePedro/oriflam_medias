@@ -13,17 +13,21 @@
 					<thead>
 						<tr>
 							<th>N° de commande</th>
-							<th>Label</th>
-							<th>Slug</th>
+							<th>Client</th>
+							<th>Montant HT</th>
 							<th>actions</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for order in orders %}
 							<tr>
-								<td>{{ order.id }}</td>
-								<td>{{ order.label }}</td>
-								<td>{{ order.slug }}</td>
+								<td>{{ order.transactionId }}</td>
+								{% if order.user.type === 'INDIVIDUAL' %}
+									<td>{{ order.user.firstname ~ ' ' ~ order.user.lastname }}</td>
+								{% else %}
+									<td>{{ order.user.company }}</td>
+								{% endif %}
+								<td>{{ order.cost }}</td>
 								<td>
 									<a href="{{ path('order_show', {'id': order.id}) }}">show</a>
 									<a href="{{ path('order_edit', {'id': order.id}) }}">edit</a>
