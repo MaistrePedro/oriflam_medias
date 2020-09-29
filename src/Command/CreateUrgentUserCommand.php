@@ -90,6 +90,7 @@ class CreateUrgentUserCommand extends Command
                 ->setMobileNumber('12')
                 ->setNewsletter(false)
                 ->setCgu(true)
+                ->setType('admin')
                 ->setLastAcceptedCgu(new DateTime('now'))
                 ->setBirthDate(new DateTime('now'))
                 ->setCreatedat(new DateTime('now'))
