@@ -8,60 +8,44 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{% for role in user.roles %}
+						{% if role == "ROLE_USER" %}
+							Utilisateur
+						{% elseif role == "ROLE_SUPERADMIN" %}
+							Super Administrateur
+						{% elseif role == "ROLE_ADMIN" %}
+							Administrateur
+						{% endif %}
+					{% endfor %}</td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Civility</th>
+                <th>Civilité</th>
                 <td>{{ user.civility }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>BirthDate</th>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
+                <th>Date de naissance</th>
+                <td>{{ user.birthDate ? user.birthDate|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>MobileNumber</th>
+                <th>N° de mobile</th>
                 <td>{{ user.mobileNumber }}</td>
             </tr>
             <tr>
                 <th>Newsletter</th>
-                <td>{{ user.newsletter ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Cgu</th>
-                <td>{{ user.cgu ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>LastAcceptedCgu</th>
-                <td>{{ user.lastAcceptedCgu ? user.lastAcceptedCgu|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.newsletter ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
