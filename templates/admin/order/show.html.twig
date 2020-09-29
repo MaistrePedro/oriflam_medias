@@ -73,13 +73,13 @@
 					</li>
 				{% endfor %}
 			</ul>
-		</div>
-	</div>
-	{% if order.imageFilename %}
-		<h2>Logo à ajouter</h2>
-		<div class="row justify-content-center">
-			<div class="col-8">
-				<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+			{% if order.imageFilename %}
+				<div class="row justify-content-center">
+					<h2>Logo à ajouter</h2>
+					<div class="col-8">
+						<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+					</div>
+				</div>
 			</div>
 		</div>
 	{% endif %}
