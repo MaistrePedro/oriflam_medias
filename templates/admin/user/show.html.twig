@@ -15,11 +15,11 @@
                 <th>Roles</th>
                 <td>{% for role in user.roles %}
 						{% if role == "ROLE_USER" %}
-							Utilisateur
+							Utilisateur <br>
 						{% elseif role == "ROLE_SUPERADMIN" %}
-							Super Administrateur
+							Super Administrateur <br>
 						{% elseif role == "ROLE_ADMIN" %}
-							Administrateur
+							Administrateur <br>
 						{% endif %}
 					{% endfor %}</td>
             </tr>
