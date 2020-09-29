@@ -2,13 +2,14 @@
 
 {% block title %}
 	Commande
+	{{ order.transactionId }}
 {% endblock %}
 
 {% block body %}
 	{% set user = order.user %}
-	<h1>Commande
-		{{ order.transactionId }}</h1>
 	<div class="row justify-content-center">
+		<h1>Commande
+			{{ order.transactionId }}</h1>
 		<div class="col-4">
 			<p>Payée avec :
 				{{ order.paymentMode }}</p>
