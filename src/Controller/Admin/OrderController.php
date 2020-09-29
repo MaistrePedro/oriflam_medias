@@ -25,4 +25,14 @@ class OrderController extends AbstractController
             'orders' => $orderRepository->findBy(['validated' => true], ['updatedAt' => 'DESC']),
         ]);
     }
+
+    /**
+     * @Route("/{slug}", name="order_show", methods={"GET"})
+     */
+    public function show(Order $order): Response
+    {
+        return $this->render('admin/order/show.html.twig', [
+            'order' => $order,
+        ]);
+    }
 }

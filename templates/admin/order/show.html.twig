@@ -1,0 +1,76 @@
+{% extends "admin/base_back.html.twig" %}
+
+{% block title %}
+	Commande
+{% endblock %}
+
+{% block body %}
+	{% set user = order.user %}
+	<h1>Commande
+		{{ order.transactionId }}</h1>
+	<div class="row">
+		<div class="col-6">
+			<p>Payée avec :
+				{{ order.paymentMode }}</p>
+			<p>Coût total TTC :
+				{{ order.cost * 1.20 }}€</p>
+		</div>
+		<div class="col-6">
+			{% if user.type is same as('INDIVIDUAL') %}
+				<h2>
+					Utilisateur Particulier :
+				</h2>
+                <p>
+                    {{ user.firstname ~ ' ' ~ user.lastname }}
+                </p>
+			{% else %}
+				<h2>
+					Utilisateur Professionnel
+				</h2>
+                <p>
+                    {{ user.company }}
+                </p>
+			{% endif %}
+                <p>
+                    {{ user.address }} <br>
+                    {{ user.postalCode }} <br>
+                    {{ user.city }}
+                </p>
+		</div>
+	</div>
+	<ul class="list-group">
+		{% for product in order.products %}
+			<li class="list-group-item">
+				<div class="row order-product">
+					<div class="col-5 order-product-name">
+						<p>{{ product.name }}</p>
+					</div>
+					<div class="col-2 offset-5">
+						{{ product.cost }}
+						€ HT
+					</div>
+				</div>
+			</li>
+		{% endfor %}
+		{% for option in order.options %}
+			<li class="list-group-item">
+				<div class="row order-product">
+					<div class="col-5 order-product-name">
+						<p>{{ option.product.name }}</p>
+					</div>
+					<div class="col-5">
+						<p>{{ option.label }}</p>
+					</div>
+					<div class="col-2">
+						{{ option.price }}
+						€ HT
+					</div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+	{% if order.imageFilename %}
+		<h2>Logo à ajouter</h2>
+		<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+	{% endif %}
+{% endblock %}
