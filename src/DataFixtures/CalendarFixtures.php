@@ -12,48 +12,65 @@ class CalendarFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $categoryRepository = $manager->getRepository(Category::class);
+        $productRepository = $manager->getRepository(Product::class);
+        $category = $categoryRepository->findOneBy(['slug' => Category::CALENDARS]);
+        if ($category) {
+            $objects = $productRepository->findBy(['category' => $category]);
+            foreach ($objects as $object) {
+                /**
+                 * @var Product $object
+                 */
+                $manager->remove($object);
+            }
+        }
         $datas = [
             [
                 'label'    => 'Calendriers',
                 'slug'     => Category::CALENDARS,
                 'products' => [
-                    'name'        => 'A2 (42 x 59,4 cm)',
-                    'description' => 'Calendriers annuels 42 x 59,4 cm',
-                    'features'    => [
-                        'Support'                => '300 g/m² carton offset',
-                        'Orientation'            => 'Hauteur (Portrait/vertical)',
-                        'Nombre de pages (face)' => '1 page (recto)',
-                        'Colorimétrie'           => 'CMJN 4/0 (quadri 1 face)',
-                        'Propriété papier'       => '- Couché brillant',
-                        'Finition'               => 'Absence de finition'
-                    ],
-                    'options' => [
-                        'label' => '150 exemplaires',
-                        'price' => 730
-                    ],
                     [
-                        'label' => '250 exemplaires',
-                        'price' => 900
-                    ],
-                    [
-                        'label' => '500 exemplaires',
-                        'price' => 1100
-                    ],
-                    [
-                        'label' => '750 exemplaires',
-                        'price' => 1200
-                    ],
-                    [
-                        'label' => '1000 exemplaires',
-                        'price' => 1500
-                    ],
-                    [
-                        'label' => '1500 exemplaires',
-                        'price' => 1800
-                    ],
-                    [
-                        'label' => '2000 exemplaires',
-                        'price' => 2100
+                        'name'        => 'A2 (42 x 59,4 cm)',
+                        'description' => 'Calendriers annuels 42 x 59,4 cm',
+                        'features'    => [
+                            'Support'                => '300 g/m² carton offset',
+                            'Orientation'            => 'Hauteur (Portrait/vertical)',
+                            'Nombre de pages (face)' => '1 page (recto)',
+                            'Colorimétrie'           => 'CMJN 4/0 (quadri 1 face)',
+                            'Propriété papier'       => '- Couché brillant',
+                            'Finition'               => 'Absence de finition'
+                        ],
+                        'options' => [
+                            [
+                                'label' => '150 exemplaires',
+                                'price' => 730
+                            ],
+
+                            [
+                                'label' => '250 exemplaires',
+                                'price' => 900
+                            ],
+                            [
+                                'label' => '500 exemplaires',
+                                'price' => 1100
+                            ],
+                            [
+                                'label' => '750 exemplaires',
+                                'price' => 1200
+                            ],
+                            [
+                                'label' => '1000 exemplaires',
+                                'price' => 1500
+                            ],
+                            [
+                                'label' => '1500 exemplaires',
+                                'price' => 1800
+                            ],
+                            [
+                                'label' => '2000 exemplaires',
+                                'price' => 2100
+                            ],
+                        ],
                     ],
                 ],
                 [
@@ -68,32 +85,34 @@ class CalendarFixtures extends Fixture
                         'Finition'               => 'Absence de finition'
                     ],
                     'options' => [
-                        'label' => '150 exemplaires',
-                        'price' => 730
-                    ],
-                    [
-                        'label' => '250 exemplaires',
-                        'price' => 900
-                    ],
-                    [
-                        'label' => '500 exemplaires',
-                        'price' => 1100
-                    ],
-                    [
-                        'label' => '750 exemplaires',
-                        'price' => 1200
-                    ],
-                    [
-                        'label' => '1000 exemplaires',
-                        'price' => 1500
-                    ],
-                    [
-                        'label' => '1500 exemplaires',
-                        'price' => 1800
-                    ],
-                    [
-                        'label' => '2000 exemplaires',
-                        'price' => 2100
+                        [
+                            'label' => '150 exemplaires',
+                            'price' => 730
+                        ],
+                        [
+                            'label' => '250 exemplaires',
+                            'price' => 900
+                        ],
+                        [
+                            'label' => '500 exemplaires',
+                            'price' => 1100
+                        ],
+                        [
+                            'label' => '750 exemplaires',
+                            'price' => 1200
+                        ],
+                        [
+                            'label' => '1000 exemplaires',
+                            'price' => 1500
+                        ],
+                        [
+                            'label' => '1500 exemplaires',
+                            'price' => 1800
+                        ],
+                        [
+                            'label' => '2000 exemplaires',
+                            'price' => 2100
+                        ],
                     ],
                 ],
                 [
@@ -107,32 +126,34 @@ class CalendarFixtures extends Fixture
                         'Finition' => 'Absence de finition'
                     ],
                     'options' => [
-                        'label' => '150 exemplaires',
-                        'price' => 370,
-                    ],
-                    [
-                        'label' => '300 exemplaires',
-                        'price' => 592,
-                    ],
-                    [
-                        'label' => '500 exemplaires',
-                        'price' => 770,
-                    ],
-                    [
-                        'label' => '750 exemplaires',
-                        'price' => 1140,
-                    ],
-                    [
-                        'label' => '1000 exemplaires',
-                        'price' => 1510,
-                    ],
-                    [
-                        'label' => '1500 exemplaires',
-                        'price' => 1880,
-                    ],
-                    [
-                        'label' => '2000 exemplaires',
-                        'price' => 2250,
+                        [
+                            'label' => '150 exemplaires',
+                            'price' => 370,
+                        ],
+                        [
+                            'label' => '300 exemplaires',
+                            'price' => 592,
+                        ],
+                        [
+                            'label' => '500 exemplaires',
+                            'price' => 770,
+                        ],
+                        [
+                            'label' => '750 exemplaires',
+                            'price' => 1140,
+                        ],
+                        [
+                            'label' => '1000 exemplaires',
+                            'price' => 1510,
+                        ],
+                        [
+                            'label' => '1500 exemplaires',
+                            'price' => 1880,
+                        ],
+                        [
+                            'label' => '2000 exemplaires',
+                            'price' => 2250,
+                        ],
                     ],
                 ],
 
@@ -147,32 +168,34 @@ class CalendarFixtures extends Fixture
                         'Finition' => 'Absence de finition'
                     ],
                     'options' => [
-                        'label' => '150 exemplaires',
-                        'price' => 370,
-                    ],
-                    [
-                        'label' => '300 exemplaires',
-                        'price' => 592,
-                    ],
-                    [
-                        'label' => '500 exemplaires',
-                        'price' => 770,
-                    ],
-                    [
-                        'label' => '750 exemplaires',
-                        'price' => 1140,
-                    ],
-                    [
-                        'label' => '1000 exemplaires',
-                        'price' => 1510,
-                    ],
-                    [
-                        'label' => '1500 exemplaires',
-                        'price' => 1880,
-                    ],
-                    [
-                        'label' => '2000 exemplaires',
-                        'price' => 2250,
+                        [
+                            'label' => '150 exemplaires',
+                            'price' => 370,
+                        ],
+                        [
+                            'label' => '300 exemplaires',
+                            'price' => 592,
+                        ],
+                        [
+                            'label' => '500 exemplaires',
+                            'price' => 770,
+                        ],
+                        [
+                            'label' => '750 exemplaires',
+                            'price' => 1140,
+                        ],
+                        [
+                            'label' => '1000 exemplaires',
+                            'price' => 1510,
+                        ],
+                        [
+                            'label' => '1500 exemplaires',
+                            'price' => 1880,
+                        ],
+                        [
+                            'label' => '2000 exemplaires',
+                            'price' => 2250,
+                        ],
                     ],
                 ],
                 [
@@ -184,37 +207,39 @@ class CalendarFixtures extends Fixture
                         'Colorimétrie' => 'CMJN 4/0 (quadri 2 face)',
                     ],
                     'options' => [
-                        'label' => '100 exemplaires',
-                        'price' => 380,
+                        [
+                            'label' => '100 exemplaires',
+                            'price' => 380,
+                        ],
+                        [
+                            'label' => '250 exemplaires',
+                            'price' => 684,
+                        ],
+                        [
+                            'label' => '500 exemplaires',
+                            'price' => 1090,
+                        ],
+                        [
+                            'label' => '750 exemplaires',
+                            'price' => 1400,
+                        ],
+                        [
+                            'label' => '1000 exemplaires',
+                            'price' => 1680,
+                        ],
+                        [
+                            'label' => '1500 exemplaires',
+                            'price' => 2144,
+                        ],
+                        [
+                            'label' => '2000 exemplaires',
+                            'price' => 2400,
+                        ],
+                        [
+                            'label' => '3000 exemplaires',
+                            'price' => 2700
+                        ]
                     ],
-                    [
-                        'label' => '250 exemplaires',
-                        'price' => 684,
-                    ],
-                    [
-                        'label' => '500 exemplaires',
-                        'price' => 1090,
-                    ],
-                    [
-                        'label' => '750 exemplaires',
-                        'price' => 1400,
-                    ],
-                    [
-                        'label' => '1000 exemplaires',
-                        'price' => 1680,
-                    ],
-                    [
-                        'label' => '1500 exemplaires',
-                        'price' => 2144,
-                    ],
-                    [
-                        'label' => '2000 exemplaires',
-                        'price' => 2400,
-                    ],
-                    [
-                        'label' => '3000 exemplaires',
-                        'price' => 2700
-                    ]
                 ],
                 [
                     'name'    => 'A4 (29,7 x 21 cm)',
@@ -225,45 +250,49 @@ class CalendarFixtures extends Fixture
                         'Colorimétrie' => 'CMJN 4/0 (quadri 2 face)',
                     ],
                     'options' => [
-                        'label' => '100 exemplaires',
-                        'price' => 380,
+                        [
+                            'label' => '100 exemplaires',
+                            'price' => 380,
+                        ],
+                        [
+                            'label' => '250 exemplaires',
+                            'price' => 684,
+                        ],
+                        [
+                            'label' => '500 exemplaires',
+                            'price' => 1090,
+                        ],
+                        [
+                            'label' => '750 exemplaires',
+                            'price' => 1400,
+                        ],
+                        [
+                            'label' => '1000 exemplaires',
+                            'price' => 1680,
+                        ],
+                        [
+                            'label' => '1500 exemplaires',
+                            'price' => 2144,
+                        ],
+                        [
+                            'label' => '2000 exemplaires',
+                            'price' => 2400,
+                        ],
+                        [
+                            'label' => '3000 exemplaires',
+                            'price' => 2700
+                        ]
                     ],
-                    [
-                        'label' => '250 exemplaires',
-                        'price' => 684,
-                    ],
-                    [
-                        'label' => '500 exemplaires',
-                        'price' => 1090,
-                    ],
-                    [
-                        'label' => '750 exemplaires',
-                        'price' => 1400,
-                    ],
-                    [
-                        'label' => '1000 exemplaires',
-                        'price' => 1680,
-                    ],
-                    [
-                        'label' => '1500 exemplaires',
-                        'price' => 2144,
-                    ],
-                    [
-                        'label' => '2000 exemplaires',
-                        'price' => 2400,
-                    ],
-                    [
-                        'label' => '3000 exemplaires',
-                        'price' => 2700
-                    ]
                 ]
             ]
         ];
         foreach ($datas as $cat) {
-            $category = new Category;
-            $category->setLabel($cat['label']);
-            $category->setSlug($cat['slug']);
-            $manager->persist($category);
+            if (!$category) {
+                $category = new Category;
+                $category->setLabel($cat['label']);
+                $category->setSlug($cat['slug']);
+                $manager->persist($category);
+            }
             foreach ($cat['products'] as $prod) {
                 $product = new Product;
                 /** @var array $features */
@@ -291,7 +320,7 @@ class CalendarFixtures extends Fixture
         $manager->flush();
     }
 
-    public function getGroups()
+    public static function getGroups(): array
     {
         return ['products1'];
     }
