@@ -1,45 +1,50 @@
 {% extends 'admin/base_back.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Utilisateurs
+{% endblock %}
 
 {% block body %}
-    <h1>Utilisateurs</h1>
+	<div class="row justify-content-center">
+		<div class="col-8">
+			<h1>Utilisateurs</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Civilité</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Date de naisssance</th>
-                <th>N° de mobile</th>
-                <th>Newsletter</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.email }}</td>
-                <td>{{ user.civility }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
-                <td>{{ user.mobileNumber }}</td>
-                <td>{{ user.newsletter ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="15">Il n'y a pas d'utilisateur enregistré</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Email</th>
+						<th>Civilité</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Date de naisssance</th>
+						<th>N° de mobile</th>
+						<th>Newsletter</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.email }}</td>
+							<td>{{ user.civility }}</td>
+							<td>{{ user.firstname }}</td>
+							<td>{{ user.lastname }}</td>
+							<td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
+							<td>{{ user.mobileNumber }}</td>
+							<td>{{ user.newsletter ? 'Yes' : 'No' }}</td>
+							<td>
+								<a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+								<a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="15">Il n'y a pas d'utilisateur enregistré</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 
-    <a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+			<a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+		</div>
+	</div>
 {% endblock %}
