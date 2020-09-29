@@ -11,8 +11,8 @@
 		{{ order.transactionId }}</h1>
 	<p>Payée avec :
 		{{ order.paymentMode }}</p>
-	<p>Coût total :
-		{{ order.cost }}€</p>
+	<p>Coût total TTC :
+		{{ order.cost * 1.20 }}€</p>
 	<ul class="list-group">
 		{% for product in order.products %}
 			<li class="list-group-item">
