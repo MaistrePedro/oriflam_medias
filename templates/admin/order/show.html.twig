@@ -20,22 +20,24 @@
 				<h2>
 					Utilisateur Particulier :
 				</h2>
-                <p>
-                    {{ user.firstname ~ ' ' ~ user.lastname }}
-                </p>
+				<p>
+					{{ user.firstname ~ ' ' ~ user.lastname }}
+				</p>
 			{% else %}
 				<h2>
 					Utilisateur Professionnel
 				</h2>
-                <p>
-                    {{ user.company }}
-                </p>
+				<p>
+					{{ user.company }}
+				</p>
 			{% endif %}
-                <p>
-                    {{ user.address }} <br>
-                    {{ user.postalCode }} <br>
-                    {{ user.city }}
-                </p>
+			<p>
+				{{ user.address }}
+				<br>
+				{{ user.postalCode }}
+				<br>
+				{{ user.city }}
+			</p>
 		</div>
 	</div>
 	<ul class="list-group">
@@ -71,6 +73,10 @@
 	</ul>
 	{% if order.imageFilename %}
 		<h2>Logo à ajouter</h2>
-		<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+		<div class="row">
+			<div class="col-8">
+				<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+			</div>
+		</div>
 	{% endif %}
 {% endblock %}
