@@ -8,21 +8,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Email</th>
-                <th>Civility</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>BirthDate</th>
-                <th>MobileNumber</th>
+                <th>Civilité</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naisssance</th>
+                <th>N° de mobile</th>
                 <th>Newsletter</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.civility }}</td>
                 <td>{{ user.firstname }}</td>
@@ -31,17 +29,17 @@
                 <td>{{ user.mobileNumber }}</td>
                 <td>{{ user.newsletter ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="15">no records found</td>
+                <td colspan="15">Il n'y a pas d'utilisateur enregistré</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    <a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
 {% endblock %}
