@@ -8,14 +8,14 @@
 	{% set user = order.user %}
 	<h1>Commande
 		{{ order.transactionId }}</h1>
-	<div class="row">
-		<div class="col-6">
+	<div class="row justify-content-center">
+		<div class="col-4">
 			<p>Payée avec :
 				{{ order.paymentMode }}</p>
 			<p>Coût total TTC :
 				{{ order.cost * 1.20 }}€</p>
 		</div>
-		<div class="col-6">
+		<div class="col-4">
 			{% if user.type is same as('INDIVIDUAL') %}
 				<h2>
 					Utilisateur Particulier :
@@ -40,37 +40,41 @@
 			</p>
 		</div>
 	</div>
-	<ul class="list-group">
-		{% for product in order.products %}
-			<li class="list-group-item">
-				<div class="row order-product">
-					<div class="col-5 order-product-name">
-						<p>{{ product.name }}</p>
-					</div>
-					<div class="col-2 offset-5">
-						{{ product.cost }}
-						€ HT
-					</div>
-				</div>
-			</li>
-		{% endfor %}
-		{% for option in order.options %}
-			<li class="list-group-item">
-				<div class="row order-product">
-					<div class="col-5 order-product-name">
-						<p>{{ option.product.name }}</p>
-					</div>
-					<div class="col-5">
-						<p>{{ option.label }}</p>
-					</div>
-					<div class="col-2">
-						{{ option.price }}
-						€ HT
-					</div>
-				</div>
-			</li>
-		{% endfor %}
-	</ul>
+	<div class="row justify-content-center">
+		<div class="col-8">
+			<ul class="list-group">
+				{% for product in order.products %}
+					<li class="list-group-item">
+						<div class="row order-product">
+							<div class="col-5 order-product-name">
+								<p>{{ product.name }}</p>
+							</div>
+							<div class="col-2 offset-5">
+								{{ product.cost }}
+								€ HT
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+				{% for option in order.options %}
+					<li class="list-group-item">
+						<div class="row order-product">
+							<div class="col-5 order-product-name">
+								<p>{{ option.product.name }}</p>
+							</div>
+							<div class="col-5">
+								<p>{{ option.label }}</p>
+							</div>
+							<div class="col-2">
+								{{ option.price }}
+								€ HT
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 	{% if order.imageFilename %}
 		<h2>Logo à ajouter</h2>
 		<div class="row justify-content-center">
