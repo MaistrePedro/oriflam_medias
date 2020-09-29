@@ -20,8 +20,8 @@
 			<div class="col-6">
 				<p>
 					À la fois pratique, élégant et utile c’est le plus connu des calendriers publicitaires. À accrocher au mur ou à poser sur un
-					bureau, un calendrier bancaire trouvera forcement une place de choix. Ce support de communication est un incontournable
-					pour vous aider à organiser vos réunions et vos rendez-vous du quotidien
+										bureau, un calendrier bancaire trouvera forcement une place de choix. Ce support de communication est un incontournable
+										pour vous aider à organiser vos réunions et vos rendez-vous du quotidien
 					<br>
 					<br>
 					<span class="font-weight-bold">
@@ -53,9 +53,7 @@
 											<div class="col-4 d-flex align-items-center">
 												<select name="options-{{ other.id }}" class="form-control options-select">
 													{% for option in options %}
-														<option 
-															data-price="{{ option.price }}"
-															value="{{ option.id }}">
+														<option data-price="{{ option.price }}" value="{{ option.id }}">
 															{{ option.label }}
 														</option>
 													{% endfor %}
@@ -73,6 +71,21 @@
 										</div>
 									</div>
 								</form>
+								<div class="col-12">
+									<p>{{ other.description }}</p>
+									<ul>
+										{% for type, feature in other.features %}
+											<li class="row">
+												<div class="col-4">
+													{{ type }}
+												</div>
+												<div class="col-8">
+													{{ feature }}
+												</div>
+											</li>
+										{% endfor %}
+									</ul>
+								</div>
 							</li>
 						{% endfor %}
 					</ul>
@@ -132,6 +145,21 @@
 										</div>
 									</div>
 								</form>
+										<div class="col-12">
+											<p>{{ custom.description }}</p>
+											<ul>
+												{% for type, feature in custom.features %}
+													<li class="row">
+														<div class="col-4">
+															{{ type }}
+														</div>
+														<div class="col-8">
+															{{ feature }}
+														</div>
+													</li>
+												{% endfor %}
+											</ul>
+										</div>
 							</li>
 						{% endfor %}
 					</ul>

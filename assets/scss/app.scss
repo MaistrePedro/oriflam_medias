@@ -161,16 +161,19 @@ footer {
 }
 
 .contactus {
-  &-text {
+  border: solid 1px $primary;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  .contactus-text {
     @include font($din-bold, 1.5rem);
   }
-  &-ways {
+  .contactus-ways {
     @include font($din-bold, 1.5rem);
     &-phone {
       @include font($din-bold, 2rem, $primary);
     }
   }
-  &-delivery {
+  .contactus-delivery {
     @include font($din-light, 2rem)
   }
 }

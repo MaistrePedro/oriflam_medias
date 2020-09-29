@@ -104,14 +104,14 @@ class AgendaFixtures extends Fixture
                 $product = new Product;
                 /** @var array $features */
                 $features = [];
-                foreach ($prod['features'] as $feat) {
-                    $features[] = $feat;
+                foreach ($prod['features'] as $type => $feat) {
+                    $features[$type] = $feat;
                 }
                 $product
                     ->setName($prod['name'])
                     ->setCategory($category)
                     ->setFeatures($features);
-                if ($prod['description']) {
+                if (array_key_exists('description', $prod)) {
                     $product->setDescription($prod['description']);
                 }
                 $manager->persist($product);

@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="row agendas-middle">
-			<div class="col-6 agendas-middle-left">
+			<div class="col-5 agendas-middle-left">
 				<div class="row agendas-middle-left-middle mt-5">
 					<div class="col-6 agendas-middle-left-middle-left">
 						<p class="agendas-middle-left-middle-title">
@@ -30,7 +30,7 @@
 							<span class="font-weight-bold">Possibilité de personnalisation avec le logo de votre entreprise</span>
 						</p>
 						<img src="{{ asset('build/agenda.png') }}" alt="" class="img-fluid">
-						<img src="{{ asset('build/agendas2.jpg') }}" alt="" class="img-fluid">
+						<img src="{{ asset('build/agendas2.png') }}" alt="" class="img-fluid">
 					</div>
 					<div class="col-6 agendas-middle-left-middle-right">
 						<p class="agendas-middle-left-middle-title">
@@ -46,44 +46,84 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6 agendas-middle-right">
+			<div class="col-7 agendas-middle-right">
 				<div class="row">
 					{% if agendas is not empty %}
-						<div class="col-8 agendas-middle-right-agendas pt-5">
+						<div class="col-12 agendas-middle-right-agendas pt-5">
 							<p class="agendas-middle-right-agendas-title">
 								Agenda
 							</p>
 							<ul class="list-group">
 								{% for agenda in agendas %}
-									<li class="list-group-item">
+									<li class="list-group-item row">
 										<form action="" class="add-to-cart">
-											<div class="row">
+											<div class="row align-items-center">
 												<div class="col-6">
 													<p>{{ agenda.name }}</p>
 												</div>
+												{% if agenda.options is not null %}
+													{% set options = agenda.options %}
+													<div class="col-4 d-flex align-items-center">
+														<select name="options-{{ agenda.id }}" class="form-control options-select">
+															{% for option in options %}
+																<option data-price="{{ option.price }}" value="{{ option.id }}">
+																	{{ option.label }}
+																</option>
+															{% endfor %}
+														</select>
+													</div>
+												{% endif %}
 												<div class="col-2">
 													<input type="hidden" value="{{ agenda.id }}">
 													<button type="submit" class="btn btn-primary rounded-0">
 														<i class="fas fa-cart-plus"></i>
 													</button>
 												</div>
+												<div class="col-12 pt-2">
+													<div class="row">
+														<div class="col-3">
+															<img src="{{ asset('build/format1.png') }}" alt="" class="img-fluid">
+															<p class="format-label">
+																Format 1
+															</p>
+														</div>
+														<div class="col-3">
+															<img src="{{ asset('build/format2.png') }}" alt="" class="img-fluid">
+															<p class="format-label">
+																Format 2
+															</p>
+														</div>
+														<div class="col-3">
+															<img src="{{ asset('build/format3.png') }}" alt="" class="img-fluid">
+															<p class="format-label">
+																Format 3
+															</p>
+														</div>
+														<div class="col-3">
+															<img src="{{ asset('build/format4.png') }}" alt="" class="img-fluid">
+															<p class="format-label">
+																Format 4
+															</p>
+														</div>
+													</div>
+												</div>
 											</div>
 										</form>
-												<div class="col-12">
-													<p>{{ notebook.description }}</p>
-													<ul>
-														{% for type, feature in notebook.features %}
-															<li class="row">
-																<div class="col-4">
-																	{{ type }}
-																</div>
-																<div class="col-8">
-																	{{ feature }}
-																</div>
-															</li>
-														{% endfor %}
-													</ul>
-												</div>
+										<div class="col-12">
+											<p>{{ agenda.description }}</p>
+											<ul>
+												{% for type, feature in agenda.features %}
+													<li class="row">
+														<div class="col-4">
+															{{ type }}
+														</div>
+														<div class="col-8">
+															{{ feature }}
+														</div>
+													</li>
+												{% endfor %}
+											</ul>
+										</div>
 									</li>
 								{% endfor %}
 							</ul>

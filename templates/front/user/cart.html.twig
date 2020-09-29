@@ -62,9 +62,19 @@
 						<li class="list-group-item">
 							<div class="row justify-content-end">
 								<div class="col-4 text-end">
-									<p>TOTAL :
+									<p>TOTAL HT :
 										{{ cart.cost }}
-										€ HT</p>
+										€</p>
+									<p>
+										TVA (20%) : 
+										{{ cart.cost * 0.2 }}
+										 €
+									</p>
+									<p>
+										TOTAL TTC :
+										{{ cart.cost * 1.2 }}
+										 €
+									</p>
 								</div>
 							</div>
 						</li>

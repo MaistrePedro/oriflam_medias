@@ -45,7 +45,7 @@ class UserController extends AbstractController
 
         if ($cart) {
             $actionMode = 'INTERACTIVE';
-            $amount = $cart->getCost();
+            $amount = $cart->getCost() * 1.2;
             $ctxMode = '';
             $currency = 978;
             $pageAction = 'PAYMENT';
@@ -335,10 +335,11 @@ class UserController extends AbstractController
                 ->setPaymentMode($paymentMode)
                 ->setUpdatedAt(new DateTime('now'));
             $entityManager->flush();
+            return $this->redirectToRoute('finalize_order', [
+                'transactionId' => $transactionId
+            ]);
         }
-        return $this->redirectToRoute('finalize_order', [
-            'transactionId' => $transactionId
-        ]);
+        return $this->redirectToRoute('home');
     }
 
     /**
