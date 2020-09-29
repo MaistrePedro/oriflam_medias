@@ -46,6 +46,6 @@
 	</ul>
 	{% if order.imageFilename %}
 		<h2>Logo à ajouter</h2>
-		<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="">
+		<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
 	{% endif %}
 {% endblock %}
