@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Category;
+use App\Entity\Order;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\OrderRepository;
