@@ -8,9 +8,9 @@
 {% block body %}
 	{% set user = order.user %}
 	<div class="row justify-content-center">
+		<div class="col-4">
 		<h1>Commande
 			{{ order.transactionId }}</h1>
-		<div class="col-4">
 			<p>Payée avec :
 				{{ order.paymentMode }}</p>
 			<p>Coût total TTC :
