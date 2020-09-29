@@ -22,7 +22,7 @@
 						{% for order in orders %}
 							<tr>
 								<td>{{ order.transactionId }}</td>
-								{% if order.user.type === 'INDIVIDUAL' %}
+								{% if order.user.type is same as('INDIVIDUAL') %}
 									<td>{{ order.user.firstname ~ ' ' ~ order.user.lastname }}</td>
 								{% else %}
 									<td>{{ order.user.company }}</td>
