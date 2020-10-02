@@ -70,7 +70,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             $user->setUpdatedAt(new DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
