@@ -58,7 +58,7 @@
 									<li class="list-group-item row">
 										<form action="" class="add-to-cart">
 											<div class="row align-items-center">
-												<div class="col-6">
+												<div class="col-4">
 													<p>{{ agenda.name }}</p>
 												</div>
 												{% if agenda.options is not null %}
@@ -73,6 +73,9 @@
 														</select>
 													</div>
 												{% endif %}
+												<div class="col-2 d-flex align-items-center">
+													<p class="price d-inline-block m-0"></p>
+												</div>
 												<div class="col-2">
 													<input type="hidden" value="{{ agenda.id }}">
 													<button type="submit" class="btn btn-primary rounded-0">
@@ -130,7 +133,7 @@
 						</div>
 					{% endif %}
 					{% if notebooks is not empty %}
-						<div class="col-8 agendas-middle-right-notebooks mt-5">
+						<div class="col-12 agendas-middle-right-notebooks mt-5">
 							<p class="agendas-middle-right-notebooks-title">
 								Notebook
 							</p>
@@ -140,10 +143,25 @@
 										<form class="add-to-cart">
 											<div class="row">
 												<form action="" class="add-to-cart">
-													<div class="col-6">
+													<div class="col-4">
 														<p>{{ notebook.name }}</p>
 													</div>
 													<input type="hidden" value="{{ notebook.id }}" class="product-id">
+													{% if notebook.options is not null %}
+														{% set options = notebook.options %}
+														<div class="col-4 d-flex align-items-center">
+															<select name="options-{{ notebook.id }}" class="form-control options-select">
+																{% for option in options %}
+																	<option data-price="{{ option.price }}" value="{{ option.id }}">
+																		{{ option.label }}
+																	</option>
+																{% endfor %}
+															</select>
+														</div>
+													{% endif %}
+													<div class="col-2 d-flex align-items-center">
+														<p class="price d-inline-block m-0"></p>
+													</div>
 													<div class="col-2">
 														<button type="submit" class="btn btn-primary rounded-0">
 															<i class="fas fa-cart-plus"></i>

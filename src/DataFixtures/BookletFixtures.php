@@ -34,9 +34,19 @@ class BookletFixtures extends Fixture
             $manager->persist($category);
 
         $product = new Product;
+        $features = [
+            'Support' => '(Best Of) 135 g/m² papier couché',
+            'Orientation' => 'Hauteur (Portrait/vertical)',
+            'Colorimétrie' => 'CMJN 4/4 (quadri 2 faces)',
+            'Propriété papier' => '- Couché brillant',
+            'Nombre de page (face)' => '12 pages',
+            'Couverture' => 'Sans couverture',
+            'Mode de reliure' => 'Agrafage'
+        ];
         $product
             ->setCategory($category)
-            ->setName('Brochure A5 (14,8 x 21 cm) Livre brochure piquée agrafes avec couverture 12 pages - Quadri');
+            ->setName('Brochure A5 (14,8 x 21 cm) Livre brochure piquée agrafes avec couverture 12 pages - Quadri')
+            ->setFeatures($features);
         $manager->persist($product);
 
         $option = new Options;
@@ -96,6 +106,15 @@ class BookletFixtures extends Fixture
         $manager->persist($option);
 
         $product = new Product;
+        $features = [
+            'Support' => '(Best Of) 135 g/m² papier couché',
+            'Orientation' => 'Hauteur (Portrait/vertical)',
+            'Colorimétrie' => 'CMJN 4/4 (quadri 2 faces)',
+            'Propriété papier' => '- Couché brillant',
+            'Nombre de page (face)' => '24 pages',
+            'Couverture' => 'Sans couverture',
+            'Mode de reliure' => 'Agrafage'
+        ];
         $product
             ->setCategory($category)
             ->setName('Brochure A4 (21 x 29,7) Livre brochure piquée agrafes 24 pages avec couverture pelliculée Quadri');

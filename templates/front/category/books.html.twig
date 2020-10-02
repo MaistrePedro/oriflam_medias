@@ -22,7 +22,7 @@
 				<div class="row books-middle-left-top">
 					<div class="col-6 offset-3">
 						Couverture cartonnées, papier intérieur de qualité
-																								jusqu’à 60 pages de photos, 2 formats au choix
+																														jusqu’à 60 pages de photos, 2 formats au choix
 					</div>
 				</div>
 				<div class="row justify-content-start">
@@ -68,47 +68,60 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6 books-middle-right d-flex align-items-center">
-			<div class="books-middle-right-products">
-				<ul class="list-group">
-					{% for product in products %}
-						<li class="list-group-item mb-5">
-							<form action="" class="add-to-cart">
-								<div class="row">
-									<div class="col-4 d-flex align-items-center">
-										<p class="word-wrap m-0">
-											{{ product.name }}
-										</p>
-									</div>
-									{% if product.options is not null %}
-										{% set options = product.options %}
+			<div class="col-6 books-middle-right d-flex mt-5">
+				<div class="books-middle-right-products">
+					<ul class="list-group">
+						{% for product in products %}
+							<li class="list-group-item mb-5">
+								<form action="" class="add-to-cart">
+									<div class="row">
 										<div class="col-4 d-flex align-items-center">
-											<select name="options-{{ product.id }}" class="form-control options-select">
-												{% for option in options %}
-													<option 
-													data-price="{{ option.price }}" 
-													value="{{ option.id }}">
-													{{ option.label }}
-													</option>
-												{% endfor %}
-											</select>
+											<p class="word-wrap m-0">
+												{{ product.name }}
+											</p>
 										</div>
-									{% endif %}
-									<div class="col-2 d-flex align-items-center">
-										<p class="price d-inline-block m-0"></p>
+										{% if product.options is not null %}
+											{% set options = product.options %}
+											<div class="col-4 d-flex align-items-center">
+												<select name="options-{{ product.id }}" class="form-control options-select">
+													{% for option in options %}
+														<option data-price="{{ option.price }}" value="{{ option.id }}">
+															{{ option.label }}
+														</option>
+													{% endfor %}
+												</select>
+											</div>
+										{% endif %}
+										<div class="col-2 d-flex align-items-center">
+											<p class="price d-inline-block m-0"></p>
+										</div>
+										<div class="col-2 d-flex align-items-center">
+											<input type="hidden" value="{{ product.id }}">
+											<button type="submit" class="btn btn-primary rounded-0">
+												<i class="fas fa-cart-plus"></i>
+											</button>
+										</div>
 									</div>
-									<div class="col-2 d-flex align-items-center">
-									<input type="hidden" value="{{ product.id }}">
-										<button type="submit" class="btn btn-primary rounded-0">
-											<i class="fas fa-cart-plus"></i>
-										</button>
-									</div>
+								</form>
+								<div class="col-12">
+									<p>{{ product.description }}</p>
+									<ul>
+										{% for type, feature in product.features %}
+											<li class="row">
+												<div class="col-4">
+													{{ type }}
+												</div>
+												<div class="col-8">
+													{{ feature }}
+												</div>
+											</li>
+										{% endfor %}
+									</ul>
 								</div>
-							</form>
-						</li>
-					{% endfor %}
-				</ul>
-				{% include "front/category/_contact-us.html.twig" %}
+							</li>
+						{% endfor %}
+					</ul>
+					{% include "front/category/_contact-us.html.twig" %}
 				</div>
 			</div>
 		</div>
