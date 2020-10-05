@@ -58,8 +58,8 @@
 									<li class="list-group-item row">
 										<form action="" class="add-to-cart">
 											<div class="row align-items-center">
-												<div class="col-4">
-													<p>{{ agenda.name }}</p>
+												<div class="col-4 d-flex align-items-center">
+													<p class="m-0">{{ agenda.name }}</p>
 												</div>
 												{% if agenda.options is not null %}
 													{% set options = agenda.options %}
@@ -76,13 +76,13 @@
 												<div class="col-2 d-flex align-items-center">
 													<p class="price d-inline-block m-0"></p>
 												</div>
-												<div class="col-2">
+												<div class="col-2 d-flex align-items-center">
 													<input type="hidden" value="{{ agenda.id }}">
 													<button type="submit" class="btn btn-primary rounded-0">
 														<i class="fas fa-cart-plus"></i>
 													</button>
 												</div>
-												<div class="col-12 pt-2">
+												<div class="col-12 mt-3">
 													<div class="row">
 														<div class="col-3">
 															<img src="{{ asset('build/format1.png') }}" alt="" class="img-fluid">
@@ -112,7 +112,7 @@
 												</div>
 											</div>
 										</form>
-										<div class="col-12">
+										<div class="col-12 mt-3">
 											<p>{{ agenda.description }}</p>
 											<ul>
 												{% for type, feature in agenda.features %}
@@ -143,8 +143,8 @@
 										<form class="add-to-cart">
 											<div class="row">
 												<form action="" class="add-to-cart">
-													<div class="col-4">
-														<p>{{ notebook.name }}</p>
+													<div class="col-4 d-flex align-items-center">
+														<p class="m-0">{{ notebook.name }}</p>
 													</div>
 													<input type="hidden" value="{{ notebook.id }}" class="product-id">
 													{% if notebook.options is not null %}
@@ -162,13 +162,13 @@
 													<div class="col-2 d-flex align-items-center">
 														<p class="price d-inline-block m-0"></p>
 													</div>
-													<div class="col-2">
+													<div class="col-2 d-flex align-items-center">
 														<button type="submit" class="btn btn-primary rounded-0">
 															<i class="fas fa-cart-plus"></i>
 														</button>
 													</div>
 												</form>
-												<div class="col-12">
+												<div class="col-12 mt-3">
 													<p>{{ notebook.description }}</p>
 													<ul>
 														{% for type, feature in notebook.features %}
