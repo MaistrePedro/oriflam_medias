@@ -153,8 +153,6 @@ class UserController extends AbstractController
             $product = $productRepository->findOneBy(['id' => $productId]);
             if ($product) {
                 $order->addProduct($product);
-                $cost = $order->getCost() + $product->getCost();
-                $order->setCost($cost);
                 $order->setUpdatedAt(new DateTime('now'));
                 $em->flush();
                 $result = [
@@ -172,8 +170,6 @@ class UserController extends AbstractController
             $option = $optionsRepository->findOneBy(['id' => $optionId]);
             if ($option) {
                 $order->addOption($option);
-                $cost = $order->getCost() + $option->getPrice();
-                $order->setCost($cost);
                 $order->setUpdatedAt(new DateTime('now'));
                 $em->flush();
                 $result = [
@@ -188,6 +184,18 @@ class UserController extends AbstractController
                 ];
             }
         }
+        $totalCost = 0;
+        $cartOptions = $order->getOptions();
+        $cartProducts = $order->getProducts();
+
+        foreach ($cartOptions as $option) {
+            $totalCost += $option->getPrice();
+        }
+        foreach ($cartProducts as $product) {
+            $totalCost += $product->getCost();
+        }
+        $order->setCost($totalCost);
+        $em->flush();
         return new Response($serializer->serialize($result, 'json'));
     }
 
@@ -201,21 +209,27 @@ class UserController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         if ($product) {
             if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
-                $totalCost = $cart->getCost() - $product->getCost();
-                $cart->setCost($totalCost);
                 $cart->removeProduct($product);
             }
         } else if ($option) {
             if ($this->isCsrfTokenValid('delete' . $option->getId(), $request->request->get('_token'))) {
-                $totalCost = $cart->getCost() - $option->getPrice();
-                $cart->setCost($totalCost);
                 $cart->removeOption($option);
             }
         }
+        $totalCost = 0;
         $cartOptions = $cart->getOptions();
         $cartProducts = $cart->getProducts();
         if ($cartOptions->isEmpty() && $cartProducts->isEmpty()) {
             $entityManager->remove($cart);
+        }
+        else {
+            foreach ($cartOptions as $option) {
+                $totalCost += $option->getPrice();
+            }
+            foreach ($cartProducts as $product) {
+                $totalCost += $product->getCost();
+            }
+            $cart->setCost($totalCost);
         }
         $entityManager->flush();
 
