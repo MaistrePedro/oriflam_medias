@@ -25,11 +25,14 @@ class FinalizeOrderType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '10240k',
+                        'minSize' => '10240k',
                         'mimeTypes' => [
                             'image/jpeg',
-                            'image/png'
+                            'image/png',
+                            'application/pdf'
                         ],
+                        'minSizeMessage' => 'Le fichier est trop petit',
                         'maxSizeMessage' => 'Le fichier est trop lourd',
                         'mimeTypesMessage' => 'Merci de charger un fichier en JPG ou PNG',
                     ])

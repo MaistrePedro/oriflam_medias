@@ -88,7 +88,15 @@
 						<h2>Logo à ajouter</h2>
 					</div>
 					<div class="col-8">
-						<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+						{% set splitted = order.imageFilename|split(".") %}
+						{% set extension = splitted.1 %}
+						<a href="{{ asset('uploads/images/' ~ order.imageFilename) }}" download>
+							{% if extension == 'png' or extension == 'jpg' %}
+								<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
+							{% else %}
+								Télécharger {{ order.imageFileName }}
+							{% endif %}
+						</a>
 					</div>
 				</div>
 			</div>
