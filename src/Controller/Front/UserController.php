@@ -42,6 +42,7 @@ class UserController extends AbstractController
         $cart = $orderRepository->findOneBy(['user' => $user, 'validated' => false]);
         $signature = '';
         $params = [];
+        $em = $this->getDoctrine()->getManager();
 
         if ($cart) {
             $actionMode = 'INTERACTIVE';
@@ -79,6 +80,19 @@ class UserController extends AbstractController
 
             $signature = $this->getSignature($params);
         }
+
+        $totalCost = 0;
+        $cartOptions = $cart->getOptions();
+        $cartProducts = $cart->getProducts();
+
+        foreach ($cartOptions as $option) {
+            $totalCost += $option->getPrice();
+        }
+        foreach ($cartProducts as $product) {
+            $totalCost += $product->getCost();
+        }
+        $cart->setCost($totalCost);
+        $em->flush();
 
         return $this->render('front/user/cart.html.twig', [
             'user' => $user,
