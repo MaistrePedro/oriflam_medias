@@ -102,7 +102,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('profile', [
+        return $this->urlGenerator->generate('home', [
             ''
         ]);
     }

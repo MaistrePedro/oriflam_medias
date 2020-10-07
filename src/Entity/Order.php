@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Order
 {
+    const PENDING = 'PENDING';
+    const PROCESSED = 'PROCESSED';
+    const SENT = 'SENT';
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -70,6 +74,11 @@ class Order
      * @ORM\Column(type="string", nullable=true)
      */
     private $imageFilename;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status;
 
     public function __construct()
     {
@@ -226,6 +235,18 @@ class Order
     public function setImageFilename($imageFilename): self
     {
         $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -9,8 +9,8 @@
 	{% set user = order.user %}
 	<div class="row justify-content-center">
 		<div class="col-4">
-		<h1>Commande
-			{{ order.transactionId }}</h1>
+			<h1>Commande
+				{{ order.transactionId }}</h1>
 			<p>Payée avec :
 				{{ order.paymentMode }}</p>
 			<p>Coût total TTC :
@@ -42,6 +42,12 @@
 		</div>
 	</div>
 	<div class="row justify-content-center">
+		<div class="col-8 text-center my-3">
+			{{ form_start(form) }}
+			{{ form_widget(form.status) }}
+			<button class="btn btn-primary mt-3" type="submit">Sauvegarder</button>
+			{{ form_end(form) }}
+		</div>
 		<div class="col-8">
 			<ul class="list-group">
 				{% for product in order.products %}
@@ -76,7 +82,9 @@
 			</ul>
 			{% if order.imageFilename %}
 				<div class="row justify-content-center">
-					<h2>Logo à ajouter</h2>
+					<div class="col-12">
+						<h2>Logo à ajouter</h2>
+					</div>
 					<div class="col-8">
 						<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
 					</div>

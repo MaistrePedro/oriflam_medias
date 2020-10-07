@@ -15,7 +15,8 @@
 							<th>N° de commande</th>
 							<th>Client</th>
 							<th>Montant HT</th>
-							<th>actions</th>
+							<th>Statut</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -27,14 +28,23 @@
 								{% else %}
 									<td>{{ order.user.company }}</td>
 								{% endif %}
-								<td>{{ order.cost }}</td>
+								<td>{{ order.cost }} €</td>
 								<td>
-									<a href="{{ path('order_show', {'id': order.id}) }}">show</a>
+									{% if order.status == "PENDING" %}
+										En attente
+									{% elseif order.status == 'PROCESSED' %}
+										En cours d'envoi
+									{% elseif order.status == 'SENT' %}
+										Envoyé
+									{% endif %}
+								</td>
+								<td>
+									<a href="{{ path('order_show', {'id': order.id}) }}">Voir</a>
 								</td>
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="4">no records found</td>
+								<td colspan="4">Aucune commande enregistrée</td>
 							</tr>
 						{% endfor %}
 					</tbody>

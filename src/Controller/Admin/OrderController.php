@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Order;
+use App\Form\Admin\EditValidatedOrderType;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\OrderRepository;
@@ -27,12 +28,23 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="order_show", methods={"GET"})
+     * @Route("/{id}", name="order_show")
      */
-    public function show(Order $order): Response
+    public function show(Order $order, Request $request): Response
     {
+        $form = $this->createForm(EditValidatedOrderType::class, $order);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($order);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('order_show', ['id' => $order->getId()]);
+        }
         return $this->render('admin/order/show.html.twig', [
             'order' => $order,
+            'form' => $form->createView()
         ]);
     }
 }
