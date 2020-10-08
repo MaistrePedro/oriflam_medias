@@ -44,7 +44,7 @@ class UserController extends AbstractController
 
         if ($cart) {
             $actionMode = 'INTERACTIVE';
-            $amount = $cart->getCost() * 1.2;
+            $amount = round($cart->getCost()* 100 * 1.2);
             $ctxMode = '';
             $currency = 978;
             $pageAction = 'PAYMENT';
@@ -63,7 +63,7 @@ class UserController extends AbstractController
 
             $params = [
                 'vads_action_mode' => $actionMode,
-                'vads_amount' => $amount * 100,
+                'vads_amount' => $amount,
                 'vads_ctx_mode' => $ctxMode,
                 'vads_currency' => $currency,
                 'vads_page_action' => $pageAction,

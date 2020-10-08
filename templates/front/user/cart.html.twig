@@ -67,12 +67,12 @@
 										€</p>
 									<p>
 										TVA (20%) : 
-										{{ cart.cost * 0.2 }}
+										{{ (cart.cost * 0.2)|round(2, 'floor') }}
 										 €
 									</p>
 									<p>
 										TOTAL TTC :
-										{{ cart.cost * 1.2 }}
+										{{ (cart.cost * 1.2)|round(2, 'floor') }}
 										 €
 									</p>
 								</div>

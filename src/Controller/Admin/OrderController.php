@@ -68,7 +68,8 @@ class OrderController extends AbstractController
                 $images = $order->getImages();
                 foreach ($images as $image) {
                     $file = 'public/uploads/images/'. $image->getName() . '.' . $image->getExtension();
-                    $filesystem->remove([$file]);
+                    // \dd($file);
+                    $filesystem->remove($file);
                     $order->removeImage($image);
                 }
                 $time = time();
