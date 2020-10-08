@@ -3,20 +3,18 @@
 namespace App\Controller\Front;
 
 use App\Entity\Order;
-use App\Entity\User;
 use App\Entity\Product;
 use App\Entity\Category;
+use App\Entity\Images;
 use App\Entity\Options;
 use App\Repository\OrderRepository;
 use App\Form\EditUserType;
 use App\Form\FinalizeOrderType;
-use App\Form\UserType;
 use App\Repository\OptionsRepository;
 use App\Repository\ProductRepository;
 use App\Service\RandomStringGenerator;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,20 +77,20 @@ class UserController extends AbstractController
             ];
 
             $signature = $this->getSignature($params);
-        }
 
-        $totalCost = 0;
-        $cartOptions = $cart->getOptions();
-        $cartProducts = $cart->getProducts();
+            $totalCost = 0;
+            $cartOptions = $cart->getOptions();
+            $cartProducts = $cart->getProducts();
 
-        foreach ($cartOptions as $option) {
-            $totalCost += $option->getPrice();
+            foreach ($cartOptions as $option) {
+                $totalCost += $option->getPrice();
+            }
+            foreach ($cartProducts as $product) {
+                $totalCost += $product->getCost();
+            }
+            $cart->setCost($totalCost);
+            $em->flush();
         }
-        foreach ($cartProducts as $product) {
-            $totalCost += $product->getCost();
-        }
-        $cart->setCost($totalCost);
-        $em->flush();
 
         return $this->render('front/user/cart.html.twig', [
             'user' => $user,
@@ -235,8 +233,7 @@ class UserController extends AbstractController
         $cartProducts = $cart->getProducts();
         if ($cartOptions->isEmpty() && $cartProducts->isEmpty()) {
             $entityManager->remove($cart);
-        }
-        else {
+        } else {
             foreach ($cartOptions as $option) {
                 $totalCost += $option->getPrice();
             }
@@ -359,6 +356,7 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $order = $orderRepository->findOneBy(['transactionId' => $transactionId]);
             $order
+                ->setStatus(Order::PENDING)
                 ->setValidated(true)
                 ->setPaymentMode($paymentMode)
                 ->setUpdatedAt(new DateTime('now'));
@@ -376,31 +374,41 @@ class UserController extends AbstractController
     public function finalizeOrder(string $transactionId, Request $request, OrderRepository $orderRepository, SluggerInterface $slugger)
     {
         $order = $orderRepository->findOneBy(['transactionId' => $transactionId]);
-        $form = $this->createForm(FinalizeOrderType::class, $order);
+        $form = $this->createForm(FinalizeOrderType::class);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageFile = $form->get('image')->getData();
-
-            if ($imageFile) {
-                $time = time();
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . $time . '.' . $imageFile->guessExtension();
-
-                $imageFile->move(
-                    $this->getParameter('images_directory'),
-                    $newFilename
-                );
-                $order->setImageFilename($newFilename);
-                $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
+            $imageFiles = $request->files->get('finalize_order');
+            // \dd($imageFiles);
+            
+            if ($imageFiles) {
+                $images = [];
+                foreach ($imageFiles['images'] as $imageFile) {
+                    /** @var UploadedFile $imageFile */
+                    // \dd($imageFile);
+                    $image = new Images;
+                    $time = time();
+                    $originalFilename = pathinfo($imageFile['image']->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = $slugger->slug($originalFilename) . '-' . $time;
+                    $newFilename = $safeFilename . '.' . $imageFile['image']->guessExtension();
+                    $image
+                        ->setName($safeFilename)
+                        ->setExtension($imageFile['image']->guessExtension());
+                    $imageFile['image']->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                    $em->persist($image);
+                    $order->addImage($image);
+                }
                 $em->flush();
             }
             return $this->redirectToRoute('home');
         }
         return $this->render('front/user/finalize.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'order' => $order
         ]);
     }
 }

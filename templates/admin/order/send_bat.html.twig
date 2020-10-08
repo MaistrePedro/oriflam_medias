@@ -1,0 +1,20 @@
+{% extends "admin/base_back.html.twig" %}
+
+{% block title %}
+	Envoyer le BAT | Oriflam Médias
+{% endblock %}
+
+{% block body %}
+	<div class="container send-bat pt-5">
+		<div class="row justify-content-center pt-5">
+			<div class="col-4 text-center pt-5">
+				<h1>Envoyer le BAT</h1>
+				{{ form_start(form) }}
+				{{ form_widget(form.bat) }}
+                {{ form_errors(form.bat) }}
+				<button type="submit" class="btn btn-primary">Envoyer</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

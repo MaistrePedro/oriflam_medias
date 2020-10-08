@@ -50,6 +50,9 @@
 			<button class="btn btn-primary mt-3" type="submit">Sauvegarder</button>
 			{{ form_end(form) }}
 		</div>
+		<div class="col-8 text-center my-2">
+			<a href="{{ path('send_bat', {'id':order.id}) }}" class="btn btn-primary">Envoyer le BAT</a>
+		</div>
 		<div class="col-8">
 			<ul class="list-group">
 				{% for product in order.products %}
@@ -82,24 +85,30 @@
 					</li>
 				{% endfor %}
 			</ul>
-			{% if order.imageFilename %}
+			{% if order.images %}
 				<div class="row justify-content-center">
 					<div class="col-12">
 						<h2>Logo à ajouter</h2>
 					</div>
-					<div class="col-8">
-						{% set splitted = order.imageFilename|split(".") %}
-						{% set extension = splitted.1 %}
-						<a href="{{ asset('uploads/images/' ~ order.imageFilename) }}" download>
-							{% if extension == 'png' or extension == 'jpg' %}
-								<img src="{{ asset('uploads/images/' ~ order.imageFilename) }}" alt="" class="img-fluid">
-							{% else %}
-								Télécharger {{ order.imageFileName }}
-							{% endif %}
-						</a>
-					</div>
+					{% for image in order.images %}
+						<div class="col-8">
+							<a href="{{ asset('uploads/images/' ~ image.name ~ '.' ~ image.extension) }}" download>
+								{% if image.extension == 'png' or image.extension == 'jpg' %}
+									<img src="{{ asset('uploads/images/' ~ image.name ~ '.' ~ image.extension) }}" alt="" class="img-fluid">
+								{% else %}
+									Télécharger
+									{{ image.name ~ '.' ~ image.extension }}
+								{% endif %}
+							</a>
+						</div>
+					{% endfor %}
 				</div>
-			</div>
+			{% endif %}
+			{% if order.bat %}
+				<div class="col-8 text-center">
+					<a href="{{ asset('uploads/bat/' ~ order.bat) }}" class="btn btn-primary" download>Télécharger le BAT</a>
+				</div>
+			{% endif %}
 		</div>
-	{% endif %}
+	</div>
 {% endblock %}

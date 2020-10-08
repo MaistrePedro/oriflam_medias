@@ -5,24 +5,30 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid finalize">
-		<div class="row">
-			<div class="col-7 offset-2">
-				<h1>Finaliser la commande</h1>
+	<div class="container-fluid finalize pt-5">
+		<div class="row justify-content-center pt-5">
+			<div class="col-4 text-center pt-5">
+			<h1>Ajouter des images</h1>
 				{{ form_start(form) }}
-				<div class="custom-file">
-					{{ form_widget(form.image) }}
-					{{ form_label(form.image) }}
-				</div>
-				<small>
-					Formats autorisés : jpeg, png
-					<br>
-					Taille maximale : 2Mo
-				</small><br>
-				<button class="btn btn-primary rounded-0" type="submit">Envoyer</button>
-				<a href="{{ path('home') }}">Passer</a>
+				{# The Prototype to use for generating items of the Folder.documents collection #}
+				<ul id="filesProto" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.images|length }}">
+					{% for fileField in form.images %}
+						<li>
+							{{ form_errors(fileField) }}
+							{{ form_widget(fileField) }}
+						</li>
+					{% endfor %}
+				</ul>
+				<button type="button" class="add-another-collection-widget btn btn-primary" data-list-selector="#images-fields-list">Ajouter une image</button>
+				<button type="submit" class="btn btn-primary signup-submit">
+					ENREGISTRER
+				</button>
+				<a href="{{ path('show_order', {transactionId: order.transactionId}) }}">Passer</a>
 				{{ form_end(form) }}
 			</div>
 		</div>
+
 	</div>
 {% endblock %}
+
+{% block javascripts %}{% endblock %}

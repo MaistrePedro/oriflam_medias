@@ -21,6 +21,9 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
         "@nuxtjs/axios": "^5.12.2",
-        "bootstrap": "^4.5.2"
+        "bootstrap": "^4.5.2",
+        "child_process": "^1.0.2",
+        "fs": "0.0.1-security",
+        "net": "^1.0.2"
     }
 }

@@ -19,6 +19,7 @@
 /node_modules/
 /public/build/
 /public/uploads/images/*
+/public/uploads/bat/*
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

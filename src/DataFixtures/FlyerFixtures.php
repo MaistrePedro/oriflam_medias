@@ -75,7 +75,7 @@ class FlyerFixtures extends Fixture
 
         $option = new Options;
         $option
-            ->setLabel('10 exemplaires 000')
+            ->setLabel('10 000 exemplaires')
             ->setPrice(67)
             ->setProduct($product);
         $manager->persist($option);

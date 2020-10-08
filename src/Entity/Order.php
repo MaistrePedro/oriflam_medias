@@ -71,19 +71,25 @@ class Order
     private $transactionId;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $imageFilename;
+    private $status;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $status;
+    private $bat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="linkedOrder", orphanRemoval=true)
+     */
+    private $images;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
         $this->options = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,18 +233,6 @@ class Order
         return $this;
     }
 
-    public function getImageFilename(): ?string
-    {
-        return $this->imageFilename;
-    }
-
-    public function setImageFilename($imageFilename): self
-    {
-        $this->imageFilename = $imageFilename;
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -247,6 +241,49 @@ class Order
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getBat(): ?string
+    {
+        return $this->bat;
+    }
+
+    public function setBat(?string $bat): self
+    {
+        $this->bat = $bat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setLinkedOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getLinkedOrder() === $this) {
+                $image->setLinkedOrder(null);
+            }
+        }
 
         return $this;
     }

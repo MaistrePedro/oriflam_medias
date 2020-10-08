@@ -7,12 +7,12 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../scss/app.scss';
-import '../js/AddToCartHandler';
-import '../js/GetCostHandler';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
-const $ = require('jquery');
+import '../js/AddToCartHandler';
+import '../js/GetCostHandler';
+import '../js/AddImagesHandler';
 
 require('bootstrap');
