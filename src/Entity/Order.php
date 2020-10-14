@@ -85,6 +85,11 @@ class Order
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -284,6 +289,18 @@ class Order
                 $image->setLinkedOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }

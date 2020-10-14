@@ -80,6 +80,7 @@
 						</li>
 					</ul>
 					<form method="POST" action="https://paiement.systempay.fr/vads-payment/">
+						<p>Vous recevrez une confirmation par mail dès votre commande validée.</p>
 						{% for key, param in params %}
 							<input type="hidden" name="{{ key }}" value="{{ param }}">
 						{% endfor %}

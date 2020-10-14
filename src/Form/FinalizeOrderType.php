@@ -22,6 +22,13 @@ class FinalizeOrderType extends AbstractType
                 'required'     => false,
                 'label'        => false,
                 'mapped'       => false
+            ])
+            ->add('comment', TextareaType::class, [
+                'label' => 'Commentaire',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' => false
             ]);
     }
 

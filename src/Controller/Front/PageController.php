@@ -23,4 +23,12 @@ class PageController extends AbstractController
     {
         return $this->render('front/page/legals.html.twig');
     }
+
+    /**
+     * @Route("/company", name="company")
+     */
+    public function company()
+    {
+        return $this->render('front/page/company.html.twig');
+    }
 }

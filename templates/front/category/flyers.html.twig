@@ -18,13 +18,9 @@
 		</div>
 		<div class="row flyers-middle">
 			<div class="col-6 flyers-middle-left py-5">
-				<div class="row flyers-middle-left-top">
-					<div class="col-5 offset-1">
-						<img src="{{ asset('build/Flyer_lexus_casquette.png') }}" alt="" class="img-fluid mb-2">
-						<img src="{{ asset('build/flyer_lexus-1.png') }}" alt="" class="img-fluid">
-					</div>
-					<div class="col-5">
-						<img src="{{ asset('build/Affiche_amis_pierre.jpg') }}" alt="" class="img-fluid">
+				<div class="row flyers-middle-left-top mt-5">
+					<div class="col-10 offset-1 mt-5">
+						<img src="{{ asset('build/flyers.png') }}" alt="" class="img-fluid">
 					</div>
 				</div>
 			</div>
@@ -48,10 +44,8 @@
 													<div class="col-4 d-flex align-items-center">
 														<select name="options-{{ flyer.id }}" class="form-control options-select">
 															{% for option in options %}
-																<option
-																data-price="{{ option.price }}" 
-																value="{{ option.id }}">
-																{{ option.label }}
+																<option data-price="{{ option.price }}" value="{{ option.id }}">
+																	{{ option.label }}
 																</option>
 															{% endfor %}
 														</select>
@@ -61,7 +55,7 @@
 													<p class="price d-inline-block m-0"></p>
 												</div>
 												<div class="col-2 d-flex align-items-center">
-												<input type="hidden" value="{{ flyer.id }}">
+													<input type="hidden" value="{{ flyer.id }}">
 													<button type="submit" class="btn btn-primary rounded-0">
 														<i class="fas fa-cart-plus"></i>
 													</button>
@@ -74,7 +68,7 @@
 						</div>
 					{% endif %}
 				</div>
-			{% include "front/category/_contact-us.html.twig" %}
+				{% include "front/category/_contact-us.html.twig" %}
 			</div>
 		</div>
 	</div>
