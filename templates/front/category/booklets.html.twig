@@ -20,7 +20,7 @@
 			<div class="col-6 booklets-middle-left">
 				<div class="row booklets-middle-left-top">
 					<div class="col-10 offset-1 mt-5">
-						<img src="{{ asset('build/livret_A4_et_A5.png') }}" alt="" class="img-fluid front mt-5">
+						<img src="{{ asset('build/magazines.png') }}" alt="" class="img-fluid front mt-5">
 					</div>
 				</div>
 			</div>
@@ -44,10 +44,8 @@
 													<div class="col-4 d-flex align-items-center">
 														<select name="options-{{ booklet.id }}" class="options-select form-control">
 															{% for option in options %}
-																<option 
-																data-price="{{ option.price }}" 
-																value="{{ option.id }}">
-																{{ option.label }}
+																<option data-price="{{ option.price }}" value="{{ option.id }}">
+																	{{ option.label }}
 																</option>
 															{% endfor %}
 														</select>
@@ -64,6 +62,7 @@
 												</div>
 											</div>
 										</form>
+										<p>Grammage papier standard (nous contacter pour personnaliser)</p>
 									</li>
 								{% endfor %}
 							</ul>

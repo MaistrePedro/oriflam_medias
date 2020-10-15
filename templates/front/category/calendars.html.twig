@@ -20,8 +20,8 @@
 			<div class="col-6">
 				<p>
 					À la fois pratique, élégant et utile c’est le plus connu des calendriers publicitaires. À accrocher au mur ou à poser sur un
-										bureau, un calendrier bancaire trouvera forcement une place de choix. Ce support de communication est un incontournable
-										pour vous aider à organiser vos réunions et vos rendez-vous du quotidien
+																				bureau, un calendrier bancaire trouvera forcement une place de choix. Ce support de communication est un incontournable
+																				pour vous aider à organiser vos réunions et vos rendez-vous du quotidien
 					<br>
 					<br>
 					<span class="font-weight-bold">
@@ -88,6 +88,7 @@
 											</li>
 										{% endfor %}
 									</ul>
+									<p>Grammage papier standard (nous contacter pour personnaliser)</p>
 								</div>
 							</li>
 						{% endfor %}
@@ -148,21 +149,22 @@
 										</div>
 									</div>
 								</form>
-										<div class="col-12">
-											<p>{{ custom.description }}</p>
-											<ul>
-												{% for type, feature in custom.features %}
-													<li class="row">
-														<div class="col-4">
-															{{ type }}
-														</div>
-														<div class="col-8">
-															{{ feature }}
-														</div>
-													</li>
-												{% endfor %}
-											</ul>
-										</div>
+								<div class="col-12">
+									<p>{{ custom.description }}</p>
+									<ul>
+										{% for type, feature in custom.features %}
+											<li class="row">
+												<div class="col-4">
+													{{ type }}
+												</div>
+												<div class="col-8">
+													{{ feature }}
+												</div>
+											</li>
+										{% endfor %}
+									</ul>
+									<p>Grammage papier standard (nous contacter pour personnaliser)</p>
+								</div>
 							</li>
 						{% endfor %}
 					</ul>
