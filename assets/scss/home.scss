@@ -23,4 +23,7 @@
   .btn {
     @include font($din-bold, 1rem, #ffffff);
   }
+  .underthumb {
+    @include font($din-bold, 1.5rem, $primary);
+  }
 }
