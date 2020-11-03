@@ -16,6 +16,7 @@
 				<img src="{{ asset('build/logo_oriflam.png') }}" alt="" class="contact-logo img-fluid mb-3">
 				<p class="contact-text">Merci de renseigner le formulaire</p>
 				{{ form_start(form) }}
+				{{ form_errors(form) }}
 				{{ form_widget(form.lastname) }}
 				{{ form_widget(form.firstname) }}
 				{{ form_widget(form.company) }}
@@ -28,7 +29,7 @@
 				<div class="mt-3">
 					{{ form_widget(form.content) }}
 				</div>
-				<button class="btn btn-primary rounded-0">Envoyer</button>
+				<button type="submit" class="btn btn-primary rounded-0">Envoyer</button>
 				{{ form_end(form) }}
 			</div>
 		</div>

@@ -1,0 +1,28 @@
+{% extends 'admin/base_back.html.twig' %}
+
+{% block title %}Message de {{ message.firstname ~ ' ' ~ message.lastname }}{% endblock %}
+
+{% block body %}
+<main class="mail container">
+    <h1>Message reçu le {{ message.createdAt|date('d/m/Y') }}</h1>
+    <p>de {{ message.firstname ~ ' ' ~ message.lastname }}</p>
+    <div class="mail-infos">
+        <p>
+            Email : {{ message.email }}<br>
+            Société : {{ message.company }}<br>
+            Adresse : {{ message.address }}<br>
+            Code postal : {{ message.postalCode }}<br>
+            Ville : {{ message.city }}<br>
+            Pays : {{ message.country }}<br>
+            N° de TVA : {{ message.tvaNumber }}
+        </p>
+    </div>
+    <hr>
+    <div class="mail-content">
+        <p>
+            {{ message.content }}
+        </p>
+    </div>
+    <a href="mailto:{{ message.email }}" class="btn btn-primary">Répondre</a>
+</main>
+{% endblock %}
