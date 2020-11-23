@@ -1,21 +1,47 @@
 .navbar {
   padding-left: 5rem;
+  @include max-mq(1250px) {
+    padding-left: 2rem;
+  }
   .mr-auto {
+    @include max-mq(768px) {
+      padding-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
     .nav-item {
       margin-right: 2rem;
       text-align: center;
+      @include max-mq(1080px) {
+        margin-right: 0.5rem;
+      }
       .nav-link {
         @include font($din-bold, 1.2rem, #ffffff);
+        @include max-mq(1080px) {
+          font-size: 0.9rem;
+        }
       }
     }
   }
   .ml-auto {
+    flex-direction: row;
+    justify-content: space-around;
+    @include max-mq(768px) {
+      padding-bottom: 2rem;
+    }
     .nav-item {
       position: relative;
       text-align: center;
       padding-right: 3.5rem;
       .nav-link {
         @include font($din-medium, 1rem, #ffffff);
+        .right-nav-text {
+          @include max-mq(1080px) {
+            display: none;
+          }
+          @include max-mq(768px) {
+            display: inline-block;
+          }
+        }
       }
       &::after {
         content: "";
@@ -31,8 +57,12 @@
     }
   }
 
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
   .far.fa-user,
-  .fas.fa-shopping-cart, 
+  .fas.fa-shopping-cart,
   .fas.fa-tools,
   .fas.fa-sign-out-alt {
     position: absolute;
@@ -40,6 +70,12 @@
     top: 50%;
     transform: translate(50%, -50%);
     font-size: 1.5rem;
+    @include max-mq(1080px) {
+      right: 1.9rem;
+    }
+    @include max-mq(768px) {
+      right: 2rem;
+    }
   }
 
   .nav-item {
@@ -63,8 +99,11 @@
   .address-block {
     margin-right: 2rem;
     margin-bottom: 0;
-    line-height: .9rem;
-    @include font($din-bold, .8rem, #ffffff);
+    line-height: 0.9rem;
+    @include max-mq(1220px) {
+      display: none;
+    }
+    @include font($din-bold, 0.8rem, #ffffff);
     .phone {
       font-size: 1rem;
     }

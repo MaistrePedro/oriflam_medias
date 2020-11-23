@@ -7,6 +7,9 @@
     position: relative;
     text-align: center;
     transition: all 0.2s;
+    @include max-mq(991px) {
+      margin-bottom: 1.5rem;
+    }
     &:hover {
       transform: scale(1.1);
     }
@@ -25,5 +28,9 @@
   }
   .underthumb {
     @include font($din-bold, 1.5rem, $primary);
+  }
+
+  .contact-us {
+    margin-bottom: 5rem;
   }
 }
