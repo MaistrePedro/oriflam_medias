@@ -1,18 +1,9 @@
-<nav class="navbar bg-primary navbar-expand-md">
+<nav class="navbar navbar-expand-md sticky-top">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
+	<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="nav-logo img-fluid my-3">
 	<div class="collapse navbar-collapse" id="navbar">
-		<p class="address-block text-center">
-			Service client
-			<br>
-			<span class="phone">
-				02 38 23 77 62
-			</span><br>
-			45160 Olivet
-			<br>
-			<small>du lundi au vendredi de 9h à 18h</small>
-		</p>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
 				<a class="nav-link" href="{{ path('home') }}">ACCUEIL
@@ -63,8 +54,6 @@
 					</a>
 				{% else %}
 					<a href="{{ path('app_login') }}" class="nav-link stretched-link">
-						<span class="right-nav-text">Compte
-							<br>client</span>
 						<i class="far fa-user"></i>
 					</a>
 				{% endif %}
@@ -76,10 +65,6 @@
 					{% set route = 'cart' %}
 				{% endif %}
 				<a href="{{ path(route) }}" class="nav-link stretched-link">
-					<span class="right-nav-text">
-						{% if is_granted('ROLE_ADMIN') %}Administration{% else %}Panier
-						{% endif %}
-					</span>
 					<i class="fas {% if is_granted('ROLE_ADMIN') %}fa-tools{% else %}fa-shopping-cart{% endif %}"></i>
 				</a>
 			</li>

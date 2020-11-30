@@ -4,69 +4,108 @@
 {% endblock %}
 
 {% block body %}
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<div id="carouselHome" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="{{ asset('build/home-slider-1.png') }}" alt="" class="d-block w-100">
+					</div>
+					<div class="carousel-item">
+						<img src="{{ asset('build/home-slider-2.jpg') }}" alt="" class="d-block w-100">
+					</div>
+				</div>
+				<a href="#carouselHome" class="carousel-control-prev" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Précédent</span>
+				</a>
+				<a href="#carouselHome" class="carousel-control-next" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Suivant</span>
+				</a>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid home">
 		<div class="row justify-content-center">
-			<div class="col-6">
-				<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="home-logo img-fluid my-3">
-			</div>
-		</div>
-		<div class="row justify-content-center">
-			<div class="col-12 col-lg-8 text-center my-3">
+			<div class="col-12 text-center my-3">
 				<h2 class="home-subtitle">Vos supports de communication de qualité</h2>
-				<a href="{{ path('company') }}" class="btn btn-primary">Qui sommes nous ?</a>
-			</div>
-		</div>
-		<div class="row justify-content-between mb-5">
-			<div class="col-12 col-md-6 col-lg-3 home-thumbnail">
-				<div class="product-container">
-					<a href="{{ path('calendars') }}">
-						<img src="{{ asset('build/calendrier_vignette.jpg') }}" alt="" class="img-fluid">
-						<div class="product-container-label">
-							<p class="home-thumbnail-text">CALENDRIERS</p>
-						</div>
-					</a>
+				<div class="row justify-content-center">
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/note_book.png') }}" alt="notebooks" class="home-thumbnail-img">
+							<h2 class="underthumb">Notebooks</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/AGENDA_THUMB.png') }}" alt="agendas" class="home-thumbnail-img">
+							<h2 class="underthumb">Agendas</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/CALENDRIER.png') }}" alt="calendriers" class="home-thumbnail-img">
+							<h2 class="underthumb">Calendriers</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/FLYER.png') }}" alt="flyers" class="home-thumbnail-img">
+							<h2 class="underthumb">Affiches - Flyers - Posters</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/BROCHURES.png') }}" alt="brochures" class="home-thumbnail-img">
+							<h2 class="underthumb">Brochures</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/ROLL_UP.png') }}" alt="roll ups" class="home-thumbnail-img">
+							<h2 class="underthumb">Roll up - Kakemono</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/BLOC_NOTES.png') }}" alt="bloc notes" class="home-thumbnail-img">
+							<h2 class="underthumb">Bloc notes</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/CARTE_DE_VISITE.png') }}" alt="cartes de visite" class="home-thumbnail-img">
+							<h2 class="underthumb">Cartes de visite</h2>
+						</a>
+					</div>
+					<div class="col-6 col-lg-4 text-center my-3">
+						<a href="" class="home-thumbnail">
+							<img src="{{ asset('build/CARTE_DE_CORRESPONDANCE.png') }}" alt"cartes de correspondance" class="home-thumbnail-img">
+							<h2 class="underthumb">Cartes de correspondance</h2>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 home-thumbnail">
-				<div class="product-container">
-					<a href="{{ path('agendas') }}">
-						<img src="{{ asset('build/agendas_vignettes.jpg') }}" alt="" class="img-fluid">
-						<div class="product-container-label">
-							<p class="home-thumbnail-text">AGENDAS & NOTEBOOKS</p>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 home-thumbnail">
-				<div class="product-container">
-					<a href="{{ path('communication') }}">
-						<img src="{{ asset('build/com_vignette.png') }}" alt="" class="img-fluid">
-						<div class="product-container-label">
-							<p class="home-thumbnail-text">COMMUNICATION</p>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-12 col-md-6 col-lg-3 home-thumbnail">
-				<div class="product-container">
-					<a href="{{ path('contact') }}">
-						<img src="{{ asset('build/contact_vignette.jpg') }}" alt="" class="img-fluid">
-						<div class="product-container-label">
-							<p class="home-thumbnail-text text-white">CONTACT</p>
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-12 text-center mt-5">
-				<p class="underthumb">
-					Affiches - Agendas - Beaux livres personnalisés - Brochures commerciales - Cartes de visite - Calendriers - Kakemonos - Flyers - Magazines - Note books - Roll-ups
-				</p>
 			</div>
 		</div>
 		<div class="row justify-content-center contact-us">
-			<div class="col-6">
+			<div class="col-12 col-lg-8 ">
+			<p>Vous avez une demande ? Une envie particulière ? <br>
+			Nos spécialistes sont à votre écoute</p>
+			</div>
+			<div class="col-10 col-lg-2">
 				<a href="{{ path('contact') }}" class="btn btn-primary w-100 rounded-0">
-					DEMANDE PARTICULIÈRE
+					Contactez-nous
+				</a>
+			</div>
+		</div>
+		<div class="row justify-content-center align-items-center">
+			<div class="col-10 col-lg-8 home-description">
+				<p>Texte descriptif</p>
+			</div>
+			<div class="col-10 col-lg-2">
+				<a href="{{ path('company') }}" class="btn btn-primary w-100 rounded-0">
+					Qui sommes-nous ?
 				</a>
 			</div>
 		</div>

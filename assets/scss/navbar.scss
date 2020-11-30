@@ -1,12 +1,21 @@
 .navbar {
   padding-left: 5rem;
+  background-color: #ffffff;
+  z-index: 10;
   @include max-mq(1250px) {
     padding-left: 2rem;
   }
+  .nav-logo {
+    max-width: 7rem;
+  }
   .mr-auto {
+    margin-left: 2rem;
     @include max-mq(768px) {
       padding-bottom: 1.5rem;
       padding-left: 1rem;
+    }
+    @include max-mq(400px) {
+      margin-left: 0;
     }
     .nav-item {
       margin-right: 2rem;
@@ -15,9 +24,14 @@
         margin-right: 0.5rem;
       }
       .nav-link {
-        @include font($din-bold, 1.2rem, #ffffff);
+        @include font($din-bold, 1.2rem, #000000);
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) all .2s;
         @include max-mq(1080px) {
           font-size: 0.9rem;
+        }
+        &:hover {
+          color: $primary;
+          font-size: 1.25rem;
         }
       }
     }
@@ -33,15 +47,8 @@
       text-align: center;
       padding-right: 3.5rem;
       .nav-link {
-        @include font($din-medium, 1rem, #ffffff);
-        .right-nav-text {
-          @include max-mq(1080px) {
-            display: none;
-          }
-          @include max-mq(768px) {
-            display: inline-block;
-          }
-        }
+        @include font($din-medium, 1rem, $primary);
+        z-index: 12;
       }
       &::after {
         content: "";
@@ -53,12 +60,21 @@
         height: 3rem;
         border-radius: 50%;
         background-color: rgba($color: #ffffff, $alpha: 0.5);
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) all .2s;
+      }
+      &:hover {
+        i {
+          color: #ffffff;
+        }
+        &::after {
+          background-color: rgba($color: $primary, $alpha: 1.0);
+        }
       }
     }
   }
 
   .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
   }
 
   .far.fa-user,
@@ -66,15 +82,12 @@
   .fas.fa-tools,
   .fas.fa-sign-out-alt {
     position: absolute;
-    right: 2.2rem;
+    right: 1.9rem;
     top: 50%;
     transform: translate(50%, -50%);
     font-size: 1.5rem;
-    @include max-mq(1080px) {
-      right: 1.9rem;
-    }
     @include max-mq(768px) {
-      right: 2rem;
+      right: 1.8rem;
     }
   }
 
@@ -84,14 +97,15 @@
   }
 
   .dropdown-menu {
-    background-color: $primary;
+    background-color: #FFFFFF;
     border: none;
     border-radius: 0;
     .dropdown-item {
-      @include font($din-medium, 1rem, #ffffff);
+      @include font($din-medium, 1rem, #000000);
       transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
       &:hover {
         background-color: darken($primary, 25%);
+        color: #ffffff;
       }
     }
   }

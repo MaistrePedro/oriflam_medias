@@ -1,0 +1,15 @@
+.carousel {
+    &-inner {
+        width: 100%;
+        max-height: 45rem;
+        @include max-mq(768px) {
+            max-height: 10rem;
+        }
+    }
+    &-item {
+        img {
+            height: auto;
+            width: 100%;
+        }
+    }
+}
