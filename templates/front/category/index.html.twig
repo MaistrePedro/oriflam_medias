@@ -1,0 +1,46 @@
+{% extends "front/base_front.html.twig" %}
+
+{% block title %}
+	Agendas & Notebooks | Oriflam Médias
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid category">
+		<div class="row">
+			<div class="col-12 col-md-8 order-1 order-md-0">
+				<div class="category-description">
+					<h1 class="category-title">{{ category.label }}</h1>
+					<p>
+						{{ category.description }}
+					</p>
+				</div>
+			</div>
+			<div class="col-12 col-md-4 order-0 order-md-1">
+				<img src="{{ asset('build/upload/' ~ category.image) }}" alt="{{ category.label }}" class="category-image w-100">
+			</div>
+		</div>
+		<div class="category-products">
+			<div class="row">
+				{% for product in category.products %}
+					<div class="col-12 col-md-4">
+						<a href="{{ path('product', {id: product.id}) }}" class="category-product">
+							<div class="card w-100">
+								<img src="{{ asset('build/upload/' ~ product.image) }}" alt="" class="card-img-top">
+								<div class="card-body">
+									<h3 class="card-title">{{ product.name }}</h3>
+									<p class="card-text">A partir de
+										{{ product.minPrice }}€</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				{% else %}
+					<div class="col-12">
+						<p>Il n'y a pas encore de produit dans cette catégorie.</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% include "front/category/_contact-us.html.twig" %}
+	</main>
+</div>{% endblock %}

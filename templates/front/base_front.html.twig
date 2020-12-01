@@ -3,7 +3,7 @@
 {% block stylesheets %}{% endblock %}
 
 {% block navbar %}
-	{% include "front/_navbar.html.twig" %}
+	{{ render(path('navbar')) }}
 {% endblock %}
 
 {% block messages %}

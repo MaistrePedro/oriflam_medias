@@ -2,7 +2,9 @@
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="nav-logo img-fluid my-3">
+	<a href="{{ path('home') }}" class="navbar-brand">
+		<img src="{{ asset('build/logo_oriflam.png') }}" alt="logo" class="nav-logo img-fluid my-3">
+	</a>
 	<div class="collapse navbar-collapse" id="navbar">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
@@ -11,27 +13,17 @@
 			</li>
 			<li class="nav-item position-relative">
 				<a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					IMPRESSION
+					NOS PRODUITS
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a href="{{ path('communication') }}" class="dropdown-item">NOS SOLUTIONS</a>
-					<a href="{{ path('booklets') }}" class="dropdown-item">BROCHURES</a>
-					<a href="{{ path('flyers') }}" class="dropdown-item">FLYERS</a>
+				{% for category in categories %}
+					<a href="{{ path('category', {slug: category.slug}) }}" class="dropdown-item">{{ category.label|upper }}</a>
+				{% endfor %}
 				</div>
 			</li>
 			<li class="nav-item">
-				<a href="{{ path('books') }}" class="nav-link">
-					BEAUX LIVRES
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{ path('calendars') }}" class="nav-link">
-					CALENDRIERS
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{ path('agendas') }}" class="nav-link">
-					AGENDAS
+				<a href="{{ path('company') }}" class="nav-link">
+					QUI SOMMES-NOUS ?
 				</a>
 			</li>
 			<li class="nav-item">

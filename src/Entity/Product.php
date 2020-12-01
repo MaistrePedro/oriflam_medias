@@ -55,6 +55,13 @@ class Product
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    private $minPrice;
+    
     public function __construct()
     {
         $this->options = new ArrayCollection();
@@ -183,5 +190,36 @@ class Product
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function setMinPrice() 
+    {
+        $options = $this->getOptions();
+        $minPrice = 10000;
+        foreach ($options as $option) {
+            $price = $option->getPrice();
+            if ($price < $minPrice) {
+                $minPrice = $price;
+            }
+        }
+        $this->minPrice = $minPrice;
+        return $this;
+    }
+
+    public function getMinPrice()
+    {
+        return $this->minPrice;
     }
 }

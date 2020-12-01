@@ -1,0 +1,33 @@
+{% extends 'front/base_front.html.twig' %}
+
+{% block title %}
+	{{ product.name }}
+	| Oriflam Médias
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid product">
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<img src="{{ asset('build/upload' ~ product.image) }}" alt="" class="w-100 product-image">
+			</div>
+			<div class="col-12 col-md-6">
+				<h1 class="product-title">
+					{{ product.name }}
+				</h1>
+				{% if product.options is not null %}
+					{% set options = product.options %}
+					<div class="col-4 d-flex align-items-center">
+						<select name="options-{{ product.id }}" class="form-control options-select">
+							{% for option in options %}
+								<option data-price="{{ option.price }}" value="{{ option.id }}">
+									{{ option.label }}
+								</option>
+							{% endfor %}
+						</select>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
