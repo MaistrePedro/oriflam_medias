@@ -2,6 +2,7 @@
   padding-left: 5rem;
   background-color: #ffffff;
   z-index: 10;
+  box-shadow: 0 0 8px #0005;
   @include max-mq(1250px) {
     padding-left: 2rem;
   }
@@ -31,7 +32,6 @@
         }
         &:hover {
           color: $primary;
-          font-size: 1.25rem;
         }
       }
     }

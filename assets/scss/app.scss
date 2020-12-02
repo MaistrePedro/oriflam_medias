@@ -85,13 +85,8 @@
 @import "carousel";
 @import "home";
 @import "contact";
-@import "calendars";
-@import "books";
-@import "agendas";
-@import "booklets";
-@import "flyers";
+@import "product";
 @import "signup";
-@import "communication";
 @import "profile";
 @import "finalize";
 
@@ -182,4 +177,8 @@ footer {
   .contactus-delivery {
     @include font($din-light, 2rem)
   }
+}
+
+main {
+  margin-top: 3rem;
 }
