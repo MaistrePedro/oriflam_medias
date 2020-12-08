@@ -84,6 +84,7 @@
 @import "navbar";
 @import "carousel";
 @import "home";
+@import "company";
 @import "contact";
 @import "product";
 @import "signup";
@@ -114,7 +115,11 @@ h1 {
 }
 
 h2 {
-  @include font($gunny, 2rem, #000000);
+  @include font($gunny, 3rem, #000000);
+}
+
+h3 {
+  @include font($gunny, 2rem, #000000)
 }
 
 p, li {

@@ -1,0 +1,55 @@
+.company {
+  &-top {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    .company-title {
+      position: relative;
+      font-size: 3rem;
+      .eye {
+        height: 3rem;
+        position: absolute;
+        left: -4rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  &-list {
+    li {
+      position: relative;
+      margin-bottom: 0.2rem;
+      &::after {
+        display: block;
+        content: "";
+        width: 5rem;
+        height: 3px;
+        position: absolute;
+        left: 50%;
+        bottom: -0.2rem;
+        background-color: $primary;
+        transform: translateX(-50%);
+      }
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  &-agency {
+    border: $primary solid 2px;
+  }
+  &-needs {
+    position: relative;
+    &::after {
+      display: block;
+      content: "";
+      width: 50%;
+      height: 3px;
+      position: absolute;
+      left: 0;
+      bottom: -0.5rem;
+      background-color: $primary;
+    }
+  }
+}
