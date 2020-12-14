@@ -14,7 +14,7 @@ class ProductController extends AbstractController
     public function index($id, ProductRepository $productRepository)
     {
         $product = $productRepository->findOneBy(['id' => $id]);
-        return $this->render('product/index.html.twig', [
+        return $this->render('front/product/index.html.twig', [
             'product' => $product,
         ]);
     }
