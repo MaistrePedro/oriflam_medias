@@ -59,14 +59,6 @@
       right: 0;
       transform: translate(0%, 0);
     }
-    &-title {
-      letter-spacing: 2px;
-      position: absolute;
-      transform: rotate(-90deg);
-      left: -40%;
-      top: 40%;
-      white-space: nowrap;
-    }
   }
   &-needs {
     position: relative;
@@ -88,5 +80,18 @@
       left: 0;
       z-index: 10;
     }
+  }
+}
+
+
+.company-agency-title-container {
+  left: 0;
+  top: 50%;
+  position: absolute;
+  transform: translate(-45%, -50%);
+  .company-agency-title {
+    letter-spacing: 2px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
   }
 }
