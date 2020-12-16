@@ -1,4 +1,10 @@
 .company {
+  h2,
+  h3,
+  h4,
+  h5 {
+    @include font($din-bold, 1.5rem, #000000);
+  }
   &-top {
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -14,32 +20,54 @@
       }
     }
   }
+  &-col-middle {
+    background-color: #aeaeae;
+  }
   &-rounded-img {
-    // width: 40rem;
-    height: 40rem;
-    // border-radius: 50%;
+    height: 40vw;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
       height: 100%;
+    }
+  }
+  &-universe {
+    position: relative;
+    margin-bottom: 3rem;
+    &::before {
+      position: absolute;
+      left: -1rem;
+      bottom: 0;
+      height: 94%;
+      width: 1px;
+      content: "";
+      background-color: #e56b84;
+    }
+  }
+  &-realisations {
+    position: relative;
+    margin-bottom: 3rem;
+    &::before {
+      position: absolute;
+      left: -1rem;
+      bottom: 0;
+      height: 85%;
+      width: 1px;
+      content: "";
+      background-color: #e56b84;
     }
   }
   &-list {
     li {
       position: relative;
       margin-bottom: 0.2rem;
-      &:last-child {
-        &::after {
-          display: none;
-        }
-      }
     }
   }
   &-agency {
     position: relative;
-    background: rgba($primary, 0.75);
     padding: 1rem 0;
     &-eye {
       color: $primary;
@@ -63,16 +91,6 @@
   &-needs {
     position: relative;
     padding-bottom: 2rem;
-    &::after {
-      display: block;
-      content: "";
-      width: 50%;
-      height: 2px;
-      position: absolute;
-      left: 1.9rem;
-      bottom: 0.9rem;
-      background-color: $primary;
-    }
     &-eye {
       position: absolute;
       height: 2rem;
@@ -81,17 +99,73 @@
       z-index: 10;
     }
   }
-}
-
-
-.company-agency-title-container {
-  left: 0;
-  top: 50%;
-  position: absolute;
-  transform: translate(-45%, -50%);
-  .company-agency-title {
-    letter-spacing: 2px;
-    transform: rotate(-90deg);
-    white-space: nowrap;
+  &-studio {
+    background-color: #e48091;
+    border: $primary solid 5px;
+    padding: 1rem;
+    text-align: center;
+    .lozenge-left,
+    .lozenge-right {
+      position: absolute;
+      &::after {
+        display: block;
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        background-color: $background;
+        transform: rotate(45deg);
+      }
+    }
+    .lozenge-left {
+      transform: translate(-100%, -50%);
+      top: 50%;
+      left: -3rem;
+    }
+    .lozenge-right {
+      transform: translate(100%, -50%);
+      top: 50%;
+      right: -3rem;
+    }
+    h3 {
+      display: inline-block;
+      @include font($din-light, 2rem, $background);
+      text-transform: uppercase;
+      padding: 0.2rem 1rem;
+      text-align: center;
+      border: $background solid 2px;
+      position: relative;
+      &::before {
+        width: 3rem;
+        height: 1px;
+        background-color: $background;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateX(-100%);
+      }
+      &::after {
+        width: 3rem;
+        height: 1px;
+        background-color: $background;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateX(100%);
+      }
+    }
+    p {
+      text-align: left;
+    }
+  }
+  .eye {
+    position: absolute;
+    top: -0.5rem;
+    left: -1rem;
+    width: 4rem;
+    transform: translate(-50%, -8px);
   }
 }
