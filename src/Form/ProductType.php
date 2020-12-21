@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -29,13 +30,13 @@ class ProductType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('features', TextType::class, [
-                'label' => 'Nom du produit',
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
-            ->add('description', CollectionType::class, [
+            ->add('features', CollectionType::class, [
                 'entry_type'   => ProductDescriptionType::class,
                 'prototype'    => true,
                 'allow_add'    => true,
@@ -45,8 +46,17 @@ class ProductType extends AbstractType
                 'label'        => false,
                 'mapped'       => false
             ])
-            ->add('image', ImageType::class)
+            ->add('image', ImageType::class, [
+                'label_attr' => [
+                    'class' => 'd-none'
+                ],
+                'mapped' => false
+            ])
             ->add('category', EntityType::class, [
+                'label' => 'Catégorie',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
                 'class' => Category::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')

@@ -55,12 +55,22 @@ class Product
      */
     private $description;
 
+    private $minPrice;
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Images::class, mappedBy="linkedProduct", cascade={"persist", "remove"})
      */
     private $image;
-
-    private $minPrice;
     
     public function __construct()
     {
@@ -192,18 +202,6 @@ class Product
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function setMinPrice() 
     {
         $options = $this->getOptions();
@@ -221,5 +219,47 @@ class Product
     public function getMinPrice()
     {
         return $this->minPrice;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newLinkedProduct = null === $image ? null : $this;
+        if ($image->getLinkedProduct() !== $newLinkedProduct) {
+            $image->setLinkedProduct($newLinkedProduct);
+        }
+
+        return $this;
     }
 }

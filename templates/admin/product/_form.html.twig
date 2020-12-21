@@ -1,4 +1,17 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_row(form.name) }}
+{{ form_row(form.cost) }}
+{{ form_row(form.description) }}
+<ul id="filesProto" data-prototype="{{ form_widget(form.features.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.features|length }}">
+	{% for fileField in form.features %}
+		<li>
+			{{ form_errors(fileField) }}
+			{{ form_widget(fileField) }}
+		</li>
+	{% endfor %}
+</ul>
+<button type="button" class="add-another-collection-widget btn btn-primary" data-list-selector="#images-fields-list">Ajouter un détail technique</button>
+{{ form_row(form.image) }}
+{{ form_row(form.category) }}
+<button class="btn btn-primary my-2">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

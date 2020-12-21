@@ -21,7 +21,24 @@
     }
   }
   &-col-middle {
-    background-color: #aeaeae;
+    background-color: #d8d6d6;
+    display: flex;
+    align-items: center;
+    .square {
+      position: absolute;
+      top: -6rem;
+      right: -2rem;
+    }
+    .company-rnd-img {
+      border-radius: 50%;
+      height: 12rem;
+      overflow: hidden;
+      display: flex;
+      justify-content: end;
+      img {
+        height: 200%;
+      }
+    }
   }
   &-rounded-img {
     height: 40vw;
@@ -54,28 +71,36 @@
       position: absolute;
       left: -1rem;
       bottom: 0;
-      height: 85%;
+      height: 80%;
       width: 1px;
       content: "";
       background-color: #e56b84;
     }
   }
   &-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: end;
+    padding-right: 2rem;
+    position: relative;
     li {
       position: relative;
       margin-bottom: 0.2rem;
+      font-size: 1.3rem;
+      align-items: end;
     }
   }
   &-agency {
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem 0 0;
     &-eye {
-      color: $primary;
       position: absolute;
+      height: 4rem;
       top: 0;
       right: 0;
-      height: 2rem;
-      transform: translate(50%, -50%);
+      z-index: 10;
+      transform: translate(50%, 0);
     }
     &-border {
       display: block;
@@ -86,6 +111,19 @@
       bottom: 0;
       right: 0;
       transform: translate(0%, 0);
+    }
+    &-title {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    &::after {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      content: "";
+      height: 96%;
+      width: 1px;
+      background: #e56b84;
     }
   }
   &-needs {

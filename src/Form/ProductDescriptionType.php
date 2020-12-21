@@ -14,7 +14,7 @@ class ProductDescriptionType extends AbstractType
     {
         $builder
             ->add('category', TextType::class, [
-                'label' => 'Catégorie',
+                'label' => 'Type',
                 'attr' => [
                     'class' => 'form-control'
                 ]
