@@ -6,10 +6,12 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container-fluid product">
+	<main class="container product">
 		<section class="row">
 			<div class="col-12 col-md-6">
-				<img src="{{ asset('build/upload' ~ product.image) }}" alt="" class="w-100 product-image">
+				{% if product.image %}
+					<img src="{{ asset('uploads/images/' ~ product.image.name ~ '.' ~ product.image.extension) }}" alt="" class="w-100 product-image">
+				{% endif %}
 			</div>
 			<div class="col-12 col-md-6">
 				<h2 class="product-title">
@@ -17,37 +19,46 @@
 				</h2>
 				{% if product.options is not null %}
 					{% set options = product.options %}
-					{% for option in options %}
-						<div class="d-block w-100">
-							<input type="radio" id="{{ option.id }}" name="option" value="{{ option.id }}">
-							<label for="{{ option.id }}">
-								{{ option.label }}
-								<span class="option-price">{{ option.price }}€</span>
-							</label>
+					<div class="col-8 d-flex align-items-center">
+						<select name="options-{{ product.id }}" class="form-control options-select">
+							{% for option in options %}
+								<option data-price="{{ option.price }}" value="{{ option.id }}">
+									{{ option.label }}
+									-
+									{{ option.price }}
+								</option>
+							{% endfor %}
+						</select>
+						<div class="col-2 d-flex align-items-center">
+							<p class="price d-inline-block m-0"></p>
 						</div>
-					{% endfor %}
-					<input type="hidden" value="{{ product.id }}">
-					<button type="submit" class="btn btn-primary rounded-0">
-						<i class="fas fa-cart-plus"></i>
-						Ajouter au panier
-					</button>
+						<div class="col-2 d-flex align-items-center">
+							<input type="hidden" value="{{ product.id }}">
+							<button type="submit" class="btn btn-primary rounded-0">
+								<i class="fas fa-cart-plus"></i>
+							</button>
+						</div>
+					</div>
 				{% endif %}
 			</div>
 		</section>
 		<section class="product-assets">
+			<div class="product-assets-body">
+			<div class="product-assets-title">
+				<h3>Description</h3>
+			</div>
+				<p>{{ product.description }}</p>
 			<div class="product-assets-title">
 				<h3>Caractéristiques</h3>
 			</div>
-			<div class="product-assets-body">
-				<p>{{ product.description }}</p>
 				<ul>
-					{% for type, feature in product.features %}
+					{% for feature in product.features %}
 						<li class="row">
 							<div class="col-4">
-								{{ type }}
+								{{ feature.type }}
 							</div>
 							<div class="col-8">
-								{{ feature }}
+								{{ feature.content }}
 							</div>
 						</li>
 					{% endfor %}
@@ -55,4 +66,8 @@
 			</div>
 		</section>
 	</main>
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('product') }}
 {% endblock %}

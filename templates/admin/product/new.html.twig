@@ -11,3 +11,7 @@
     <a href="{{ path('product_index') }}">Retour à la liste</a>
 </main>
 {% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('collections') }}
+{% endblock %}

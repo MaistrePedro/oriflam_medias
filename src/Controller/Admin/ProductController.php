@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Features;
 use App\Entity\Product;
 use App\Entity\Images;
+use App\Entity\Options;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
@@ -47,18 +49,21 @@ class ProductController extends AbstractController
             $product = new Product;
             $product
                 ->setName($datas['name'])
-                ->setCost($datas['cost'])
                 ->setDescription($datas['description'])
                 ->setCategory($category)
                 ->setCreatedAt(new DateTime('now'))
                 ->setUpdatedAt(new DateTime('now'));
-            $features = [];
             if (isset($datas['features'])) {
-                foreach ($datas['features'] as $feature) {
-                    $features[] = [$feature['category'] => $feature['content']];
+                foreach ($datas['features'] as $featureData) {
+                    $feature = new Features;
+                    $feature
+                        ->setType($featureData['type'])
+                        ->setContent($featureData['content'])
+                    ;
+                    $product->addFeature($feature);
+                    $em->persist($feature);
                 }
             }
-            $product->setFeatures($features);
 
             if ($imageFiles) {
                 $images = [];
@@ -97,6 +102,7 @@ class ProductController extends AbstractController
      */
     public function show(Product $product): Response
     {
+        // \dd($product);
         return $this->render('admin/product/show.html.twig', [
             'product' => $product,
         ]);
@@ -105,10 +111,12 @@ class ProductController extends AbstractController
     /**
      * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Product $product, SluggerInterface $slugger): Response
+    public function edit(Request $request, Product $product, SluggerInterface $slugger, CategoryRepository $categoryRepository): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
+
+        // \dd($product);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -118,20 +126,53 @@ class ProductController extends AbstractController
             $category = $categoryRepository->find($datas['category']);
             $product
                 ->setName($datas['name'])
-                ->setCost($datas['cost'])
                 ->setDescription($datas['description'])
                 ->setCategory($category)
                 ->setCreatedAt(new DateTime('now'))
                 ->setUpdatedAt(new DateTime('now'));
-            $features = [];
-            foreach ($datas['features'] as $feature) {
-                $features[] = [$feature['category'] => $feature['content']];
-            }
-            $product->setFeatures($features);
+                if (isset($datas['features'])) {
+                    $productFeatures = $product->getFeatures();
+                    foreach ($productFeatures as $productFeature) {
+                        $product->removeFeature($productFeature);
+                        $em->remove($productFeature);
+                    }
+                    $em->flush();
+                    foreach ($datas['features'] as $featureData) {
+                        $feature = new Features;
+                        $feature
+                            ->setType($featureData['type'])
+                            ->setContent($featureData['content'])
+                        ;
+                        $em->persist($feature);
+                        $product->addFeature($feature);
+                        $em->persist($product);
+                        // \dd($product);
+                    }
+                }
+                if (isset($datas['options'])) {
+                    $productOptions = $product->getOptions();
+                    foreach ($productOptions as $productOption) {
+                        $product->removeOption($productOption);
+                        $em->remove($productOption);
+                    }
+                    $em->flush();
+                    foreach ($datas['options'] as $optionData) {
+                        $options = new Options;
+                        $options
+                            ->setLabel($optionData['label'])
+                            ->setPrice($optionData['price'])
+                        ;
+                        $em->persist($options);
+                        $product->addOption($options);
+                        $em->persist($product);
+                        // \dd($product);
+                    }
+                }
 
-            if ($imageFiles) {
+            if ($imageFiles['image']['image'] != null) {
+                // \dd($imageFiles['image']['image']);
                 $images = [];
-                foreach ($imageFiles['images'] as $imageFile) {
+                foreach ($imageFiles['image'] as $imageFile) {
                     /** @var UploadedFile $imageFile */
                     // \dd($imageFile);
                     $image = new Images;
@@ -148,9 +189,10 @@ class ProductController extends AbstractController
                     );
                     $em->persist($image);
                     $product->setImage($image);
+                    $em->persist($product);
                 }
-                $em->flush();
             }
+            $em->flush();
 
             return $this->redirectToRoute('product_index');
         }

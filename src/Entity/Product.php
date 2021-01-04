@@ -31,7 +31,7 @@ class Product
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
      */
     private $options;
 
@@ -44,11 +44,6 @@ class Product
      * @ORM\Column(type="float", nullable=true)
      */
     private $cost;
-
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $features = [];
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -71,11 +66,17 @@ class Product
      * @ORM\OneToOne(targetEntity=Images::class, mappedBy="linkedProduct", cascade={"persist", "remove"})
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Features::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
+     */
+    private $features;
     
     public function __construct()
     {
         $this->options = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,18 +179,6 @@ class Product
         return $this;
     }
 
-    public function getFeatures(): ?array
-    {
-        return $this->features;
-    }
-
-    public function setFeatures(array $features): self
-    {
-        $this->features = $features;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -258,6 +247,37 @@ class Product
         $newLinkedProduct = null === $image ? null : $this;
         if ($image->getLinkedProduct() !== $newLinkedProduct) {
             $image->setLinkedProduct($newLinkedProduct);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Features[]
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(Features $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features[] = $feature;
+            $feature->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(Features $feature): self
+    {
+        if ($this->features->contains($feature)) {
+            $this->features->removeElement($feature);
+            // set the owning side to null (unless already changed)
+            if ($feature->getProduct() === $this) {
+                $feature->setProduct(null);
+            }
         }
 
         return $this;

@@ -1,16 +1,67 @@
 {{ form_start(form) }}
 {{ form_row(form.name) }}
-{{ form_row(form.cost) }}
 {{ form_row(form.description) }}
-<ul id="filesProto" data-prototype="{{ form_widget(form.features.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.features|length }}">
-	{% for fileField in form.features %}
-		<li>
-			{{ form_errors(fileField) }}
-			{{ form_widget(fileField) }}
-		</li>
-	{% endfor %}
-</ul>
-<button type="button" class="add-another-collection-widget btn btn-primary" data-list-selector="#images-fields-list">Ajouter un détail technique</button>
+
+<div class="form-features collection">
+	{{ form_label(form.features) }}
+	<ul
+		class="list-unstyled prototype"
+		data-li-class="row"
+		data-fields-containers-class="col-5" 
+		data-remover-containers-class="col-2"
+		data-remover-class="remove"
+		data-prototype="{{ form_widget(form.features.vars.prototype)|e }}"
+		data-widget-tags="{{ '<li></li>'|e }}"
+		data-widget-counter="{{ form.features|length }}"
+	>
+		{% for fileField in form.features %}
+			<li class="row" data-counter="{{ loop.index + form.features|length }}">
+				{{ form_errors(fileField) }}
+				<div class="col-5">
+					{{ form_row(fileField.type) }}
+				</div>
+				<div class="col-5">
+					{{ form_row(fileField.content) }}
+				</div>
+				<div class="col-2">
+					<button class="btn btn-primary remove" type="button">Supprimer</button>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+
+	<button type="button" class="add-another-collection-widget btn btn-primary" data-list-selector="#images-fields-list">Ajouter un détail technique</button>
+</div>
+
+<div class="form-options collection">
+	<ul 
+		class="list-unstyled prototype"
+		data-li-class="row"
+		data-fields-containers-class="col-5" 
+		data-remover-containers-class="col-2"
+		data-remover-class="remove"
+		data-prototype="{{ form_widget(form.options.vars.prototype)|e }}" 
+		data-widget-tags="{{ '<li></li>'|e }}" 
+		data-widget-counter="{{ form.options|length }}"
+	>
+		{{ form_label(form.options) }}
+		{% for fileField in form.options %}
+			<li class="row" data-counter="{{ loop.index + form.features|length }}">
+				{{ form_errors(fileField) }}
+				<div class="col-5">
+					{{ form_row(fileField.label) }}
+				</div>
+				<div class="col-5">
+					{{ form_row(fileField.price) }}
+				</div>
+				<div class="col-2">
+					<button class="btn btn-primary remove" type="button">Supprimer</button>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+	<button type="button" class="add-another-collection-widget btn btn-primary" data-list-selector="#images-fields-list">Ajouter une option</button>
+</div>
 {{ form_row(form.image) }}
 {{ form_row(form.category) }}
 <button class="btn btn-primary my-2">{{ button_label|default('Enregistrer') }}</button>

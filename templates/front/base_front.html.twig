@@ -18,7 +18,9 @@
 
 {% block body %}{% endblock %}
 
+
 {% block footer %}
 	{% include "front/_footer.html.twig" %}
 	<input type="hidden" id="base-url" value="{{ app.request.schemeAndHttpHost }}">
 {% endblock %}
+{% block javascripts %}{% endblock %}

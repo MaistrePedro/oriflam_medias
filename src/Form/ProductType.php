@@ -24,12 +24,6 @@ class ProductType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('cost', TextType::class, [
-                'label' => 'Prix du produit',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
@@ -37,20 +31,29 @@ class ProductType extends AbstractType
                 ]
             ])
             ->add('features', CollectionType::class, [
-                'entry_type'   => ProductDescriptionType::class,
+                'entry_type'   => FeatureType::class,
                 'prototype'    => true,
                 'allow_add'    => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required'     => false,
-                'label'        => false,
-                'mapped'       => false
+                'label'        => 'Caractéristiques',
+            ])
+            ->add('options', CollectionType::class, [
+                'entry_type'   => OptionType::class,
+                'prototype'    => true,
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'required'     => false,
+                'label'        => 'Options',
             ])
             ->add('image', ImageType::class, [
                 'label_attr' => [
                     'class' => 'd-none'
                 ],
-                'mapped' => false
+                'mapped' => false,
+                'required' => false
             ])
             ->add('category', EntityType::class, [
                 'label' => 'Catégorie',

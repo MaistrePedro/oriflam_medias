@@ -25,7 +25,9 @@
 					<div class="col-12 col-md-4">
 						<a href="{{ path('product', {id: product.id}) }}" class="category-product">
 							<div class="card w-100">
-								<img src="{{ asset('build/upload/' ~ product.image) }}" alt="" class="card-img-top">
+								{% if product.image %}
+									<img src="{{ asset('/uploads/images/' ~ product.image.name ~ '.' ~ product.image.extension) }}" alt="" class="card-img-top">
+								{% endif %}
 								<div class="card-body">
 									<h3 class="card-title">{{ product.name }}</h3>
 									<p class="card-text">A partir de
