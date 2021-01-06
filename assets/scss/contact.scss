@@ -21,7 +21,7 @@
     input, textarea {
             border-radius: 0;
             border: none;
-            background-color: #ffffff;
+            background-color: #d3d2d2;
             margin-bottom: .5rem;
         @include placeholder {
             @include font($minion-regular, 1rem)

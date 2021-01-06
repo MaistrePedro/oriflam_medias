@@ -30,7 +30,7 @@ class Features
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="features")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="features", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $product;

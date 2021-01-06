@@ -9,13 +9,14 @@ const main = () => {
   const showStatus = (form, data) => {
     const statusElement = document.createElement('span');
     statusElement.innerText = data.info;
-    statusElement.classList.add('form-status', `form-status--${data.success ? 'success' : 'fail'}`);
-  
-    form.append(statusElement);
+    statusElement.classList.add('form-status', `form-status--${data.success ? 'success' : 'fail'}`, 'col-12');
+    
+    form.parentNode.append(statusElement);
   };
   
   const addToCart = async (e) => {
     e.preventDefault();
+    console.log(baseUrl);
     let option = null;
     let product = null;
     let data = {
@@ -49,6 +50,7 @@ const main = () => {
   };
 
   const addToCartForms = document.querySelectorAll('.add-to-cart');
+  console.log(addToCartForms);
   addToCartForms.forEach((form) => form.addEventListener('submit', addToCart));
 };
 

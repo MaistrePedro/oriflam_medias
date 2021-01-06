@@ -47,7 +47,7 @@ class Category
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity=Images::class, mappedBy="linkedCategory", cascade={"persist", "remove"})
      */
     private $image;
 
@@ -128,14 +128,19 @@ class Category
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?Images
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?Images $image): self
     {
         $this->image = $image;
+
+        $newLinkedCategory = null === $image ? null : $this;
+        if ($image->getLinkedCategory() !== $newLinkedCategory) {
+            $image->setLinkedCategory($newLinkedCategory);
+        }
 
         return $this;
     }

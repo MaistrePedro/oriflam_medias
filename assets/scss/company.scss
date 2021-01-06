@@ -24,10 +24,21 @@
     background-color: #d8d6d6;
     display: flex;
     align-items: center;
+    height: 100vh;
+    @include media-breakpoint-down(lg) {
+      height: 100%;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+    }
     .square {
       position: absolute;
       top: -6rem;
       right: -2rem;
+      width: 100%;
+      @include media-breakpoint-down(lg) {
+        // position: relative;
+        width: 5rem;
+      }
     }
     .company-rnd-img {
       border-radius: 50%;

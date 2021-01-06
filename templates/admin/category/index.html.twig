@@ -1,37 +1,37 @@
 {% extends 'admin/base_back.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+<main class="container">
+    <h1>Liste des catégories</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>Slug</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Raccourci</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for category in categories %}
             <tr>
-                <td>{{ category.id }}</td>
                 <td>{{ category.label }}</td>
                 <td>{{ category.slug }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'slug': category.slug}) }}">show</a>
-                    <a href="{{ path('category_edit', {'slug': category.slug}) }}">edit</a>
+                    <a href="{{ path('category_show', {'slug': category.slug}) }}">Voir</a>
+                    <a href="{{ path('category_edit', {'slug': category.slug}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Pas de catégories trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('category_new') }}">Create new</a>
+    <a href="{{ path('category_new') }}">Ajouter une catégorie</a>
+</main>
 {% endblock %}

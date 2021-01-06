@@ -64,6 +64,24 @@ class ProductController extends AbstractController
                     $em->persist($feature);
                 }
             }
+            if (isset($datas['options'])) {
+                $productOptions = $product->getOptions();
+                foreach ($productOptions as $productOption) {
+                    $product->removeOption($productOption);
+                    $em->remove($productOption);
+                }
+                $em->flush();
+                foreach ($datas['options'] as $optionData) {
+                    $options = new Options;
+                    $options
+                        ->setLabel($optionData['label'])
+                        ->setPrice($optionData['price'])
+                    ;
+                    $em->persist($options);
+                    $product->addOption($options);
+                    $em->persist($product);
+                }
+            }
 
             if ($imageFiles) {
                 $images = [];

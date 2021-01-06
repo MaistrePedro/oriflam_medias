@@ -171,6 +171,7 @@ footer {
   border: solid 1px $primary;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding: 1rem;
   .contactus-text {
     @include font($din-bold, 1.5rem);
   }

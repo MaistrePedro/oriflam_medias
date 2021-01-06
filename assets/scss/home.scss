@@ -40,6 +40,7 @@
 
   &-description {
     border: $primary solid 1px;
+    padding: 1rem;
     @include max-mq(768px) {
       margin-bottom: 1rem;
     }

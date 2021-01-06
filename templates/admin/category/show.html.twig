@@ -1,30 +1,36 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base_back.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}{{category.label}}{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
+<main class="container">
+    <h1>{{category.label}}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Label</th>
+                <th>Nom</th>
                 <td>{{ category.label }}</td>
             </tr>
             <tr>
-                <th>Slug</th>
+                <th>Raccourci</th>
                 <td>{{ category.slug }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ category.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ category.image ? category.image.name ~ '.' ~ category.image.extension : 'Pas d\'image liée' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('category_index') }}">back to list</a>
+    <a href="{{ path('category_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('category_edit', {'slug': category.slug}) }}">edit</a>
+    <a href="{{ path('category_edit', {'slug': category.slug}) }}">Editer</a>
 
     {{ include('admin/category/_delete_form.html.twig') }}
+</main>
 {% endblock %}

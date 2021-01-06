@@ -1,13 +1,14 @@
 {% extends "front/base_front.html.twig" %}
 
 {% block title %}
-	Agendas & Notebooks | Oriflam Médias
+	{{ category.label }}
+	| Oriflam Médias
 {% endblock %}
 
 {% block body %}
 	<main class="container-fluid category">
-		<div class="row">
-			<div class="col-12 col-md-8 order-1 order-md-0">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-6 order-1 order-md-0">
 				<div class="category-description">
 					<h1 class="category-title">{{ category.label }}</h1>
 					<p>
@@ -15,14 +16,16 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-12 col-md-4 order-0 order-md-1">
-				<img src="{{ asset('build/upload/' ~ category.image) }}" alt="{{ category.label }}" class="category-image w-100">
+			<div class="col-12 col-md-3 order-0 order-md-1">
+				{% if category.image %}
+					<img src="{{ asset('/uploads/images/' ~ category.image.name ~ '.' ~ category.image.extension) }}" alt="" class="card-img-top">
+				{% endif %}
 			</div>
 		</div>
 		<div class="category-products">
 			<div class="row">
 				{% for product in category.products %}
-					<div class="col-12 col-md-4">
+					<div class="col-12 col-md-4 mb-3">
 						<a href="{{ path('product', {id: product.id}) }}" class="category-product">
 							<div class="card w-100">
 								{% if product.image %}

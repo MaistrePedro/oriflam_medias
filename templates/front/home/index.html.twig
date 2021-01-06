@@ -31,60 +31,16 @@
 			<div class="col-12 text-center my-3">
 				<h2 class="home-subtitle">Vos supports de communication de qualité</h2>
 				<div class="row justify-content-center">
+				{% for category in categories %}
 					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="">
-							<img src="{{ asset('build/note_book.png') }}" alt="notebooks" class="home-thumbnail-img">
-							<h3 class="underthumb">Notebooks</h3>
+						<a href="{{ path('category', {slug: category.slug}) }}" class="home-thumbnail" title="">
+						{% if category.image is not null %}
+							<img src="{{ asset('/uploads/images/' ~ category.image.name ~ '.' ~ category.image.extension) }}" alt="{{ category.label }}" class="home-thumbnail-img">
+						{% endif %}
+							<h3 class="underthumb">{{ category.label }}</h3>
 						</a>
 					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Agendas">
-							<img src="{{ asset('build/AGENDA_THUMB.png') }}" alt="agendas" class="home-thumbnail-img">
-							<h3 class="underthumb">Agendas</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Calendriers">
-							<img src="{{ asset('build/CALENDRIER.png') }}" alt="calendriers" class="home-thumbnail-img">
-							<h3 class="underthumb">Calendriers</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Flyers">
-							<img src="{{ asset('build/FLYER.png') }}" alt="flyers" class="home-thumbnail-img">
-							<h3 class="underthumb">Affiches - Flyers - Posters</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Brochures">
-							<img src="{{ asset('build/BROCHURES.png') }}" alt="brochures" class="home-thumbnail-img">
-							<h3 class="underthumb">Brochures</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Roll-ups">
-							<img src="{{ asset('build/ROLL_UP.png') }}" alt="roll ups" class="home-thumbnail-img">
-							<h3 class="underthumb">Roll up - Kakemono</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Bloc-notes">
-							<img src="{{ asset('build/BLOC_NOTES.png') }}" alt="bloc notes" class="home-thumbnail-img">
-							<h3 class="underthumb">Bloc notes</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Cartes de visite">
-							<img src="{{ asset('build/CARTE_DE_VISITE.png') }}" alt="cartes de visite" class="home-thumbnail-img">
-							<h3 class="underthumb">Cartes de visite</h3>
-						</a>
-					</article>
-					<article class="col-6 col-lg-4 text-center my-3">
-						<a href="" class="home-thumbnail" title="Cartes de correspondance">
-							<img src="{{ asset('build/CARTE_DE_CORRESPONDANCE.png') }}" alt"cartes de correspondance" class="home-thumbnail-img">
-							<h3 class="underthumb">Cartes de correspondance</h3>
-						</a>
-					</article>
+				{% endfor %}
 				</div>
 			</div>
 		</section>
@@ -101,7 +57,7 @@
 			</div>
 		</section>
 		<section class="row justify-content-center align-items-center home-description">
-			<div class="col-10 col-lg-8 home-description">
+			<div class="col-10 col-lg-8">
 				<p>Texte descriptif</p>
 			</div>
 			<div class="col-10 col-lg-2">

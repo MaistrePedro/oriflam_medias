@@ -35,8 +35,15 @@ class Images
 
     /**
      * @ORM\OneToOne(targetEntity=Product::class, inversedBy="image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $linkedProduct;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Category::class, inversedBy="image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $linkedCategory;
 
     public function getId(): ?int
     {
@@ -87,6 +94,18 @@ class Images
     public function setLinkedProduct(?Product $linkedProduct): self
     {
         $this->linkedProduct = $linkedProduct;
+
+        return $this;
+    }
+
+    public function getLinkedCategory(): ?Category
+    {
+        return $this->linkedCategory;
+    }
+
+    public function setLinkedCategory(?Category $linkedCategory): self
+    {
+        $this->linkedCategory = $linkedCategory;
 
         return $this;
     }
