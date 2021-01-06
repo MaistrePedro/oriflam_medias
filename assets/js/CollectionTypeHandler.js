@@ -17,13 +17,14 @@ const widgetManager = () => {
 
   const addNewWidget = ({ currentTarget }) => {
     const newWidget = document.createElement('li');
-    const lis = data.containers;
-    const counter = (lis.length > 0) ? lis.length : 0;
+    const lis = currentTarget.parentNode.querySelectorAll('li');
+    let counter = (lis.length > 0) ? lis.length : 0;
     const container = currentTarget.parentNode.querySelector('.prototype');
     const { liClass, fieldsContainersClass, removerContainersClass, removerClass } = container.dataset;
 
     let rawPrototype = container.dataset.prototype;
     rawPrototype = rawPrototype.replace(/__name__/gm, counter);
+    counter += 1;
 
     newWidget.innerHTML = rawPrototype;
 
@@ -44,13 +45,11 @@ const widgetManager = () => {
     removerButton.type = 'button';
     removerContainer.innerHTML = `${removerButton.outerHTML}`;
     removerContainer.classList.add(removerContainersClass);
-    console.log(removerButton);
     let widgetRow = newWidget.querySelector('.row');
     widgetRow.innerHTML += removerContainer.outerHTML;
 
     const removeWidgetButton = newWidget.querySelector('.remove');
     attachEventListeners(removeWidgetButton, 'click', removeWidget);
-    console.log(currentTarget.parentNode.querySelector('.prototype'));
     container.append(newWidget);
   };
 

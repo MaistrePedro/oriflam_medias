@@ -163,9 +163,10 @@ class ProductController extends AbstractController
                         ;
                         $em->persist($feature);
                         $product->addFeature($feature);
-                        $em->persist($product);
-                        // \dd($product);
                     }
+                    $em->persist($product);
+                    $em->flush();
+                    // \dd($product);
                 }
                 if (isset($datas['options'])) {
                     $productOptions = $product->getOptions();
