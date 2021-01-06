@@ -104,6 +104,9 @@ class CategoryController extends AbstractController
                 ->setDescription($datas['description']);
             $em->persist($category);
             if ($imageFiles) {
+                $oldImage = $category->getImage();
+                $em->remove($oldImage);
+                $category->setImage(null);
                 $images = [];
                 foreach ($imageFiles['image'] as $imageFile) {
                     /** @var UploadedFile $imageFile */
