@@ -41,6 +41,16 @@ class Category
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Images::class, mappedBy="linkedCategory", cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -101,6 +111,35 @@ class Category
             if ($product->getCategory() === $this) {
                 $product->setCategory(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
+
+        $newLinkedCategory = null === $image ? null : $this;
+        if ($image->getLinkedCategory() !== $newLinkedCategory) {
+            $image->setLinkedCategory($newLinkedCategory);
         }
 
         return $this;

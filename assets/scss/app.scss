@@ -82,17 +82,15 @@
 }
 
 @import "navbar";
+@import "carousel";
 @import "home";
+@import "company";
 @import "contact";
-@import "calendars";
-@import "books";
-@import "agendas";
-@import "booklets";
-@import "flyers";
+@import "product";
 @import "signup";
-@import "communication";
 @import "profile";
 @import "finalize";
+@import "admin";
 
 body {
   min-height: 100vh;
@@ -118,7 +116,11 @@ h1 {
 }
 
 h2 {
-  @include font($gunny, 2rem, #000000);
+  @include font($gunny, 3rem, #000000);
+}
+
+h3 {
+  @include font($gunny, 2rem, #000000)
 }
 
 p, li {
@@ -169,6 +171,7 @@ footer {
   border: solid 1px $primary;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding: 1rem;
   .contactus-text {
     @include font($din-bold, 1.5rem);
   }
@@ -181,4 +184,8 @@ footer {
   .contactus-delivery {
     @include font($din-light, 2rem)
   }
+}
+
+main {
+  margin-top: 3rem;
 }

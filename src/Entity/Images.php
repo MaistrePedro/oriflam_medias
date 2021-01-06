@@ -29,9 +29,21 @@ class Images
 
     /**
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $linkedOrder;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Product::class, inversedBy="image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $linkedProduct;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Category::class, inversedBy="image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $linkedCategory;
 
     public function getId(): ?int
     {
@@ -70,6 +82,30 @@ class Images
     public function setLinkedOrder(?Order $linkedOrder): self
     {
         $this->linkedOrder = $linkedOrder;
+
+        return $this;
+    }
+
+    public function getLinkedProduct(): ?Product
+    {
+        return $this->linkedProduct;
+    }
+
+    public function setLinkedProduct(?Product $linkedProduct): self
+    {
+        $this->linkedProduct = $linkedProduct;
+
+        return $this;
+    }
+
+    public function getLinkedCategory(): ?Category
+    {
+        return $this->linkedCategory;
+    }
+
+    public function setLinkedCategory(?Category $linkedCategory): self
+    {
+        $this->linkedCategory = $linkedCategory;
 
         return $this;
     }

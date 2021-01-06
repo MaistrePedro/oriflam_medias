@@ -31,7 +31,7 @@ class Product
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Options::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
      */
     private $options;
 
@@ -46,19 +46,37 @@ class Product
     private $cost;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $features = [];
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
+    private $minPrice;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Images::class, mappedBy="linkedProduct", cascade={"persist", "remove"})
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Features::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
+     */
+    private $features;
+    
     public function __construct()
     {
         $this->options = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,18 +179,6 @@ class Product
         return $this;
     }
 
-    public function getFeatures(): ?array
-    {
-        return $this->features;
-    }
-
-    public function setFeatures(array $features): self
-    {
-        $this->features = $features;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -181,6 +187,98 @@ class Product
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function setMinPrice() 
+    {
+        $options = $this->getOptions();
+        $minPrice = 10000;
+        foreach ($options as $option) {
+            $price = $option->getPrice();
+            if ($price < $minPrice) {
+                $minPrice = $price;
+            }
+        }
+        $this->minPrice = $minPrice;
+        return $this;
+    }
+
+    public function getMinPrice()
+    {
+        return $this->minPrice;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newLinkedProduct = null === $image ? null : $this;
+        if ($image->getLinkedProduct() !== $newLinkedProduct) {
+            $image->setLinkedProduct($newLinkedProduct);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Features[]
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(Features $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features[] = $feature;
+            $feature->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(Features $feature): self
+    {
+        if ($this->features->contains($feature)) {
+            $this->features->removeElement($feature);
+            // set the owning side to null (unless already changed)
+            if ($feature->getProduct() === $this) {
+                $feature->setProduct(null);
+            }
+        }
 
         return $this;
     }

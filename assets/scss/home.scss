@@ -4,11 +4,14 @@
     @include font($gunny, 3rem)
   }
   &-thumbnail {
-    position: relative;
-    text-align: center;
+    text-align: left;
     transition: all 0.2s;
     @include max-mq(991px) {
       margin-bottom: 1.5rem;
+    }
+    img {
+      position: relative;
+      width: 100%;
     }
     &:hover {
       transform: scale(1.1);
@@ -27,10 +30,31 @@
     @include font($din-bold, 1rem, #ffffff);
   }
   .underthumb {
-    @include font($din-bold, 1.5rem, $primary);
+    @include font($din-bold, 1.5rem, #000000);
+    padding-left: 1rem;
+    @include max-mq(768px) {
+      padding-left: 0;
+      font-size: 1.2rem;
+    }
   }
 
+  &-description {
+    border: $primary solid 1px;
+    padding: 1rem;
+    @include max-mq(768px) {
+      margin-bottom: 1rem;
+    }
+  }
   .contact-us {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
+    p {
+      font-size: 1.5rem;
+    }
+    @include max-mq(768px) {
+      text-align: center;
+    }
+  }
+  .btn {
+    font-size: 1.1rem;
   }
 }

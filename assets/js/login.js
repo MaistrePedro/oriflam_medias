@@ -1,4 +1,3 @@
-import '../scss/app.scss';
 import '../js/ConfirmPasswordHandler';
 import '../js/RegistrationFormHandler';
 
