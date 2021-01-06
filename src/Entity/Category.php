@@ -137,10 +137,10 @@ class Category
     {
         $this->image = $image;
 
-        $newLinkedCategory = null === $image ? null : $this;
-        if ($image->getLinkedCategory() !== $newLinkedCategory) {
-            $image->setLinkedCategory($newLinkedCategory);
-        }
+        // $newLinkedCategory = null === $image ? null : $this;
+        // if ($image->getLinkedCategory() !== $newLinkedCategory) {
+        //     $image->setLinkedCategory($newLinkedCategory);
+        // }
 
         return $this;
     }

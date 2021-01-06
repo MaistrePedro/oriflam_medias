@@ -35,11 +35,12 @@ class CategoryController extends AbstractController
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $imageFiles = $request->files->get('category');
-            $datas = $request->request->get('product');
+            $datas = $request->request->get('category');
+            // \dd($request);
             $category
                 ->setLabel($datas['label'])
                 ->setSlug($datas['slug'])
@@ -55,13 +56,14 @@ class CategoryController extends AbstractController
                     $newFilename = $safeFilename . '.' . $imageFile->guessExtension();
                     $image
                         ->setName($safeFilename)
-                        ->setExtension($imageFile->guessExtension());
+                        ->setExtension($imageFile->guessExtension())
+                        ->setLinkedCategory($category);
                     $imageFile->move(
                         $this->getParameter('images_directory'),
                         $newFilename
                     );
                     $em->persist($image);
-                    $category->setImage($image->getName());
+                    $category->setImage($image);
                 }
             }
             $em->persist($category);
@@ -105,8 +107,11 @@ class CategoryController extends AbstractController
             $em->persist($category);
             if ($imageFiles) {
                 $oldImage = $category->getImage();
-                $em->remove($oldImage);
                 $category->setImage(null);
+                if ($oldImage !== null) {
+                    $em->remove($oldImage);
+                    $em->flush();
+                }
                 $images = [];
                 foreach ($imageFiles['image'] as $imageFile) {
                     /** @var UploadedFile $imageFile */
@@ -117,7 +122,8 @@ class CategoryController extends AbstractController
                     $newFilename = $safeFilename . '.' . $imageFile->guessExtension();
                     $image
                         ->setName($safeFilename)
-                        ->setExtension($imageFile->guessExtension());
+                        ->setExtension($imageFile->guessExtension())
+                        ->setLinkedCategory($category);
                     $imageFile->move(
                         $this->getParameter('images_directory'),
                         $newFilename
@@ -126,6 +132,7 @@ class CategoryController extends AbstractController
                     $category->setImage($image);
                 }
             }
+            // \dd($category);
             $em->flush();
 
             return $this->redirectToRoute('category_index');

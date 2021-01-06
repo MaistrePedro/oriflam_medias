@@ -34,13 +34,13 @@ class Images
     private $linkedOrder;
 
     /**
-     * @ORM\OneToOne(targetEntity=Product::class, inversedBy="image", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Product::class, inversedBy="image")
      * @ORM\JoinColumn(nullable=true)
      */
     private $linkedProduct;
 
     /**
-     * @ORM\OneToOne(targetEntity=Category::class, inversedBy="image", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Category::class, inversedBy="image")
      * @ORM\JoinColumn(nullable=true)
      */
     private $linkedCategory;
